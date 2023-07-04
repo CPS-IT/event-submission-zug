@@ -1,0 +1,81 @@
+---
+openapi: 3.0.0
+info:
+  version: 0.1.0
+  title: Event Submission API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+paths:
+  /event/:
+    get:
+      summary: Get a single event proposal
+      operationId: getEvent
+      responses:
+        "200":
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - allOf:
+                      - $ref: '#/components/schemas/event'
+        "400":
+          description: bad input parameter
+components:
+  schemas:
+    event:
+      type: object
+      required:
+        - title
+        - teaser
+        - datetime
+        - event_end
+        - timezone
+        - bodytext
+      description: Event proposal
+      properties:
+       title:
+         type: string
+         example: A event proposal with title
+       teaser:
+         type: string
+         example: >
+           Teaser text for event proposal. The teaser must not 
+           contain any html tags
+       datetime:
+          type: string
+          format: date-time
+          description: Start date and time of an event
+          example: 2017-07-21T17:00:00
+       event_end:
+         type: string
+         format: date-time
+         description: End date and time of an event
+         example: 2017-07-21T19:00:00
+       timezone:
+         type: integer
+         description: Unique id of timezone provided by database
+         example: 1575
+       bodytext:
+         type: string
+         description: Description of event
+         example: Do not miss this event! It will be awesome.
+       event_mode:
+         type: string
+         enum: [on_site, online, hybrid]
+         description: Selected value for event mode.
+         example: hybrid
+         default: on_site
+       organizer_simple:
+         type:  string
+         maxLength: 30
+         description: 'Organizer of an event. (Note: This property is not a reference)'
+         example: International Climate Initiative
+       location_simple:
+         maxLength: 30
+         description: 'Location of an event. (Note: This property is not a reference)'
+         example: A cool venue
+       external_id:
+         type: string
+
