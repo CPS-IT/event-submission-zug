@@ -7,24 +7,79 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 paths:
-  /event/:
+  /event/{id}:
     get:
       summary: Get a single event proposal
       operationId: getEvent
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+            format: int32
+      security:
+        - bearerAuth: []
       responses:
         "200":
           description: Successful request
           content:
             application/json:
               schema:
-                oneOf:
-                  - allOf:
-                      - $ref: '#/components/schemas/event'
-        "400":
-          description: bad input parameter
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Resource not found
+    post:
+      summary: Create a new event proposal
+      operationId: postEvent
+      responses:
+        '200':
+          description: Event proposal successful postet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCreatedResult'
+    patch:
+      summary: Change an existing event proposal
+      operationId: patchEvent
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Successfully changed event proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+    delete:
+      summary: Delete an event proposal
+      operationId: deleteEvent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Event successfully deleted
+        '403':
+          description: Access denied
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: uuid4
   schemas:
-    event:
+    Event:
       type: object
       required:
         - title
@@ -33,6 +88,7 @@ components:
         - event_end
         - timezone
         - bodytext
+        - reference_id
       description: Event proposal
       properties:
        title:
@@ -76,6 +132,26 @@ components:
          maxLength: 30
          description: 'Location of an event. (Note: This property is not a reference)'
          example: A cool venue
-       external_id:
+       reference_id:
          type: string
-
+         format: int32
+         example: 994432
+         description: Unique reference for the event
+       country:
+         type: integer
+         description: Unique id of country where the event should take place.
+         example: 13
+    EventCreatedResult:
+      type: object
+      description: Response for successful creation of an Event
+      properties:
+        editToken:
+          type: string
+          format: uuid
+          example: 513d03ce-6eeb-4134-9198-484176a5c314
+          description: Token for editing the newly created event proposal.
+        id:
+          type: integer
+          format: int32
+          example: 77543
+          description: Unique identifier of the event proposal.
