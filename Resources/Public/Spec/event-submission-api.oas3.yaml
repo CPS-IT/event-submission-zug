@@ -1,0 +1,268 @@
+---
+openapi: 3.0.0
+info:
+  version: 0.1.0
+  title: Event Submission API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:8080
+paths:
+  /email/validate:
+    post:
+      summary: Validate an email
+      description: >
+        A given email address will be validated by sending a mail to it. This mail
+        contains a link which must be opened in order to prove that the user has access
+        to this mail.
+      requestBody:
+        description: Email address and validation link
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailValidationRequest'
+      responses:
+        200:
+          description: Validation request successful
+  /event:
+    post:
+      summary: Create a new event proposal
+      operationId: postEvent
+      requestBody:
+        description: Event proposal that should be submitted.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      responses:
+        '200':
+          description: Event proposal successful postet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCreatedResult'
+  /event/{id}:
+    get:
+      summary: Get a single event proposal
+      operationId: getEvent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      security:
+        - bearerAuth: [ ]
+      responses:
+        "200":
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Resource not found
+    put:
+      summary: Change an existing event proposal
+      operationId: putEvent
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Successfully changed event proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUpdatedResult'
+    delete:
+      summary: Delete an event proposal
+      operationId: deleteEvent
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Successfully deleted event proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeletedResult'
+        '403':
+          description: Access denied
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: uuid4
+  schemas:
+    Event:
+      type: object
+      required:
+        - title
+        - teaser
+        - datetime
+        - event_end
+        - timezone
+        - bodytext
+        - reference_id
+      description: Event proposal
+      properties:
+        title:
+          type: string
+          example: A event proposal with title
+        teaser:
+          type: string
+          example: >
+            Teaser text for event proposal. The teaser must not 
+            contain any html tags
+        datetime:
+          type: string
+          format: date-time
+          description: Start date and time of an event
+          example: 2017-07-21T17:00:00
+        event_end:
+          type: string
+          format: date-time
+          description: End date and time of an event
+          example: 2017-07-21T19:00:00
+        timezone:
+          type: integer
+          description: Unique id of timezone provided by database
+          example: 1575
+        bodytext:
+          type: string
+          description: Description of event
+          example: Do not miss this event! It will be awesome.
+        event_mode:
+          type: string
+          enum: [ on_site, online, hybrid ]
+          description: Selected value for event mode.
+          example: hybrid
+          default: on_site
+        organizer_simple:
+          type: string
+          maxLength: 30
+          description: 'Organizer of an event. (Note: This property is not a reference)'
+          example: International Climate Initiative
+        location_simple:
+          maxLength: 30
+          description: 'Location of an event. (Note: This property is not a reference)'
+          example: A cool venue
+        reference_id:
+          type: string
+          format: int32
+          example: 994432
+          description: Unique reference for the event
+        country:
+          type: integer
+          description: Unique id of country where the event should take place.
+          example: 13
+    EventCreatedResult:
+      type: object
+      description: Response for successful creation of an Event
+      properties:
+        editToken:
+          type: string
+          format: uuid
+          example: 513d03ce-6eeb-4134-9198-484176a5c314
+          description: Token for editing the newly created event proposal.
+        id:
+          type: integer
+          format: int32
+          example: 77543
+          description: Unique identifier of the event proposal.
+    EventUpdatedResult:
+      type: object
+      description: Response for successful change of an event
+      properties:
+        title:
+          type: string
+          example: Updated event title
+        teaser:
+          type: string
+          example: new teaser text for event
+        datetime:
+          type: string
+          format: date-time
+          description: Start date and time of an event
+          example: 2023-08-08T17:00:00Z
+        event_end:
+          type: string
+          format: date-time
+          description: End date and time of an event
+          example: 2023-08-08T18:00:00Z
+        timezone:
+          type: integer
+          description: Unique id of timezone provided by database
+          example: 15
+        bodytext:
+          type: string
+          description: Description of event
+          example: this bodytext will be changed.
+        event_mode:
+          type: string
+          description: Selected value for event mode.
+          example: hybrid
+        organizer_simple:
+          type: string
+          maxLength: 30
+          description: 'Organizer of an event. (Note: This property is not a reference)'
+          example: International Climate Initiative
+        location_simple:
+          maxLength: 30
+          description: 'Location of an event. (Note: This property is not a reference)'
+          example: A cool venue
+        reference_id:
+          type: string
+          format: int32
+          example: 5533
+          description: Unique reference for the event
+        country:
+          type: integer
+          description: Unique id of country where the event should take place.
+          example: 13
+    EventDeletedResult:
+      type: object
+      description: Response for successful deletion of an Event
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 77543
+          description: Unique identifier of the event proposal.
+    EmailValidationRequest:
+      type: object
+      description: Request for email validation
+      required:
+        - email
+        - validationLink
+      properties:
+        email:
+          type: string
+          format: email
+        validationLink:
+          type: string
+          format: uri
+
