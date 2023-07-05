@@ -1,0 +1,5 @@
+2023-07-05         [RELEASE] Release of event_submission 0.1.0 (Dirk Wenzel)
+2023-07-05 be8732e endpoint for email validation added (Dirk Wenzel)
+2023-07-04 2802c21 specification extended: more methods, - http tests added (Dirk Wenzel)
+2023-07-04 e2b790f spec edited, mock server configuration added (Dirk Wenzel)
+2023-07-04 5109d5e Initial commit (Dirk Wenzel)
