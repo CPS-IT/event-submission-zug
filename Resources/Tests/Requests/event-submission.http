@@ -1,0 +1,50 @@
+### submit an email validation request
+POST http://localhost:8080/email/validate
+Content-Type: application/schema+json
+
+{
+  "email": "nix@foo.org",
+  "validationLink": "https://bar.org/validate/"
+}
+
+###
+
+### submit a new event proposal
+POST http://localhost:8080/event
+Content-Type: application/schema+json
+
+{
+  "bodytext": "foo bar body text",
+  "datetime": "2017-07-21T17:00:00Z",
+  "event_end": "2017-07-21T19:00:00Z",
+  "reference_id": "4711",
+  "teaser": "teaser text for new event",
+  "timezone": 15,
+  "title": "New Event Title"
+}
+
+### delete an existing event proposal
+DELETE http://localhost:8080/event/{{id}}
+Authorization: Bearer {{authToken}}
+###
+
+### get an existing event proposal
+GET http://localhost:8080/event/{{id}}
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+### change an existing event proposal
+PUT http://localhost:8080/event/{{id}}
+Content-Type: application/schema+json
+Authorization: Bearer {{authToken}}
+
+{
+  "bodytext": "this bodytext will be changed",
+  "datetime": "2023-08-08T17:00:00Z",
+  "event_end": "2023-08-08T18:00:00Z",
+  "reference_id": "5533",
+  "teaser": "new teaser text for event",
+  "timezone": 15,
+  "title": "Updated Event Title"
+}
+###
