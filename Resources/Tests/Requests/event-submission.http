@@ -1,3 +1,14 @@
+### submit an email validation request
+POST http://localhost:8080/email/validate
+Content-Type: application/schema+json
+
+{
+  "email": "nix@foo.org",
+  "validationLink": "https://bar.org/validate/"
+}
+
+###
+
 ### submit a new event proposal
 POST http://localhost:8080/event
 Content-Type: application/schema+json

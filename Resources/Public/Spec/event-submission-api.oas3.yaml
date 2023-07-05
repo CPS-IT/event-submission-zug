@@ -6,7 +6,25 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:8080
 paths:
+  /email/validate:
+    post:
+      summary: Validate an email
+      description: >
+        A given email address will be validated by sending a mail to it. This mail
+        contains a link which must be opened in order to prove that the user has access
+        to this mail.
+      requestBody:
+        description: Email address and validation link
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailValidationRequest'
+      responses:
+        200:
+          description: Validation request successful
   /event:
     post:
       summary: Create a new event proposal
@@ -32,6 +50,7 @@ paths:
       parameters:
         - name: id
           in: path
+          required: true
           schema:
             type: integer
             format: int32
@@ -233,3 +252,17 @@ components:
           format: int32
           example: 77543
           description: Unique identifier of the event proposal.
+    EmailValidationRequest:
+      type: object
+      description: Request for email validation
+      required:
+        - email
+        - validationLink
+      properties:
+        email:
+          type: string
+          format: email
+        validationLink:
+          type: string
+          format: uri
+
