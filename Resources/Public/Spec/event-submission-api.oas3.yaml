@@ -9,7 +9,7 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /email/validate:
+  /user/sendValidationRequest:
     post:
       summary: Validate an email
       description: >
@@ -25,10 +25,18 @@ paths:
       responses:
         200:
           description: Validation request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailValidationSendResult'
+        503:
+          description: Email could not be send due to internal error.
   /event:
     post:
       summary: Create a new event proposal
       operationId: postEvent
+      security:
+        - bearerAuth: []
       requestBody:
         description: Event proposal that should be submitted.
         content:
@@ -120,6 +128,7 @@ components:
     Event:
       type: object
       required:
+        - email
         - title
         - teaser
         - datetime
@@ -129,6 +138,13 @@ components:
         - reference_id
       description: Event proposal
       properties:
+        email:
+          type: string
+          format: email
+          description: > 
+            Email of the submitter. This mail must match the validated mail and
+            will be saved and used for later  contact.
+          example: nix@foo.org
         title:
           type: string
           example: A event proposal with title
@@ -247,6 +263,10 @@ components:
       type: object
       description: Response for successful deletion of an Event
       properties:
+        message:
+          type: string
+          example: Event proposal deleted
+          description: Message about successful deletion of event.
         id:
           type: integer
           format: int32
@@ -254,15 +274,33 @@ components:
           description: Unique identifier of the event proposal.
     EmailValidationRequest:
       type: object
-      description: Request for email validation
+      description: > 
+        Request for email validation. Contains an email to which a validation link
+        should be sent and a  hash value for the validation of this link in Frontend.
       required:
         - email
-        - validationLink
+        - validationHash
       properties:
         email:
           type: string
           format: email
-        validationLink:
+          example: foo@bar
+        validationHash:
           type: string
-          format: uri
-
+          format: uuid
+          example: dfde719e-9f19-40b5-af2e-6f96d4034cda
+    EmailValidationSendResult:
+      type: object
+      description: > 
+        Result for email validation. Contains the previously given hash value 
+        for the validation of this link in Frontend.
+      required:
+        - validationHash
+      properties:
+        message:
+          type: string
+          example: Validation email successfully sent
+        validationHash:
+          type: string
+          format: uuid
+          example: dfde719e-9f19-40b5-af2e-6f96d4034cda

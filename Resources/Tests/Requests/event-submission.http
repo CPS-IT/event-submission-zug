@@ -1,10 +1,10 @@
 ### submit an email validation request
-POST http://localhost:8080/email/validate
+POST http://localhost:8080/user/sendValidationRequest
 Content-Type: application/schema+json
 
 {
   "email": "nix@foo.org",
-  "validationLink": "https://bar.org/validate/"
+  "validationHash": "dfde719e-9f19-40b5-af2e-6f96d4034cda"
 }
 
 ###
@@ -12,6 +12,7 @@ Content-Type: application/schema+json
 ### submit a new event proposal
 POST http://localhost:8080/event
 Content-Type: application/schema+json
+Authorization: Bearer {{authToken}}
 
 {
   "bodytext": "foo bar body text",
@@ -19,6 +20,7 @@ Content-Type: application/schema+json
   "event_end": "2017-07-21T19:00:00Z",
   "reference_id": "4711",
   "teaser": "teaser text for new event",
+  "email": "nix@foo.org",
   "timezone": 15,
   "title": "New Event Title"
 }
