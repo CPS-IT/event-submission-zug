@@ -10,7 +10,7 @@ Content-Type: application/schema+json
 ###
 
 ### submit a new event proposal
-POST http://localhost:8080/event
+POST http://localhost:8080/event/{{language}}
 Content-Type: application/schema+json
 Authorization: Bearer {{authToken}}
 
@@ -31,12 +31,12 @@ Authorization: Bearer {{authToken}}
 ###
 
 ### get an existing event proposal
-GET http://localhost:8080/event/{{id}}
+GET http://localhost:8080/event/{{language}}/{{id}}
 Accept: application/json
 Authorization: Bearer {{authToken}}
 
 ### change an existing event proposal
-PUT http://localhost:8080/event/{{id}}
+PUT http://localhost:8080/event/{{language}}/{{id}}
 Content-Type: application/schema+json
 Authorization: Bearer {{authToken}}
 
@@ -47,6 +47,7 @@ Authorization: Bearer {{authToken}}
   "reference_id": "5533",
   "teaser": "new teaser text for event",
   "timezone": 15,
-  "title": "Updated Event Title"
+  "title": "Updated Event Title",
+  "language": "de"
 }
 ###

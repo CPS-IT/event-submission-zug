@@ -31,10 +31,25 @@ paths:
                 $ref: '#/components/schemas/EmailValidationSendResult'
         503:
           description: Email could not be send due to internal error.
-  /event:
+  /event/{language}:
     post:
       summary: Create a new event proposal
       operationId: postEvent
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: enum
+            format: [de,en]
+            default: de
+
       security:
         - bearerAuth: []
       requestBody:
@@ -51,17 +66,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventCreatedResult'
-  /event/{id}:
+  /event/{language}/{id}:
     get:
       summary: Get a single event proposal
       operationId: getEvent
       parameters:
-        - name: id
+        - name: language
           in: path
           required: true
           schema:
-            type: integer
-            format: int32
+            type: enum
+            format: [de,en]
+            default: de
       security:
         - bearerAuth: [ ]
       responses:
@@ -85,6 +101,13 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: enum
+            format: [de,en]
+            default: de
       requestBody:
         content:
           application/json:
@@ -195,11 +218,11 @@ components:
           type: integer
           description: Unique id of country where the event should take place.
           example: 13
-        language_id:
-          type: integer
-          description: Unique id of the language for the event.
-          example: 1
-          default: 0
+        language:
+          type: enum
+          format: [ de,en ]
+          default: de
+          description: Language for the event.
     EventCreatedResult:
       type: object
       description: Response for successful creation of an Event
@@ -264,11 +287,11 @@ components:
           type: integer
           description: Unique id of country where the event should take place.
           example: 13
-        language_id:
-          type: integer
-          description: Unique id of the language for the event.
-          example: 1
-          default: 0
+        language:
+          type: enum
+          format: [ de,en ]
+          default: de
+          description: Language for the event.
     EventDeletedResult:
       type: object
       description: Response for successful deletion of an Event
