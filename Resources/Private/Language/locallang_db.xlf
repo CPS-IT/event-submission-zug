@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="iki_project_import">
+		<header/>
+		<body>
+			<trans-unit id="tx_eventsubmission_model_job.job">
+				<source>Event submition job</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.uuid">
+				<source>Record universal uuid</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.request_date_time">
+				<source>Request datetime</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.payload">
+				<source>Payload</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.response_message">
+				<source>Response message</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.is_api_error">
+				<source>Api request status</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.is_api_error.error">
+				<source>Error</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.is_api_error.success">
+				<source>Success</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.triggered_date_time">
+				<source>Job internally triggered at</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.is_done">
+				<source>Job internally done</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_model_job.job.is_internal_error">
+				<source>Job internal error?</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
