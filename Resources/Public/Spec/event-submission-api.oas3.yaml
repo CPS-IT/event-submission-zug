@@ -195,6 +195,11 @@ components:
           type: integer
           description: Unique id of country where the event should take place.
           example: 13
+        language_id:
+          type: integer
+          description: Unique id of the language for the event.
+          example: 1
+          default: 0
     EventCreatedResult:
       type: object
       description: Response for successful creation of an Event
@@ -259,6 +264,11 @@ components:
           type: integer
           description: Unique id of country where the event should take place.
           example: 13
+        language_id:
+          type: integer
+          description: Unique id of the language for the event.
+          example: 1
+          default: 0
     EventDeletedResult:
       type: object
       description: Response for successful deletion of an Event
