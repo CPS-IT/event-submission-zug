@@ -28,7 +28,8 @@ class Job extends AbstractEntity
         FIELD_JOB_TRIGGERED_DATE_TIME = 'job_triggered_date_time',
         FIELD_IS_DONE = 'is_done',
         FIELD_INTERNAL_LOG_MESSAGE = 'internal_log_message',
-        FIELD_IS_INTERNAL_ERROR = 'is_internal_error';
+        FIELD_IS_INTERNAL_ERROR = 'is_internal_error',
+        FIELD_APPROVED = 'approved';
 
     protected string $uuid = '';
     protected string $email = '';
@@ -37,6 +38,7 @@ class Job extends AbstractEntity
     protected string $internalLogMessage = '';
     protected bool $isApiError = false;
     protected bool $isDone = false;
+    protected bool $approved = false;
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
@@ -110,16 +112,6 @@ class Job extends AbstractEntity
     public function setRequestDateTime(?\DateTime $requestDateTime): void
     {
         $this->requestDateTime = $requestDateTime;
-    }
-
-    public function getSciformaId(): int
-    {
-        return $this->sciformaId;
-    }
-
-    public function setSciformaId(int $sciformaId): void
-    {
-        $this->sciformaId = $sciformaId;
     }
 
     public function getPayload(): string
@@ -207,4 +199,13 @@ class Job extends AbstractEntity
         $this->isInternalError = $isInternalError;
     }
 
+    public function isApproved(): bool
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(bool $approved): void
+    {
+        $this->approved = $approved;
+    }
 }
