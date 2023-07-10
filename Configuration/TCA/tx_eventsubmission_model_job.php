@@ -26,21 +26,24 @@ return [
     'types' => [
         '0' => [
             'showitem' => '
-            email,
-            uuid,
-            request_date_time,
-            payload,
-            response_message,
-            is_api_error,
-            job_triggered_date_time,
-            is_done,
-            internal_log_message,
-            is_internal_error'
+                email,
+                uuid,
+                payload,
+                approved,
+            --div--;' . $ll . 'tx_eventsubmission_model_job.tab.request,
+                request_date_time,
+                response_message,
+                is_api_error,
+            --div--;' . $ll . 'tx_eventsubmission_model_job.tab.internal,
+                job_triggered_date_time,
+                is_done,
+                internal_log_message,
+                is_internal_error'
         ],
     ],
     'columns' => [
         'email' => [
-            'label' => $ll . 'tx_eventsubmission_model_job.uuid',
+            'label' => $ll . 'tx_eventsubmission_model_job.email',
             'config' => [
                 'type' => 'input',
                 'width' => 100,
@@ -57,14 +60,13 @@ return [
                 'readOnly' => true,
             ],
         ],
-        'language' => [
-            'label' => $ll . 'tx_eventsubmission_model_job.language',
-            'config' => [
-                'type' => 'language',
-                'readOnly' => true,
-
-            ]
-        ],
+        #'language' => [
+        #    'label' => $ll . 'tx_eventsubmission_model_job.language',
+        #    'config' => [
+        #        'type' => 'language',
+        #        'readOnly' => true,
+        #    ]
+        #],
         'request_date_time' => [
             'label' => $ll . 'tx_eventsubmission_model_job.request_date_time',
             'config' => [
@@ -103,9 +105,8 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'labelChecked' => $ll . 'tx_eventsubmission_model_job.job.is_api_error.error',
-                        'labelUnchecked' => $ll . 'tx_eventsubmission_model_job.job.is_api_error.error',
-                        'invertStateDisplay' => true
+                        'labelChecked' => 'Success',
+                        'labelUnchecked' => 'Error'
                     ],
                 ],
                 'readOnly' => true,
@@ -132,8 +133,8 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'labelChecked' => 'is done',
-                        'labelUnchecked' => 'was not done, yet',
+                        'labelChecked' => 'Done',
+                        'labelUnchecked' => 'not done',
                     ],
                 ],
                 'readOnly' => true,
@@ -157,11 +158,26 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'labelChecked' => 'was not successful',
-                        'labelUnchecked' => 'was successful/ not done',
+                        'labelChecked' => 'Successful',
+                        'labelUnchecked' => 'Error',
                     ],
                 ],
                 'readOnly' => true,
+            ],
+        ],
+        'approved' => [
+            'label' => $ll . 'tx_eventsubmission_model_job.approved',
+            'config' => [
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                        'labelChecked' => 'Approved',
+                        'labelUnchecked' => 'Rejected',
+                    ],
+                ],
             ],
         ],
     ],
