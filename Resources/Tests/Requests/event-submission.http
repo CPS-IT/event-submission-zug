@@ -21,7 +21,7 @@ Authorization: Bearer {{authToken}}
   "reference_id": "4711",
   "teaser": "teaser text for new event",
   "email": "nix@foo.org",
-  "timezone": 15,
+  "timezone": "Europe/Berlin",
   "title": "New Event Title"
 }
 
@@ -46,7 +46,7 @@ Authorization: Bearer {{authToken}}
   "event_end": "2023-08-08T18:00:00Z",
   "reference_id": "5533",
   "teaser": "new teaser text for event",
-  "timezone": 15,
+  "timezone": "Europe/Berlin",
   "title": "Updated Event Title",
   "language": "de"
 }

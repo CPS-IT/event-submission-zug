@@ -46,8 +46,8 @@ paths:
           in: path
           required: true
           schema:
-            type: enum
-            format: [de,en]
+            type: string
+            enum: [de,en]
             default: de
 
       security:
@@ -75,8 +75,8 @@ paths:
           in: path
           required: true
           schema:
-            type: enum
-            format: [de,en]
+            type: string
+            enum: [de,en]
             default: de
       security:
         - bearerAuth: [ ]
@@ -105,8 +105,8 @@ paths:
           in: path
           required: true
           schema:
-            type: enum
-            format: [de,en]
+            type: string
+            enum: [de,en]
             default: de
       requestBody:
         content:
@@ -187,9 +187,9 @@ components:
           description: End date and time of an event
           example: 2017-07-21T19:00:00
         timezone:
-          type: integer
-          description: Unique id of timezone provided by database
-          example: 1575
+          type: string
+          description: Unique timezone name provided by database
+          example: Europe/Berlin
         bodytext:
           type: string
           description: Description of event
@@ -219,8 +219,8 @@ components:
           description: Unique id of country where the event should take place.
           example: 13
         language:
-          type: enum
-          format: [ de,en ]
+          type: string
+          enum:  [ de,en ]
           default: de
           description: Language for the event.
     EventCreatedResult:
@@ -258,9 +258,9 @@ components:
           description: End date and time of an event
           example: 2023-08-08T18:00:00Z
         timezone:
-          type: integer
-          description: Unique id of timezone provided by database
-          example: 15
+          type: string
+          description: Unique timezone name provided by database
+          example: Europe/Berlin
         bodytext:
           type: string
           description: Description of event
@@ -288,8 +288,8 @@ components:
           description: Unique id of country where the event should take place.
           example: 13
         language:
-          type: enum
-          format: [ de,en ]
+          type: string
+          enum: [ de,en ]
           default: de
           description: Language for the event.
     EventDeletedResult:
