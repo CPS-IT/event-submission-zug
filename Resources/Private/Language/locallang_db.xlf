@@ -3,52 +3,52 @@
 	<file source-language="en" datatype="plaintext" original="messages" product-name="iki_project_import">
 		<header/>
 		<body>
-			<trans-unit id="tx_eventsubmission_model_job.tab.request">
+			<trans-unit id="tx_eventsubmission_domain_model_job.tab.request">
 				<source>Request</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.tab.internal">
+			<trans-unit id="tx_eventsubmission_domain_model_job.tab.internal">
 				<source>Internal</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job">
+			<trans-unit id="tx_eventsubmission_domain_model_job">
 				<source>Event submition job</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.email">
+			<trans-unit id="tx_eventsubmission_domain_model_job.email">
 				<source>Email</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.uuid">
+			<trans-unit id="tx_eventsubmission_domain_model_job.uuid">
 				<source>Record universal uuid</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.request_date_time">
+			<trans-unit id="tx_eventsubmission_domain_model_job.request_date_time">
 				<source>Request datetime</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.payload">
+			<trans-unit id="tx_eventsubmission_domain_model_job.payload">
 				<source>Payload</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.response_message">
+			<trans-unit id="tx_eventsubmission_domain_model_job.response_message">
 				<source>Response message</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.is_api_error">
+			<trans-unit id="tx_eventsubmission_domain_model_job.is_api_error">
 				<source>Api request status</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.is_api_error.error">
+			<trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.error">
 				<source>Error</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.is_api_error.success">
+			<trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.success">
 				<source>Success</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.job_triggered_date_time">
+			<trans-unit id="tx_eventsubmission_domain_model_job.job_triggered_date_time">
 				<source>Job internally triggered at</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.is_done">
+			<trans-unit id="tx_eventsubmission_domain_model_job.is_done">
 				<source>Job internally done</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.internal_log_message">
+			<trans-unit id="tx_eventsubmission_domain_model_job.internal_log_message">
 				<source>Job internal log message</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.is_internal_error">
+			<trans-unit id="tx_eventsubmission_domain_model_job.is_internal_error">
 				<source>Internal job status</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.approved">
+			<trans-unit id="tx_eventsubmission_domain_model_job.approved">
 				<source>Event approved</source>
 			</trans-unit>
 		</body>

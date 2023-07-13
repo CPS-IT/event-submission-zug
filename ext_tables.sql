@@ -1,7 +1,7 @@
 #
-# Table structure for table 'tx_eventsubmission_model_job'
+# Table structure for table 'tx_eventsubmission_domain_model_job'
 #
-CREATE TABLE tx_eventsubmission_model_job
+CREATE TABLE tx_eventsubmission_domain_model_job
 (
     uuid                    varchar(100) DEFAULT '' NOT NULL,
     email                   varchar(255) DEFAULT '' NOT NULL,
