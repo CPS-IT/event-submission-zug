@@ -158,7 +158,6 @@ components:
         - event_end
         - timezone
         - bodytext
-        - reference_id
       description: Event proposal
       properties:
         email:
@@ -209,11 +208,10 @@ components:
           maxLength: 30
           description: 'Location of an event. (Note: This property is not a reference)'
           example: A cool venue
-        reference_id:
+        external_reference:
           type: string
-          format: int32
-          example: 994432
-          description: Unique reference for the event
+          example: Foo external reference for event
+          description:  Optional reference for the event e.g.
         country:
           type: integer
           description: Unique id of country where the event should take place.
@@ -278,11 +276,10 @@ components:
           maxLength: 30
           description: 'Location of an event. (Note: This property is not a reference)'
           example: A cool venue
-        reference_id:
+        external_reference:
           type: string
-          format: int32
-          example: 5533
-          description: Unique reference for the event
+          example: Foo bar reference for event
+          description: External reference for the event (optional)
         country:
           type: integer
           description: Unique id of country where the event should take place.
