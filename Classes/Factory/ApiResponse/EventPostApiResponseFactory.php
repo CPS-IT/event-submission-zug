@@ -21,7 +21,11 @@ class EventPostApiResponseFactory implements ApiResponseFactoryInterface
 {
     public function successResponse(Job $job): ApiResponse
     {
-        return $this->create(ApiResponseInterface::EVENT_SUBMISSION_SUCCESS, $job->getPayload());
+        $data = [
+            'editToken' => $job->getUuid(),
+            'id' => $job->getUid()
+        ];
+        return $this->create(ApiResponseInterface::EVENT_SUBMISSION_SUCCESS, json_encode($data));
     }
 
     public function errorResponse(): ApiResponse
