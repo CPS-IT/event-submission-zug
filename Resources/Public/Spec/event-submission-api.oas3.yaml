@@ -37,18 +37,10 @@ paths:
                 $ref: '#/components/schemas/EmailValidationSendResult'
         503:
           description: Email could not be send due to internal error.
-  /{language}/event/:
+  /event/:
     post:
       summary: Create a new event proposal
       operationId: postEvent
-      parameters:
-        - name: language
-          in: path
-          required: true
-          schema:
-            type: string
-            enum: [de,en]
-            default: de
       security:
         - bearerAuth: []
       requestBody:
@@ -65,7 +57,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventCreatedResult'
-  /event/{language}/{id}:
+  /{language}/event/{id}:
     get:
       summary: Get a single event proposal
       operationId: getEvent
