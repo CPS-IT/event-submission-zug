@@ -7,13 +7,17 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-  - url: http://{localhost:8080}/{apiPath}
+  - url: '{environment}/{apiPath}'
     variables:
+      apiPath:
+        default: api
       environment:
         default: iki.ddev.site    # DDEV server
         enum:
-          - international-climate-initiative.de         # Production server
-          # todo other environments
+          - https://international-climate-initiative.de         # Production server
+          - https://iki-v11.stg.typo3.zug.321.works             # Staging server
+          - http://localhost:8080
+
 paths:
   /user/sendValidationRequest:
     post:
