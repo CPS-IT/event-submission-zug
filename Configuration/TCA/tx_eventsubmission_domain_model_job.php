@@ -19,7 +19,7 @@ return [
         ],
         'searchFields' => 'uid, email, uuid, payload',
         'typeicon_classes' => [
-            'default' => 'event-submition-job',
+            'default' => 'event-submission-job',
         ],
     ],
     'interface' => [],

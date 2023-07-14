@@ -10,7 +10,7 @@
 				<source>Internal</source>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job">
-				<source>Event submition job</source>
+				<source>Event submission job</source>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.email">
 				<source>Email</source>

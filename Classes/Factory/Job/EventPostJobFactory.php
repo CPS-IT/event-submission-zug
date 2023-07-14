@@ -35,7 +35,7 @@ final class EventPostJobFactory implements JobFactoryInterface
         $job->setUuid(Uuid::uuid4()->toString());
         $job->setPid($this->getStoragePidFromSiteConfig());
         $job->setEmail($this->request->getBody()['email'] ?? '');
-        $job->setRequestDateTime($requestDateTime ?? new \DateTime('NOW'));
+        $job->setRequestDateTime(new \DateTime('NOW'));
         // Todo: sanitize and validate payload
         $job->setPayload($this->request->getRawBody());
         $job->setResponseCode(ApiResponseInterface::EVENT_SUBMISSION_SUCCESS);

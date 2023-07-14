@@ -31,9 +31,9 @@ final class EventPost extends AbstractApi
     protected ApiResponseFactoryInterface $apiResponseFactory;
 
     /**
-     * ## Event submition POST
+     * ## Event submission POST
      *
-     * Create an event submition job
+     * Create an event submission job
      *
      * ### Payload:
      *
