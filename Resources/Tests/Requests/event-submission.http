@@ -1,5 +1,5 @@
 ### submit an email validation request
-POST http://localhost:8080/user/sendValidationRequest
+POST https://{{host}}/api/user/sendValidationRequest
 Content-Type: application/schema+json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/schema+json
 ###
 
 ### submit a new event proposal
-POST http://localhost:8080/event/{{language}}
+POST https://{{host}}/api/event
 Content-Type: application/schema+json
 Authorization: Bearer {{authToken}}
 
@@ -26,17 +26,17 @@ Authorization: Bearer {{authToken}}
 }
 
 ### delete an existing event proposal
-DELETE http://localhost:8080/event/{{id}}
+DELETE https://{{host}}/api/event/{{id}}
 Authorization: Bearer {{authToken}}
 ###
 
 ### get an existing event proposal
-GET http://localhost:8080/event/{{language}}/{{id}}
+GET https://{{host}}/api/event/{{language}}/{{id}}
 Accept: application/json
 Authorization: Bearer {{authToken}}
 
 ### change an existing event proposal
-PUT http://localhost:8080/event/{{language}}/{{id}}
+PUT https://{{host}}/api/event/{{language}}/{{id}}
 Content-Type: application/schema+json
 Authorization: Bearer {{authToken}}
 
