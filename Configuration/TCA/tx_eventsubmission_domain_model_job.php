@@ -5,7 +5,7 @@ $ll = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf:';
 
 return [
     'ctrl' => [
-        'title' => $ll . 'tx_eventsubmission_domain_model_job',
+        'title' => $ll . 'tx_eventsubmission_model_job',
         'label' => 'uuid',
         'label_alt' => 'email',
         'label_alt_force' => true,
@@ -30,11 +30,11 @@ return [
                 uuid,
                 payload,
                 approved,
-            --div--;' . $ll . 'tx_eventsubmission_domain_model_job.tab.request,
+            --div--;' . $ll . 'tx_eventsubmission_model_job.tab.request,
                 request_date_time,
-                response_message,
+                response_code,
                 is_api_error,
-            --div--;' . $ll . 'tx_eventsubmission_domain_model_job.tab.internal,
+            --div--;' . $ll . 'tx_eventsubmission_model_job.tab.internal,
                 job_triggered_date_time,
                 is_done,
                 internal_log_message,
@@ -43,7 +43,7 @@ return [
     ],
     'columns' => [
         'email' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.email',
+            'label' => $ll . 'tx_eventsubmission_model_job.email',
             'config' => [
                 'type' => 'input',
                 'width' => 100,
@@ -52,7 +52,7 @@ return [
             ],
         ],
         'uuid' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.uuid',
+            'label' => $ll . 'tx_eventsubmission_model_job.uuid',
             'config' => [
                 'type' => 'input',
                 'width' => 200,
@@ -60,15 +60,8 @@ return [
                 'readOnly' => true,
             ],
         ],
-        #'language' => [
-        #    'label' => $ll . 'tx_eventsubmission_domain_model_job.language',
-        #    'config' => [
-        #        'type' => 'language',
-        #        'readOnly' => true,
-        #    ]
-        #],
         'request_date_time' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.request_date_time',
+            'label' => $ll . 'tx_eventsubmission_model_job.request_date_time',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -79,7 +72,7 @@ return [
             ],
         ],
         'payload' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.payload',
+            'label' => $ll . 'tx_eventsubmission_model_job.payload',
             'config' => [
                 'type' => 'text',
                 'width' => 200,
@@ -87,17 +80,18 @@ return [
                 'readOnly' => true,
             ],
         ],
-        'response_message' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.response_message',
+        'response_code' => [
+            'label' => $ll . 'tx_eventsubmission_model_job.response_code',
             'config' => [
                 'type' => 'input',
-                'width' => 200,
-                'eval' => 'trim',
+                'width' => 10,
+                'eval' => 'trim, int',
                 'readOnly' => true,
+                'default' => 0,
             ],
         ],
         'is_api_error' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.is_api_error',
+            'label' => $ll . 'tx_eventsubmission_model_job.is_api_error',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxLabeledToggle',
@@ -114,7 +108,7 @@ return [
         ],
         'job_triggered_date_time' => [
             'exclude' => true,
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.job_triggered_date_time',
+            'label' => $ll . 'tx_eventsubmission_model_job.job_triggered_date_time',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -125,7 +119,7 @@ return [
             ],
         ],
         'is_done' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.is_done',
+            'label' => $ll . 'tx_eventsubmission_model_job.is_done',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxLabeledToggle',
@@ -141,7 +135,7 @@ return [
             ],
         ],
         'internal_log_message' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.internal_log_message',
+            'label' => $ll . 'tx_eventsubmission_model_job.internal_log_message',
             'config' => [
                 'type' => 'input',
                 'width' => 200,
@@ -150,7 +144,7 @@ return [
             ],
         ],
         'is_internal_error' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.is_internal_error',
+            'label' => $ll . 'tx_eventsubmission_model_job.is_internal_error',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxLabeledToggle',
@@ -166,7 +160,7 @@ return [
             ],
         ],
         'approved' => [
-            'label' => $ll . 'tx_eventsubmission_domain_model_job.approved',
+            'label' => $ll . 'tx_eventsubmission_model_job.approved',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -23,7 +24,7 @@ class Job extends AbstractEntity
         FIELD_EMAIL = 'email',
         FIELD_REQUEST_DATE_TIME = 'request_date_time',
         FIELD_PAYLOAD = 'payload',
-        FIELD_RESPONSE_MESSAGE = 'response_message',
+        FIELD_RESPONSE_CODE = 'response_code',
         FIELD_IS_API_ERROR = 'is_api_error',
         FIELD_JOB_TRIGGERED_DATE_TIME = 'job_triggered_date_time',
         FIELD_IS_DONE = 'is_done',
@@ -34,7 +35,7 @@ class Job extends AbstractEntity
     protected string $uuid = '';
     protected string $email = '';
     protected string $payload = '';
-    protected string $responseMessage = '';
+    protected int $responseCode = 0;
     protected string $internalLogMessage = '';
     protected bool $isApiError = false;
     protected bool $isDone = false;
@@ -42,47 +43,6 @@ class Job extends AbstractEntity
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
-
-    public function buildJob(
-        string $uuid,
-        string $email,
-        string $payload = '',
-        string $responseMessage = '',
-        bool $isApiError = false,
-        ?\DateTime $requestDateTime = null
-    ): self {
-        $this->setUuid($uuid);
-        $this->setEmail($email);
-        $this->setRequestDateTime($requestDateTime ?? new \DateTime('NOW'));
-        $this->setPayload($payload);
-        $this->setResponseMessage($responseMessage);
-        $this->setIsApiError($isApiError);
-        $this->setIsDone(!$this->getIsApiError());
-        return $this;
-    }
-
-    public static function createExistingJob(
-        array $dbalRecord
-    ): Job {
-        $job = new self();
-        $job->setUuid(self::FIELD_UUID);
-        $job->setEmail(self::FIELD_EMAIL);
-        $job->setRequestDateTime(
-            new \DateTime('@' . (int)$dbalRecord[self::FIELD_REQUEST_DATE_TIME])
-        );
-        $job->setPayload($dbalRecord[self::FIELD_PAYLOAD]);
-        $job->setResponseMessage($dbalRecord[self::FIELD_RESPONSE_MESSAGE]);
-        $job->setIsApiError((bool)$dbalRecord[self::FIELD_IS_API_ERROR]);
-        $job->setJobTriggeredDateTime(
-            new \DateTime('@' . (int)$dbalRecord[self::FIELD_JOB_TRIGGERED_DATE_TIME])
-        );
-        $job->setIsDone((bool)$dbalRecord[self::FIELD_IS_DONE]);
-        $job->setInternalLogMessage($dbalRecord[self::FIELD_INTERNAL_LOG_MESSAGE]);
-        $job->setIsInternalError((bool)$dbalRecord[self::FIELD_IS_INTERNAL_ERROR]);
-        $job->_setProperty(self::FIELD_UID, $dbalRecord[self::FIELD_UID]);
-        $job->setPid($dbalRecord[self::FIELD_PID]);
-        return $job;
-    }
 
     public function getUuid(): string
     {
@@ -124,14 +84,20 @@ class Job extends AbstractEntity
         $this->payload = $payload;
     }
 
-    public function getResponseMessage(): string
+    /**
+     * @return int
+     */
+    public function getResponseCode(): int
     {
-        return $this->responseMessage;
+        return $this->responseCode;
     }
 
-    public function setResponseMessage(string $responseMessage): void
+    /**
+     * @param int $responseCode
+     */
+    public function setResponseCode(int $responseCode): void
     {
-        $this->responseMessage = $responseMessage;
+        $this->responseCode = $responseCode;
     }
 
     public function isApiError(): bool

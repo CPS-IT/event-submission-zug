@@ -7,7 +7,7 @@ CREATE TABLE tx_eventsubmission_domain_model_job
     email                   varchar(255) DEFAULT '' NOT NULL,
     request_date_time       int(11) DEFAULT 0 NOT NULL,
     payload                 text         DEFAULT NULL,
-    response_message        text         DEFAULT '' NOT NULL,
+    response_code           int(1) unsigned DEFAULT 0 NOT NULL,
     is_api_error            int(1) unsigned DEFAULT 0 NOT NULL,
     job_triggered_date_time int(11) DEFAULT 0 NOT NULL,
     is_done                 int(1) unsigned DEFAULT 0 NOT NULL,
