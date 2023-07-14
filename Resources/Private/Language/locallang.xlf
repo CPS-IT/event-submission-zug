@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="iki_project_import">
+		<header/>
+		<body>
+			<trans-unit id="api_response_message.100">
+				<source>Event submission success</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.400">
+				<source>Event submission error</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

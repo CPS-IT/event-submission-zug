@@ -32,7 +32,7 @@ return [
                 approved,
             --div--;' . $ll . 'tx_eventsubmission_model_job.tab.request,
                 request_date_time,
-                response_message,
+                response_code,
                 is_api_error,
             --div--;' . $ll . 'tx_eventsubmission_model_job.tab.internal,
                 job_triggered_date_time,
@@ -60,13 +60,6 @@ return [
                 'readOnly' => true,
             ],
         ],
-        #'language' => [
-        #    'label' => $ll . 'tx_eventsubmission_model_job.language',
-        #    'config' => [
-        #        'type' => 'language',
-        #        'readOnly' => true,
-        #    ]
-        #],
         'request_date_time' => [
             'label' => $ll . 'tx_eventsubmission_model_job.request_date_time',
             'config' => [
@@ -87,13 +80,14 @@ return [
                 'readOnly' => true,
             ],
         ],
-        'response_message' => [
-            'label' => $ll . 'tx_eventsubmission_model_job.response_message',
+        'response_code' => [
+            'label' => $ll . 'tx_eventsubmission_model_job.response_code',
             'config' => [
                 'type' => 'input',
-                'width' => 200,
-                'eval' => 'trim',
+                'width' => 10,
+                'eval' => 'trim, int',
                 'readOnly' => true,
+                'default' => 0,
             ],
         ],
         'is_api_error' => [

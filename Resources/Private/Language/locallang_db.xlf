@@ -24,8 +24,8 @@
 			<trans-unit id="tx_eventsubmission_model_job.payload">
 				<source>Payload</source>
 			</trans-unit>
-			<trans-unit id="tx_eventsubmission_model_job.response_message">
-				<source>Response message</source>
+			<trans-unit id="tx_eventsubmission_model_job.response_code">
+				<source>Response code</source>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_model_job.is_api_error">
 				<source>Api request status</source>
