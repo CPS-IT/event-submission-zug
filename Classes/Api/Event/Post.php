@@ -12,19 +12,12 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Api\Event;
 
-use Brotkrueml\Schema\Model\Type\GroceryStore;
-use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory;
-use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
-use Cpsit\EventSubmission\Factory\Job\EventPostJobFactory;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
-use Cpsit\EventSubmission\Service\EventPostToJobService;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
-use Ramsey\Uuid\Uuid;
-use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Impexp\Exception;
 
