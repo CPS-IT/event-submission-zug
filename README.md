@@ -2,7 +2,8 @@
 
 Submit proposals for events through a web form.
 
-Api specifications can be found hier `EXT:event_submission/Resources/Public/Spec/event-submission-api.oas3.yaml
+Api specifications can be found hier `EXT:
+event_submission/Resources/Public/Spec/event-submission-api.oas3.yaml
 
 # Dependencies
 
@@ -21,7 +22,8 @@ the `nnrestapi` [documentation](https://labor.99grad.de/typo3-docs/typo3-nnresta
 
 ## Site configuration
 
-The following configuration options are available:  have to be set in the TYPO3 site config, unter den configuration
+The following configuration options are available:  have to be set in the TYPO3
+site config, unter den configuration
 key `settings` `eventSubmission`
 storagePageUid: 463
 

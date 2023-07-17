@@ -28,8 +28,8 @@ class ApiResponseFactory
     {
         if (array_key_exists($factory, $this->factories)) {
             return $this->factories[$factory];
-        }else {
-            throw new Exception('Exception message', 1689292298 );
+        } else {
+            throw new Exception('Exception message', 1689292298);
         }
     }
 }

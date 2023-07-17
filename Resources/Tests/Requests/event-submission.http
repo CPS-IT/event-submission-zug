@@ -3,8 +3,8 @@ POST https://{{host}}/api/user/sendValidationRequest
 Content-Type: application/schema+json
 
 {
-  "email": "nix@foo.org",
-  "validationHash": "dfde719e-9f19-40b5-af2e-6f96d4034cda"
+    "email": "nix@foo.org",
+    "validationHash": "dfde719e-9f19-40b5-af2e-6f96d4034cda"
 }
 
 ###
@@ -15,19 +15,20 @@ Content-Type: application/schema+json
 Authorization: Bearer {{authToken}}
 
 {
-  "bodytext": "foo bar body text",
-  "datetime": "2017-07-21T17:00:00Z",
-  "event_end": "2017-07-21T19:00:00Z",
-  "reference_id": "4711",
-  "teaser": "teaser text for new event",
-  "email": "nix@foo.org",
-  "timezone": "Europe/Berlin",
-  "title": "New Event Title"
+    "bodytext": "foo bar body text",
+    "datetime": "2017-07-21T17:00:00Z",
+    "event_end": "2017-07-21T19:00:00Z",
+    "reference_id": "4711",
+    "teaser": "teaser text for new event",
+    "email": "nix@foo.org",
+    "timezone": "Europe/Berlin",
+    "title": "New Event Title"
 }
 
 ### delete an existing event proposal
 DELETE https://{{host}}/api/event/{{id}}
 Authorization: Bearer {{authToken}}
+
 ###
 
 ### get an existing event proposal
@@ -41,13 +42,14 @@ Content-Type: application/schema+json
 Authorization: Bearer {{authToken}}
 
 {
-  "bodytext": "this bodytext will be changed",
-  "datetime": "2023-08-08T17:00:00Z",
-  "event_end": "2023-08-08T18:00:00Z",
-  "reference_id": "5533",
-  "teaser": "new teaser text for event",
-  "timezone": "Europe/Berlin",
-  "title": "Updated Event Title",
-  "language": "de"
+    "bodytext": "this bodytext will be changed",
+    "datetime": "2023-08-08T17:00:00Z",
+    "event_end": "2023-08-08T18:00:00Z",
+    "reference_id": "5533",
+    "teaser": "new teaser text for event",
+    "timezone": "Europe/Berlin",
+    "title": "Updated Event Title",
+    "language": "de"
 }
+
 ###

@@ -21,5 +21,12 @@ interface JobFactoryInterface
      *
      * @return Job|null Job object. Null if object could not be created
      */
-    public function create(): ?Job;
+    public function create(array $arguments = []): ?Job;
+
+    /**
+     * Factory index within dependency injection
+     *
+     * @return string
+     */
+    public static function getDefaultJobFactoryName(): string;
 }

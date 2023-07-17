@@ -11,7 +11,15 @@ services:
     Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface:
       tags: [ 'EventSubmission.ApiResponseFactory' ]
 
+    Cpsit\EventSubmission\Factory\Job\JobFactoryInterface:
+      tags: [ 'EventSubmission.JobFactory' ]
+
   Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory:
     public: true
     arguments:
-      $factories: !tagged_iterator {tag: 'EventSubmission.ApiResponseFactory', index_by: 'ApiResponseFactory' }
+      $factories: !tagged_iterator { tag: 'EventSubmission.ApiResponseFactory', index_by: 'ApiResponseFactory' }
+
+  Cpsit\EventSubmission\Factory\Job\JobFactory:
+    public: true
+    arguments:
+      $factories: !tagged_iterator { tag: 'EventSubmission.JobFactory', index_by: 'JobFactory' }

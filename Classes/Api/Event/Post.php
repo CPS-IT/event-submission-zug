@@ -10,14 +10,21 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Cpsit\EventSubmission\Api;
+namespace Cpsit\EventSubmission\Api\Event;
 
+use Brotkrueml\Schema\Model\Type\GroceryStore;
+use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\EventPostJobFactory;
+use Cpsit\EventSubmission\Factory\Job\JobFactory;
+use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
+use Cpsit\EventSubmission\Service\EventPostToJobService;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
+use Ramsey\Uuid\Uuid;
+use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Impexp\Exception;
 
@@ -26,10 +33,8 @@ use TYPO3\CMS\Impexp\Exception;
  *
  * @Api\Endpoint()
  */
-final class EventPost extends AbstractApi
+final class Post extends AbstractApi
 {
-    protected ApiResponseFactoryInterface $apiResponseFactory;
-
     /**
      * ## Event submission POST
      *
@@ -65,18 +70,21 @@ final class EventPost extends AbstractApi
      */
     public function create(): string
     {
-        $job = GeneralUtility::makeInstance(
-            EventPostJobFactory::class,
-            $this->request,
-            $this->response
-        )->create();
-
-        $this->apiResponseFactory = GeneralUtility::makeInstance(ApiResponseFactory::class)->get('EventPostApiResponse');
-
+        $hydrateJob = HydrateJobFromEventPostRequest::hydrate($this->request, $this->response);
+        $job = GeneralUtility::makeInstance(JobFactory::class)->get(
+            'FromArray',
+            $hydrateJob
+        );
+        $apiResponseFactory = GeneralUtility::makeInstance(ApiResponseFactory::class)
+            ->get('EventPostApiResponse');
         if ($job instanceof Job) {
-            return $this->apiResponseFactory->successResponse($job)->__toString();
+            try {
+                $job = \nn\t3::Db()->insert($job);
+                return $apiResponseFactory->successResponse($job)->__toString();
+            } catch (\Exception $e) {
+                return $apiResponseFactory->errorResponse()->__toString();
+            }
         }
-
-        return $this->apiResponseFactory->errorResponse()->__toString();
+        return $apiResponseFactory->errorResponse()->__toString();
     }
 }

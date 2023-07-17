@@ -1,0 +1,10 @@
+plugin.tx_nnrestapi {
+  settings {
+    insertDefaultValues {
+      // Job model insert default values
+      Cpsit\EventSubmission\Domain\Model\Job {
+        pid = 0
+      }
+    }
+  }
+}

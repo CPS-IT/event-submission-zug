@@ -1,43 +1,43 @@
 {
-  "name": "cpsit/event-submission",
-  "description": "Event Submission",
-  "homepage": "https://github.com/CPS-IT/event-submission",
-  "license": "GPL-3.0-or-later",
-  "type": "typo3-cms-extension",
-  "authors": [
-    {
-      "name": "Dirk Wenzel",
-      "email": "d.wenzel@familie-redlich.de",
-      "role": "Maintainer"
-    },
-    {
-      "name": "Vladimir Falcón Piva",
-      "email": "v.falcon@familie-redlich.de",
-      "role": "Maintainer"
-    }
-  ],
-  "repositories": {
-    "event-submission": {
-      "type": "vcs",
-      "url": "git@github.com:CPS-IT/event-submission.git"
-    }
-  },
-  "require": {
-    "typo3/cms-core": "^11.5",
-    "nng/nnrestapi": "^1.4",
-    "ramsey/uuid": "^4.0"
-  },
-  "require-dev": {
-    "roave/security-advisories": "dev-master"
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "event_submission"
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "Cpsit\\EventSubmission\\": "Classes"
-    }
-  }
+	"name": "cpsit/event-submission",
+	"description": "Event Submission",
+	"homepage": "https://github.com/CPS-IT/event-submission",
+	"license": "GPL-3.0-or-later",
+	"type": "typo3-cms-extension",
+	"authors": [
+		{
+			"name": "Dirk Wenzel",
+			"email": "d.wenzel@familie-redlich.de",
+			"role": "Maintainer"
+		},
+		{
+			"name": "Vladimir Falcón Piva",
+			"email": "v.falcon@familie-redlich.de",
+			"role": "Maintainer"
+		}
+	],
+	"repositories": {
+		"event-submission": {
+			"type": "vcs",
+			"url": "git@github.com:CPS-IT/event-submission.git"
+		}
+	},
+	"require": {
+		"typo3/cms-core": "^11.5",
+		"nng/nnrestapi": "^1.4",
+		"ramsey/uuid": "^4.0"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-master"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "event_submission"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Cpsit\\EventSubmission\\": "Classes"
+		}
+	}
 }
