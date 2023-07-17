@@ -100,7 +100,8 @@ return [
                         0 => '',
                         1 => '',
                         'labelChecked' => 'Success',
-                        'labelUnchecked' => 'Error'
+                        'labelUnchecked' => 'Error',
+                        'invertStateDisplay' => true,
                     ],
                 ],
                 'readOnly' => true,
@@ -154,6 +155,7 @@ return [
                         1 => '',
                         'labelChecked' => 'Successful',
                         'labelUnchecked' => 'Error',
+                        'invertStateDisplay' => true,
                     ],
                 ],
                 'readOnly' => true,
