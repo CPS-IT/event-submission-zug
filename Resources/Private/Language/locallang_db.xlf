@@ -51,13 +51,13 @@
             <trans-unit id="tx_eventsubmission_domain_model_job.approved">
                 <source>Event approved</source>
             </trans-unit>
-            <trans-unit id="tt_content.CType.event_submission_form">
+            <trans-unit id="tt_content.CType.eventsubmission_app">
                 <source>Event Submission Form</source>
             </trans-unit>
-            <trans-unit id="tt_content.CType.event_submission_form.configuration">
+            <trans-unit id="tt_content.CType.eventsubmission_app.configuration">
                 <source>Configuration</source>
             </trans-unit>
-            <trans-unit id="tt_content.CType.event_submission_form.fooBar">
+            <trans-unit id="tt_content.CType.eventsubmission_app.fooBar">
                 <source>fooBar (settings.fooBar)</source>
             </trans-unit>
         </body>
