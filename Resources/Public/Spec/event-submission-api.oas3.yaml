@@ -307,7 +307,7 @@ components:
         email:
           type: string
           format: email
-          example: foo@bar
+          example: foo@bar.do
         validationHash:
           type: string
           format: uuid

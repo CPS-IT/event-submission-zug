@@ -9,6 +9,12 @@
 			<trans-unit id="api_response_message.400">
 				<source>Event submission error</source>
 			</trans-unit>
+			<trans-unit id="api_response_message.300">
+				<source>Validation email successfully sent</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.500">
+				<source>Validation email could not be sent</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -21,6 +21,8 @@ interface ApiResponseInterface extends Stringable
 {
     public const EVENT_SUBMISSION_SUCCESS = 100;
     public const EVENT_SUBMISSION_ERROR = 400;
+    public const USER_SEND_VALIDATION_REQUEST_SUCCESS = 300;
+    public const USER_SEND_VALIDATION_REQUEST_ERROR = 500;
 
     public function __toString(): string;
 

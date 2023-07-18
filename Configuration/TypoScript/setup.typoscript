@@ -1,6 +1,29 @@
 @import 'EXT:event_submission/Configuration/TypoScript/Extensions/FluidStyledContent/event_submission_form.typoscript'
 plugin.tx_nnrestapi {
   settings {
+    eventSubmission {
+      user {
+        mail {
+          view {
+            templateRootPaths {
+              0 = EXT:event_submission/Resources/Private/Templates/User/Mail
+            }
+
+            layoutRootPaths {
+              0 = EXT:event_submission/Resources/Private/Layouts
+            }
+
+            partialRootPaths {
+              0 = EXT:event_submission/Resources/Private/Partials
+            }
+          }
+          sender {
+              name = {$mail.senderHeader.from}
+              email = {$mail.senderHeader.fromName}
+          }
+        }
+      }
+    }
     insertDefaultValues {
       // Job model insert default values
       Cpsit\EventSubmission\Domain\Model\Job {
