@@ -1,7 +1,7 @@
 <?php
 
 (function ($extKey = 'event_submission', $table = 'tt_content') {
-    $ll = 'LLL:EXT:' . $extKey . '/Resources/Private/Base/Language/locallang_db.xlf:';
+    $ll = 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:';
     $itemName = 'eventsubmission_app';
     /*
      * tt_content event submission form element
