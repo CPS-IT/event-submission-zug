@@ -38,9 +38,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmailValidationSendResult'
+                $ref: '#/components/schemas/EmailValidationSendSuccess'
         503:
           description: Email could not be send due to internal error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailValidationSendError'
   /event/:
     post:
       summary: Create a new event proposal
@@ -308,18 +312,34 @@ components:
           type: string
           format: uuid
           example: dfde719e-9f19-40b5-af2e-6f96d4034cda
-    EmailValidationSendResult:
+    EmailValidationSendSuccess:
       type: object
       description: >
         Result for email validation. Contains the previously given hash value
         for the validation of this link in Frontend.
-      required:
-        - validationHash
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
       properties:
         message:
-          type: string
           example: Validation email successfully sent
-        validationHash:
-          type: string
-          format: uuid
-          example: dfde719e-9f19-40b5-af2e-6f96d4034cda
+        code:
+          example: 300
+        data:
+          type: object
+          properties:
+            validationHash:
+              type: string
+              format: uuid
+              example: dfde719e-9f19-40b5-af2e-6f96d4034cda
+    EmailValidationSendError:
+      type: object
+      description: >
+        Result for email validation. Contains the previously given hash value
+        for the validation of this link in Frontend.
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        message:
+          example: Validation email could not be sent
+        code:
+          example: 500
