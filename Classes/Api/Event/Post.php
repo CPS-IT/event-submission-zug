@@ -52,9 +52,30 @@ final class Post extends AbstractApi
      * "language": "de"
      * }
      * ```
-     * Response:
+     * ## Responses:
      *
-     * @Api\Example("{'editToken': '513d03ce-6eeb-4134-9198-484176a5c314','id': 77543}")
+     * **Success:**
+     *
+     * ```
+     * {
+     *   "code": 100,
+     *   "message": "Event submission created successful",
+     *   "data": {
+     *     "editToken": "513d03ce-6eeb-4134-9198-484176a5c314",
+     *     "id": 77543
+     *   }
+     * ```
+     *
+     * **Error:**
+     *
+     * ```
+     * {
+     *   "code": 400,
+     *   "message": "Event submission unsuccessful",
+     *   "data": ""
+     * }
+     *
+     * ```
      *
      * @Api\Route("POST /event")
      * @Api\Access("public")
