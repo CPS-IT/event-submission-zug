@@ -15,6 +15,13 @@
 			<trans-unit id="api_response_message.500">
 				<source>Validation email could not be sent</source>
 			</trans-unit>
+
+			<trans-unit id="user.sendValidationRequest.mail.title">
+				<source>Just one more step. Please confirm your address</source>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.subject">
+				<source>Just one more step. Please confirm your address</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

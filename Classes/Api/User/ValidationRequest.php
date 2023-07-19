@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Api\User;
 
+use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -25,6 +26,13 @@ use TYPO3\CMS\Impexp\Exception;
  */
 final class ValidationRequest extends AbstractApi
 {
+    const MAIL_TEMPLATE_NAME = 'SendValidationRequest';
+    const TEMPLATE_PATHS = [
+        'templateRootPaths' => ['EXT:event_submission/Resources/Private/Templates'],
+        'layoutRootPaths' => ['EXT:event_submission/Resources/Private/Layouts'],
+        'partialRootPaths' => ['EXT:event_submission/Resources/Private/Partials']
+    ];
+
     /**
      * ## Send user validation request email POST
      *
@@ -71,7 +79,44 @@ final class ValidationRequest extends AbstractApi
      */
     public function send(): string
     {
+        // Event submission settings
+        $settings = $this->request->getSettings()['eventSubmission'] ?? [];
+        // TypoScript settings for sendValidationRequest end point
+        $sendValidationRequestSettings = $settings['user']['sendValidationRequest'] ?? [];
 
+        $mailHtml = \nn\t3::Template()->render(
+            $sendValidationRequestSettings['mail']['templateName'] ?? self::MAIL_TEMPLATE_NAME,
+            [
+                'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
+                'mailTitle' => 'Event submission validation request',
+            ],
+            $sendValidationRequestSettings['view'] ?? self::TEMPLATE_PATHS
+        );
+
+        $test = $GLOBALS;
+
+
+        $fromEmail = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'];
+        $fromName = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'];
+
+
+        if (!empty($sendValidationRequestSettings['mail']['sender']['email'])) {
+            $fromEmail = $sendValidationRequestSettings['mail']['sender']['email'];
+        }
+        if (!empty($sendValidationRequestSettings['mail']['sender']['name'])) {
+            $fromName = $sendValidationRequestSettings['mail']['sender']['name'];
+        }
+
+        \nn\t3::Mail()->send([
+            'html' => $mailHtml,
+            #'plaintext'       => Optional: Text-Version
+            'fromEmail' => $fromEmail,
+            'fromName' => $fromName,
+            'toEmail' => 'v.falcon@familie-redlich.de',
+            'subject' => \nn\t3::LL()->get('user.sendValidationRequest.mail.subject', Extension::NAME),
+            'emogrify' => '',
+            'absPrefix' => \nn\t3::Environment()->getBaseURL(),
+        ]);
 
         $apiResponseFactory = GeneralUtility::makeInstance(ApiResponseFactory::class)
             ->get('UserSendValidationRequestApiResponse');
@@ -79,4 +124,6 @@ final class ValidationRequest extends AbstractApi
 
 
     }
+
+
 }

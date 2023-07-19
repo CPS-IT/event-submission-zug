@@ -1,11 +1,14 @@
 plugin.tx_nnrestapi {
   settings {
+    // Settings for Event Submission API
     eventSubmission {
+      // Pid where the app integriert ist
+      appPid = 0
       user {
-        mail {
+        sendValidationRequest {
           view {
             templateRootPaths {
-              0 = EXT:event_submission/Resources/Private/Templates/User/Mail
+              0 = EXT:event_submission/Resources/Private/Templates
             }
 
             layoutRootPaths {
@@ -17,9 +20,12 @@ plugin.tx_nnrestapi {
             }
           }
 
-          sender {
-            name = {$mail.senderHeader.from}
-            email = {$mail.senderHeader.fromName}
+          mail {
+            templateName = SendValidationRequest
+            sender {
+              name =
+              email =
+            }
           }
         }
       }
@@ -41,19 +47,7 @@ plugin.tx_nnrestapi {
 # CType: eventsubmission_app
 
 tt_content.eventsubmission_app.20 {
-  view {
-    templateRootPaths {
-      0 = EXT:event_submission/Resources/Private/Templates
-    }
-
-    layoutRootPaths {
-      0 = EXT:event_submission/Resources/Private/Layouts
-    }
-
-    partialRootPaths {
-      0 = EXT:event_submission/Resources/Private/Partials
-    }
-  }
+  view =< plugin.tx_eventSubmission.view
   templateName = App
 
 }
