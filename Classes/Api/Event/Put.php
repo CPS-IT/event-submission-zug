@@ -115,7 +115,7 @@ final class Put extends AbstractApi implements EventApiInterface
         $responseCode = ApiResponseInterface::EVENT_UPDATE_ERROR;
         $id = $arguments[self::PARAMETER_ID];
 
-        // find job by identifier, ob must not be approved and imported yet
+        // find job by identifier, job must not be approved and imported yet
         $job = $this->db->findOneByValues(Job::TABLE_NAME,
             [
                 Job::FIELD_UID => $id,
