@@ -42,7 +42,7 @@ final class ValidationRequest extends AbstractApi
      *
      * ```
      * {
-     * "email": "foo@bar",
+     * "email": "nix@foo.org",
      * "validationHash": "dfde719e-9f19-40b5-af2e-6f96d4034cda"
      * }
      * ```
@@ -84,6 +84,7 @@ final class ValidationRequest extends AbstractApi
         // TypoScript settings for sendValidationRequest end point
         $sendValidationRequestSettings = $settings['user']['sendValidationRequest'] ?? [];
 
+        // Render Html mail
         $mailHtml = \nn\t3::Template()->render(
             $sendValidationRequestSettings['mail']['templateName'] ?? self::MAIL_TEMPLATE_NAME,
             [
@@ -93,12 +94,9 @@ final class ValidationRequest extends AbstractApi
             $sendValidationRequestSettings['view'] ?? self::TEMPLATE_PATHS
         );
 
-        $test = $GLOBALS;
-
-
+        // Set absender data
         $fromEmail = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'];
         $fromName = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'];
-
 
         if (!empty($sendValidationRequestSettings['mail']['sender']['email'])) {
             $fromEmail = $sendValidationRequestSettings['mail']['sender']['email'];
@@ -124,6 +122,14 @@ final class ValidationRequest extends AbstractApi
 
 
     }
+
+    protected function isRequestBodyValid(): bool
+    {
+        $requestBody = $this->getRequest()->getBody();
+        return true;
+    }
+
+
 
 
 }
