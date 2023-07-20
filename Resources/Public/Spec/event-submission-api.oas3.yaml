@@ -125,6 +125,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventUpdatedResult'
+        '600':
+          description: Response for failed pdate of event proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUpdateError'
     delete:
       summary: Delete an event proposal
       operationId: deleteEvent
@@ -265,9 +271,23 @@ components:
       allOf:
         - $ref: '#/components/schemas/ApiResponse'
       properties:
+        code:
+          example: 200
+        message:
+          example: Event submission successfully replaced
         data:
           allOf:
             - $ref: '#/components/schemas/Event'
+    EventUpdateError:
+      type: object
+      description: Response for failed update of an event proposal
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        code:
+          example: 600
+        message:
+          example: Update of event proposal failed
     ApiResponse:
       type: object
       description: A response from API

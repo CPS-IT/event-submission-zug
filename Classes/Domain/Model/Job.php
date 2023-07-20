@@ -17,7 +17,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Job extends AbstractEntity
 {
     public const
-        TABLE_NAME = 'tx_ikiprojectimport_domain_model_job',
+        TABLE_NAME = 'tx_eventsubmission_domain_model_job',
         FIELD_UID = 'uid',
         FIELD_PID = 'pid',
         FIELD_UUID = 'uuid',
