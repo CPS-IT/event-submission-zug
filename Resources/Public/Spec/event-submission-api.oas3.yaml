@@ -297,14 +297,14 @@ components:
             - $ref: '#/components/schemas/Event'
     EventGetError:
       type: object
-      description: Response for failed GET request of an event proposal
+      description: Response for failed GET request of an event submission
       allOf:
         - $ref: '#/components/schemas/ApiResponse'
       properties:
         code:
           example: 800
         message:
-          example: Requested event proposal could not be found
+          example: Requested event submission could not be found
     EventUpdateError:
       type: object
       description: Response for failed update of an event proposal
