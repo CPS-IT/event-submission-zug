@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -19,7 +20,6 @@ use JsonException;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
-use TYPO3\CMS\Impexp\Exception;
 
 /**
  * Event API end point for PUT method
@@ -33,6 +33,7 @@ final class Put extends AbstractApi implements EventApiInterface
     protected ApiResponseFactoryFactory $apiResponseFactoryFactory;
     protected ApiResponseFactoryInterface $responseFactory;
     protected Db $db;
+
     public function __construct(ApiResponseFactoryFactory $apiResponseFactory, Db $db)
     {
         $this->apiResponseFactoryFactory = $apiResponseFactory;
@@ -100,7 +101,7 @@ final class Put extends AbstractApi implements EventApiInterface
      *
      * ```
      *
-     * @Api\Route("PUT /{language}/event/{id}")
+     * @Api\Route("PUT /event/{id}")
      * @Api\Access("public")
      * @return string
      * @throws JsonException
@@ -122,9 +123,9 @@ final class Put extends AbstractApi implements EventApiInterface
         );
 
         // update job
-        if(!empty($job)) {
+        if (!empty($job)) {
             // replace payload
-            $job[Job::FIELD_PAYLOAD] = json_encode($this->request->getRawBody(), JSON_THROW_ON_ERROR);
+            $job[Job::FIELD_PAYLOAD] = $this->request->getRawBody();
             $job[Job::FIELD_REQUEST_DATE_TIME] = time();
             $this->db->update(Job::TABLE_NAME, $job, $job[Job::FIELD_UID]);
 
