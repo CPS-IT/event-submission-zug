@@ -12,26 +12,27 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Factory\ApiResponse;
 
-use TYPO3\CMS\Impexp\Exception;
 
 class ApiResponseFactoryFactory
 {
     protected array $factories = [];
-
+    public const MISSING_FACTORY_MESSAGE = 'Factory %s could not be found message';
+    public const MISSING_FACTORY_CODE = 1689292298;
     public function __construct(\Traversable $factories)
     {
         $this->factories = iterator_to_array($factories);
     }
 
     /**
-     * @throws Exception
+     * @throws MissingFactoryException
      */
     public function get(string $factory): ApiResponseFactoryInterface
     {
         if (array_key_exists($factory, $this->factories)) {
             return $this->factories[$factory];
-        } else {
-            throw new Exception('Exception message', 1689292298);
         }
+
+        $message = sprintf(self::MISSING_FACTORY_MESSAGE, $factory);
+        throw new MissingFactoryException($message, self::MISSING_FACTORY_CODE);
     }
 }
