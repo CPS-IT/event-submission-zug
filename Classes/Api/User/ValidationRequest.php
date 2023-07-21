@@ -14,6 +14,8 @@ namespace Cpsit\EventSubmission\Api\User;
 
 use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory;
+use Cpsit\EventSubmission\Validator\ValidatorFactory;
+use Cpsit\EventSubmission\Validator\ValidatorInterface;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -74,23 +76,49 @@ final class ValidationRequest extends AbstractApi
      *
      * @Api\Route("POST /sendValidationRequest")
      * @Api\Access("public")
+     * @Api\Localize()
      * @return string
      * @throws Exception
      */
     public function send(): string
     {
+        /** @var  $apiResponseFactory */
+        $apiResponseFactory = GeneralUtility::makeInstance(ApiResponseFactory::class)
+            ->get('UserSendValidationRequestApiResponse');
+
+        /** @var ValidatorInterface $validator */
+        $validator = GeneralUtility::makeInstance(ValidatorFactory::class)
+            ->get('UserSendValidationRequest');
+
+        // Early return request body validation failed
+        if (!$validator->isValid($this->getRequest()->getBody())) {
+            return $apiResponseFactory->errorResponse()->__toString();
+        }
+
         // Event submission settings
         $settings = $this->request->getSettings()['eventSubmission'] ?? [];
         // TypoScript settings for sendValidationRequest end point
         $sendValidationRequestSettings = $settings['user']['sendValidationRequest'] ?? [];
 
+        // Validation URL
+        $validationUrl = \nn\t3::Http()->buildUri(
+            $settings['appPid'],
+            ['validationHash' => $this->getRequest()->getBody()['validationHash']],
+            true
+        );
+
+        $templateVariables = [
+            'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
+            'mailTitle' => \nn\t3::LL()->get('user.sendValidationRequest.mail.title', Extension::NAME),
+            'validationUrl' => $validationUrl,
+            'extensionName' => Extension::NAME,
+            'logoImage' => $sendValidationRequestSettings['mail']['logoImage'] ?? '',
+        ];
+
         // Render Html mail
         $mailHtml = \nn\t3::Template()->render(
             $sendValidationRequestSettings['mail']['templateName'] ?? self::MAIL_TEMPLATE_NAME,
-            [
-                'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
-                'mailTitle' => 'Event submission validation request',
-            ],
+            $templateVariables,
             $sendValidationRequestSettings['view'] ?? self::TEMPLATE_PATHS
         );
 
@@ -107,29 +135,14 @@ final class ValidationRequest extends AbstractApi
 
         \nn\t3::Mail()->send([
             'html' => $mailHtml,
-            #'plaintext'       => Optional: Text-Version
+            'plaintext' => null,
             'fromEmail' => $fromEmail,
             'fromName' => $fromName,
-            'toEmail' => 'v.falcon@familie-redlich.de',
+            'toEmail' => $this->getRequest()->getBody()['email'],
             'subject' => \nn\t3::LL()->get('user.sendValidationRequest.mail.subject', Extension::NAME),
-            'emogrify' => '',
             'absPrefix' => \nn\t3::Environment()->getBaseURL(),
         ]);
 
-        $apiResponseFactory = GeneralUtility::makeInstance(ApiResponseFactory::class)
-            ->get('UserSendValidationRequestApiResponse');
-        return $apiResponseFactory->errorResponse()->__toString();
-
-
+        return $apiResponseFactory->successResponse($this->getRequest()->getBody()['validationHash'])->__toString();
     }
-
-    protected function isRequestBodyValid(): bool
-    {
-        $requestBody = $this->getRequest()->getBody();
-        return true;
-    }
-
-
-
-
 }

@@ -1,59 +1,83 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" product-name="event_submission">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages"
+		  product-name="iki_project_import">
 		<header/>
 		<body>
 			<trans-unit id="api_response_message.100">
 				<source>Event submission success</source>
+				<target>Erfolgreiche Veranstaltungseinreichung</target>
 			</trans-unit>
 			<trans-unit id="api_response_message.200">
 				<source>Event successfully updated</source>
+				<target>Veranstaltung erfolgreich aktualisiert</target>
 			</trans-unit>
 			<trans-unit id="api_response_message.300">
 				<source>Validation email successfully sent</source>
+				<target>Bestätigungs-E-Mail erfolgreich gesendet</target>
 			</trans-unit>
 			<trans-unit id="api_response_message.400">
 				<source>Event submission error</source>
+				<target>Fehler bei der Übermittlung der Veranstaltung</target>
 			</trans-unit>
 			<trans-unit id="api_response_message.500">
 				<source>Validation email could not be sent</source>
+				<target>Die Bestätigungs-E-Mail konnte nicht gesendet werden</target>
 			</trans-unit>
 			<trans-unit id="api_response_message.600">
 				<source>Event update submission error</source>
+				<target>Fehler bei der Übermittlung der Veranstaltungsupdate</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.title">
 				<source>Validation email</source>
+				<target>Bestätigungs-E-Mail</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.subject">
 				<source>Just one more step. Please confirm your event submission</source>
+				<target>Nur noch ein Schritt. Bestätigen Sie Ihre Veranstaltungseinreichung</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.greeting">
 				<source>Hello,</source>
+				<target>Hallo,</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.message.1">
 				<source>Thank you for submitting your event to be listed on our platform. We're excited to help you
 					promote your event! To ensure the accuracy of the information and confirm your intention to list
 					the event, please click the link below:
 				</source>
+				<target>Vielen Dank für das Einreichen Ihrer Veranstaltung, um sie auf unserer Plattform zu
+					veröffentlichen. Um die Genauigkeit der Informationen sicherzustellen und Ihre Absicht zur Listung
+					der Veranstaltung zu bestätigen, klicken Sie bitte auf den unten stehenden Link:
+				</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.message.2">
-				<source>By clicking the confirmation link, you verify that you want to proceed with listing the
-					event.
+				<source>By clicking the confirmation link, you verify that you want to proceed with listing the event.
+					If you did not submit this event or no longer wish to proceed, you can simply ignore this
+					email.
 				</source>
+				<target>Durch Klicken auf den Bestätigungslink bestätigen Sie, dass Sie die Veranstaltung einreichen
+					möchten.
+				</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.message.3">
 				<source>We'll verify your confirmation and get back to you shortly.</source>
+				<target>Wir werden Ihre Bestätigung überprüfen und uns bald bei Ihnen melden.</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.confirmation.button">
 				<source>Confirm event submission</source>
+				<target>Bestätigen Sie die Übermittlung der Veranstaltung</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.signature">
 				<source>Best regards</source>
+				<target>Mit freundlichen Grüßen</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.footer">
 				<source>If you did not submit this event or no longer wish to proceed, you can simply ignore this
 					email.
 				</source>
+				<target>Wenn Sie diese Veranstaltung nicht eingereicht haben oder nicht mehr fortfahren möchten,
+					können Sie diese E-Mail einfach ignorieren.
+				</target>
 			</trans-unit>
 		</body>
 	</file>
