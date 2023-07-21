@@ -93,7 +93,7 @@ final class Get extends AbstractApi implements EventApiInterface
         // find job by identifier, job must not be approved and imported yet
         $job = $this->db->findOneByValues(Job::TABLE_NAME,
             [
-                Job::FIELD_UID => $id,
+                Job::FIELD_UUID => $id,
                 Job::FIELD_APPROVED => 0,
                 Job::FIELD_IS_DONE => 0
             ]

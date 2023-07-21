@@ -15,12 +15,10 @@ use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
-use Cpsit\EventSubmission\Factory\Job\JobFactory;
-use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
+use JsonException;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Impexp\Exception;
 
 /**
@@ -102,11 +100,10 @@ final class Put extends AbstractApi implements EventApiInterface
      *
      * ```
      *
-     * @Api\Route("PUT /event/{language}/{id}")
+     * @Api\Route("PUT /{language}/event/{id}")
      * @Api\Access("public")
      * @return string
-     * @throws Exception
-     * @throws \JsonException
+     * @throws JsonException
      */
     public function update(): string
     {
@@ -118,7 +115,7 @@ final class Put extends AbstractApi implements EventApiInterface
         // find job by identifier, job must not be approved and imported yet
         $job = $this->db->findOneByValues(Job::TABLE_NAME,
             [
-                Job::FIELD_UID => $id,
+                Job::FIELD_UUID => $id,
                 Job::FIELD_APPROVED => 0,
                 Job::FIELD_IS_DONE => 0
             ]
@@ -129,7 +126,7 @@ final class Put extends AbstractApi implements EventApiInterface
             // replace payload
             $job[Job::FIELD_PAYLOAD] = json_encode($this->request->getRawBody(), JSON_THROW_ON_ERROR);
             $job[Job::FIELD_REQUEST_DATE_TIME] = time();
-            $this->db->update(Job::TABLE_NAME, $job, $id);
+            $this->db->update(Job::TABLE_NAME, $job, $job[Job::FIELD_UID]);
 
             $responseData = json_encode($job[Job::FIELD_PAYLOAD], JSON_THROW_ON_ERROR);
             $responseCode = ApiResponseInterface::EVENT_UPDATE_SUCCESS;

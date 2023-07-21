@@ -108,8 +108,8 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
+            format: uuid
         - name: language
           in: path
           required: true
@@ -145,8 +145,8 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
+            format: uuid
       responses:
         '200':
           description: Successfully deleted event proposal
@@ -255,10 +255,10 @@ components:
               example: 513d03ce-6eeb-4134-9198-484176a5c314
               description: Token for editing the newly created event proposal.
             id:
-              type: integer
-              format: int32
-              example: 77543
-              description: Unique identifier of the event proposal.
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
     EventCreatedError:
       type: object
       description: Response for unsuccessful creation of an Event
@@ -338,10 +338,10 @@ components:
           type: object
           properties:
             id:
-              type: integer
-              format: int32
-              example: 77543
-              description: Unique identifier of the event proposal.
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
     EmailValidationRequest:
       type: object
       description: >
