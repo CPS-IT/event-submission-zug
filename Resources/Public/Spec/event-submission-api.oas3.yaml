@@ -129,8 +129,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventUpdatedResult'
-        '600':
-          description: Response for failed pdate of event proposal
+        '403':
+          description: Response for failed update of event proposal
           content:
             application/json:
               schema:
@@ -156,6 +156,14 @@ paths:
                 $ref: '#/components/schemas/EventDeletedResult'
         '403':
           description: Access denied
+        '410':
+          description: |
+            Event proposal could not be deleted. It doesn't exist anymore or has been approved and is
+            about to be published.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeleteError'
 components:
   securitySchemes:
     bearerAuth:
@@ -334,6 +342,23 @@ components:
         message:
           example: Event proposal deleted
           description: Message about successful deletion of event.
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
+    EventDeleteError:
+      type: object
+      description: Response for failing deletion of an event submission
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        message:
+          example: Event submission could not be deleted
+          description: Message about failed deletion of event.
         data:
           type: object
           properties:

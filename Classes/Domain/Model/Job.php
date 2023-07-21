@@ -30,6 +30,7 @@ class Job extends AbstractEntity
         FIELD_IS_DONE = 'is_done',
         FIELD_INTERNAL_LOG_MESSAGE = 'internal_log_message',
         FIELD_IS_INTERNAL_ERROR = 'is_internal_error',
+        FIELD_DELETED = 'deleted',
         FIELD_APPROVED = 'approved';
 
     protected string $uuid = '';

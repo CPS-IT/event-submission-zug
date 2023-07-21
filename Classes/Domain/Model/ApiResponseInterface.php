@@ -27,6 +27,8 @@ interface ApiResponseInterface extends Stringable
     public const EVENT_UPDATE_ERROR = 600;
     public const EVENT_GET_SUCCESS = 700;
     public const EVENT_GET_ERROR = 800;
+    public const EVENT_DELETE_SUCCESS = 900;
+    public const EVENT_DELETE_ERROR = 1000;
 
     public function __toString(): string;
 

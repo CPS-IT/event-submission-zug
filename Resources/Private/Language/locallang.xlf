@@ -27,6 +27,12 @@
 			<trans-unit id="api_response_message.800">
 				<source>Requested event submission could not be found</source>
 			</trans-unit>
+			<trans-unit id="api_response_message.900">
+				<source>Event submission deleted</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.1000">
+				<source>Event submission could not be deleted</source>
+			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.title">
 				<source>Validation email</source>
 			</trans-unit>
