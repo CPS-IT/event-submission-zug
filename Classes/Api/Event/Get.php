@@ -26,11 +26,11 @@ use Nng\Nnrestapi\Api\AbstractApi;
  * @Api\Endpoint()
  */
 final class Get extends AbstractApi implements EventApiInterface
-
 {
     public const RESPONSE_NAME = 'EventGetApiResponse';
     protected ApiResponseFactoryInterface $responseFactory;
     protected Db $db;
+
     public function __construct(ApiResponseFactoryFactory $apiResponseFactoryFactory, Db $db)
     {
         $this->responseFactory = $apiResponseFactoryFactory->get(self::RESPONSE_NAME);
@@ -78,7 +78,7 @@ final class Get extends AbstractApi implements EventApiInterface
      *
      * ```
      *
-     * @Api\Route("GET /{language}/event/{id}")
+     * @Api\Route("GET /event/{id}")
      * @Api\Access("public")
      * @return string
      * @throws JsonException
@@ -99,7 +99,7 @@ final class Get extends AbstractApi implements EventApiInterface
             ]
         );
 
-        if(!empty($job)) {
+        if (!empty($job)) {
             $responseData = json_decode($job[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
             $responseCode = ApiResponseInterface::EVENT_GET_SUCCESS;
         }

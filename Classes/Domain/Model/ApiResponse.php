@@ -17,6 +17,7 @@ use JsonException;
 
 class ApiResponse implements ApiResponseInterface
 {
+    protected string $message = '';
     public function __construct(
         protected int $code,
         protected array $data,
@@ -43,9 +44,20 @@ class ApiResponse implements ApiResponseInterface
         $this->data = $data;
     }
 
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
     public function getMessage(): string
     {
-        return TranslationService::translate('api_response_message.' . $this->getCode());
+        if (empty($this->message)) {
+            return TranslationService::translate('api_response_message.' . $this->getCode());
+        }
+        return $this->message;
     }
 
     /**

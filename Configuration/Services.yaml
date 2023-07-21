@@ -17,6 +17,9 @@ services:
     Cpsit\EventSubmission\Validator\ValidatorInterface:
       tags: [ 'EventSubmission.Validator' ]
 
+    Cpsit\EventSubmission\Service\ServiceInterface:
+      tags: [ 'EventSubmission.Service' ]
+
   Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory:
     public: true
     arguments:

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -73,12 +74,12 @@ final class Delete extends AbstractApi implements EventApiInterface
      *
      * ```
      *
-     * @Api\Route("DELETE /{language}/event/{id}")
+     * @Api\Route("DELETE /event/{id}")
      * @Api\Access("public")
      * @return string
      * @throws JsonException
      */
-    public function index(): string
+    public function delete(): string
     {
         $arguments = $this->request->getArguments();
         $responseCode = ApiResponseInterface::EVENT_DELETE_ERROR;
@@ -97,7 +98,7 @@ final class Delete extends AbstractApi implements EventApiInterface
             ]
         );
 
-        if($result === 1) {
+        if ($result === 1) {
             $responseCode = ApiResponseInterface::EVENT_DELETE_SUCCESS;
         }
 

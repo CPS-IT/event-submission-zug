@@ -16,11 +16,9 @@ use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
-use Nng\Nnhelpers\Utilities\Db;
+use Exception;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Impexp\Exception;
 
 /**
  * Event post api end point
@@ -106,7 +104,7 @@ final class Post extends AbstractApi
                 $job = \nn\t3::Db()->insert($job);
                 $data = json_decode($job->getPayload(), true, 512, JSON_THROW_ON_ERROR);
                 return $this->responseFactory->successResponse($data)->__toString();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return $this->responseFactory->errorResponse()->__toString();
             }
         }

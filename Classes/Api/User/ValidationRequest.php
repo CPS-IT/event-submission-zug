@@ -14,6 +14,9 @@ namespace Cpsit\EventSubmission\Api\User;
 
 use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
+use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
+use Cpsit\EventSubmission\Service\MailService;
+use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Validator\ValidatorFactory;
 use Cpsit\EventSubmission\Validator\ValidatorInterface;
 use Nng\Nnrestapi\Annotations as Api;
@@ -28,12 +31,18 @@ use TYPO3\CMS\Impexp\Exception;
  */
 final class ValidationRequest extends AbstractApi
 {
-    const MAIL_TEMPLATE_NAME = 'SendValidationRequest';
-    const TEMPLATE_PATHS = [
-        'templateRootPaths' => ['EXT:event_submission/Resources/Private/Templates'],
-        'layoutRootPaths' => ['EXT:event_submission/Resources/Private/Layouts'],
-        'partialRootPaths' => ['EXT:event_submission/Resources/Private/Partials']
-    ];
+    public const MAIL_TEMPLATE_NAME = 'SendValidationRequest';
+    public const RESPONSE_NAME = 'UserSendValidationRequestApiResponse';
+
+    protected ApiResponseFactoryInterface $responseFactory;
+
+    public function __construct(
+        protected ApiResponseFactoryFactory $apiResponseFactory,
+        protected TemplateService $templateService,
+        protected MailService $mailService,
+    ) {
+        $this->responseFactory = $apiResponseFactory->get(self::RESPONSE_NAME);
+    }
 
     /**
      * ## Send user validation request email POST
@@ -83,79 +92,72 @@ final class ValidationRequest extends AbstractApi
     public function send(): string
     {
         try {
-
             $this->assertValidRequest();
 
-            /** @var  $apiResponseFactory */
-            $apiResponseFactory = GeneralUtility::makeInstance(ApiResponseFactoryFactory::class)
-                ->get('UserSendValidationRequestApiResponse');
-
-            // Event submission settings
-            $settings = $this->request->getSettings()['eventSubmission'] ?? [];
-            // TypoScript settings for sendValidationRequest end point
-            $sendValidationRequestSettings = $settings['user']['sendValidationRequest'] ?? [];
-
-            // Validation URL
-            $validationUrl = \nn\t3::Http()->buildUri(
-                $settings['appPid'],
-                ['validationHash' => $this->getRequest()->getBody()['validationHash']],
-                true
+            $this->mailService->send(
+                $this->getRequest()->getBody()['email'],
+                \nn\t3::LL()->get('user.sendValidationRequest.mail.subject', Extension::NAME),
+                $this->renderEmailBody(),
+                '',
+                $this->request->getSettings()['eventSubmission']['mail']['fromEmail'],
+                $this->request->getSettings()['eventSubmission']['mail']['fromName']
             );
-
-            $templateVariables = [
-                'mailTitle' => \nn\t3::LL()->get('user.sendValidationRequest.mail.title', Extension::NAME),
-                'validationUrl' => $validationUrl,
-                'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
-                'extensionName' => Extension::NAME,
-                'logoImage' => $sendValidationRequestSettings['mail']['logoImage'] ?? '',
-            ];
-
-            // Render Html mail
-            $mailHtml = @\nn\t3::Template()->render(
-                $sendValidationRequestSettings['mail']['templateName'] ?? self::MAIL_TEMPLATE_NAME,
-                $templateVariables,
-                $sendValidationRequestSettings['view'] ?? self::TEMPLATE_PATHS
-            );
-
-            // Set absender data
-            $fromEmail = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'];
-            $fromName = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'];
-
-            if (!empty($sendValidationRequestSettings['mail']['sender']['email'])) {
-                $fromEmail = $sendValidationRequestSettings['mail']['sender']['email'];
-            }
-            if (!empty($sendValidationRequestSettings['mail']['sender']['name'])) {
-                $fromName = $sendValidationRequestSettings['mail']['sender']['name'];
-            }
-
-            \nn\t3::Mail()->send([
-                'html' => $mailHtml,
-                'plaintext' => null,
-                'fromEmail' => $fromEmail,
-                'fromName' => $fromName,
-                'toEmail' => $this->getRequest()->getBody()['email'],
-                'returnPath_email' => $sendValidationRequestSettings['mail']['sender']['returnPath'],
-                'subject' => \nn\t3::LL()->get('user.sendValidationRequest.mail.subject', Extension::NAME),
-                'absPrefix' => \nn\t3::Environment()->getBaseURL(),
-                'attachments' => '',
-            ]);
-
 
             $data = [
                 'validationHash' => $this->getRequest()->getBody()['validationHash']
             ];
 
-            return $apiResponseFactory->successResponse($data)->__toString();
+            return $this->responseFactory->successResponse($data)->__toString();
 
         } catch (\Exception $e) {
-            return $apiResponseFactory->errorResponse()->__toString();
+            return $this->responseFactory->errorResponse()->__toString();
         }
+    }
+
+    protected function renderEmailBody(): string
+    {
+        $templateVariables = [
+            'mailTitle' => \nn\t3::LL()->get('user.sendValidationRequest.mail.title', Extension::NAME),
+            'validationUrl' => $this->buildValidationUrl(),
+            'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
+            'extensionName' => Extension::NAME,
+            'logoImage' => $this->request->getSettings()['eventSubmission']['mail']['logoImage'] ?? '',
+        ];
+
+        return $this->templateService->render(
+            self::MAIL_TEMPLATE_NAME,
+            $this->request->getSettings()['eventSubmission']['view'] ?? [],
+            $templateVariables
+        );
+    }
+
+    /**
+     * @throws \Exception
+     */
+    protected function buildValidationUrl(): string
+    {
+        $pid = $this->request->getSettings()['eventSubmission']['appPid'] ?? 0;
+
+        // Pid should not be 0 or less.
+        if ($pid <= 0) {
+            throw new \Exception(
+                'Invalid pid, validation url could not be properly generated.',
+                1689946419
+            );
+        }
+
+        // Validation URL
+        return \nn\t3::Http()->buildUri(
+            $pid,
+            ['validationHash' => $this->getRequest()->getBody()['validationHash']],
+            true
+        );
     }
 
     /**
      * @throws Exception
      */
-    public function assertValidRequest(): void
+    protected function assertValidRequest(): void
     {
         /** @var ValidatorInterface $validator */
         $validator = GeneralUtility::makeInstance(ValidatorFactory::class)

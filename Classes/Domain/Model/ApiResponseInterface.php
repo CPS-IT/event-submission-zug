@@ -14,9 +14,6 @@ namespace Cpsit\EventSubmission\Domain\Model;
 
 use Stringable;
 
-/**
- *
- */
 interface ApiResponseInterface extends Stringable
 {
     public const EVENT_SUBMISSION_SUCCESS = 100;

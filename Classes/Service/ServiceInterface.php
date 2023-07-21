@@ -10,9 +10,9 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Cpsit\EventSubmission\Api\Event;
+namespace Cpsit\EventSubmission\Service;
 
-interface EventApiInterface
+interface ServiceInterface
 {
-    public const PARAMETER_ID = 'id';
+
 }

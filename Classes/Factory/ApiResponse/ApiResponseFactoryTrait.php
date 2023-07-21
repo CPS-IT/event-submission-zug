@@ -27,15 +27,15 @@ trait ApiResponseFactoryTrait
 
     public function successResponse(array $data = []): ApiResponse
     {
-        return $this->create(EventGetApiResponseFactory::SUCCESS_CODE, $data);
+        return $this->create(self::SUCCESS_CODE, $data);
     }
 
     public function errorResponse(array $data = []): ApiResponse
     {
-        return $this->create(EventGetApiResponseFactory::ERROR_CODE, '');
+        return $this->create(self::ERROR_CODE, '');
     }
 
-    public function create(int $code, array $data = []): ApiResponse
+    public function create(int $code, array $data = [], string $message = ''): ApiResponse
     {
         return GeneralUtility::makeInstance(ApiResponse::class, $code, $data);
     }

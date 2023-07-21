@@ -18,6 +18,7 @@ class ApiResponseFactoryFactory
     protected array $factories = [];
     public const MISSING_FACTORY_MESSAGE = 'Factory %s could not be found message';
     public const MISSING_FACTORY_CODE = 1689292298;
+
     public function __construct(\Traversable $factories)
     {
         $this->factories = iterator_to_array($factories);

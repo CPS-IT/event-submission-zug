@@ -16,7 +16,7 @@ use Cpsit\EventSubmission\Domain\Model\ApiResponse;
 
 interface ApiResponseFactoryInterface
 {
-    public function create(int $code, array $data = []): ApiResponse;
+    public function create(int $code, array $data = [], string $message = ''): ApiResponse;
 
     public function errorResponse(array $data = []): ApiResponse;
 
