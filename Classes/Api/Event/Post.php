@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Api\Event;
 
 use Cpsit\EventSubmission\Domain\Model\Job;
-use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory;
+use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
+use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
+use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -27,6 +29,18 @@ use TYPO3\CMS\Impexp\Exception;
  */
 final class Post extends AbstractApi
 {
+
+    public const RESPONSE_NAME = 'EventPostApiResponse';
+
+    protected ApiResponseFactoryInterface $responseFactory;
+
+    public function __construct(
+        protected ApiResponseFactoryFactory $apiResponseFactory,
+        protected JobFactory $jobFactory
+    ) {
+        $this->responseFactory = $apiResponseFactory->get(self::RESPONSE_NAME);
+    }
+
     /**
      * ## Event submission POST
      *
@@ -84,20 +98,16 @@ final class Post extends AbstractApi
     public function create(): string
     {
         $hydrateJob = HydrateJobFromEventPostRequest::hydrate($this->request, $this->response);
-        $job = GeneralUtility::makeInstance(JobFactory::class)->get(
-            'FromArray',
-            $hydrateJob
-        );
-        $apiResponseFactory = GeneralUtility::makeInstance(ApiResponseFactory::class)
-            ->get('EventPostApiResponse');
+        $job = $this->jobFactory->get('FromArray', $hydrateJob);
+
         if ($job instanceof Job) {
             try {
                 $job = \nn\t3::Db()->insert($job);
-                return $apiResponseFactory->successResponse($job)->__toString();
+                return $this->responseFactory->successResponse($job)->__toString();
             } catch (\Exception $e) {
-                return $apiResponseFactory->errorResponse()->__toString();
+                return $this->responseFactory->errorResponse()->__toString();
             }
         }
-        return $apiResponseFactory->errorResponse()->__toString();
+        return $this->responseFactory->errorResponse()->__toString();
     }
 }

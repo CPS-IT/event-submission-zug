@@ -13,7 +13,7 @@ namespace Cpsit\EventSubmission\Api\Event;
 
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
-use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory;
+use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
@@ -32,10 +32,10 @@ final class Put extends AbstractApi implements EventApiInterface
 
 {
     public const RESPONSE_NAME = 'EventPutApiResponse';
-    protected ApiResponseFactory $apiResponseFactoryFactory;
+    protected ApiResponseFactoryFactory $apiResponseFactoryFactory;
     protected ApiResponseFactoryInterface $responseFactory;
     protected Db $db;
-    public function __construct(ApiResponseFactory $apiResponseFactory, Db $db)
+    public function __construct(ApiResponseFactoryFactory $apiResponseFactory, Db $db)
     {
         $this->apiResponseFactoryFactory = $apiResponseFactory;
         $this->responseFactory = $this->apiResponseFactoryFactory->get(self::RESPONSE_NAME);

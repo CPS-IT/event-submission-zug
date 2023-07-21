@@ -17,10 +17,11 @@ use TYPO3\CMS\Impexp\Exception;
 
 class ValidatorFactory
 {
-    public function __construct(
-        protected iterable $factories
-    ) {
-        $this->factories = $factories instanceof \Traversable ? iterator_to_array($factories) : $factories;;
+    protected array $factories = [];
+
+    public function __construct(\Traversable $factories)
+    {
+        $this->factories = iterator_to_array($factories);
     }
 
     public function get(

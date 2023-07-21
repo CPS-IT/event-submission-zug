@@ -17,7 +17,7 @@ services:
     Cpsit\EventSubmission\Validator\ValidatorInterface:
       tags: [ 'EventSubmission.Validator' ]
 
-  Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactory:
+  Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory:
     public: true
     arguments:
       $factories: !tagged_iterator { tag: 'EventSubmission.ApiResponseFactory', index_by: 'ApiResponseFactory' }

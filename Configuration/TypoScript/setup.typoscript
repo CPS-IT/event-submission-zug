@@ -1,9 +1,3 @@
-plugin.tx_eventsubmission {
-  settings {
-    testSetting = test
-  }
-}
-
 plugin.tx_nnrestapi {
   settings {
     // Settings for Event Submission API
@@ -33,6 +27,7 @@ plugin.tx_nnrestapi {
               name =
               email =
             }
+            returnPath = ''
           }
         }
       }

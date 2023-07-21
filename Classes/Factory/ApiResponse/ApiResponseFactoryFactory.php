@@ -14,11 +14,13 @@ namespace Cpsit\EventSubmission\Factory\ApiResponse;
 
 use TYPO3\CMS\Impexp\Exception;
 
-class ApiResponseFactory
+class ApiResponseFactoryFactory
 {
-    public function __construct(protected iterable $factories)
+    protected array $factories = [];
+
+    public function __construct(\Traversable $factories)
     {
-        $this->factories = $factories instanceof \Traversable ? iterator_to_array($factories) : $factories;;
+        $this->factories = iterator_to_array($factories);
     }
 
     /**
