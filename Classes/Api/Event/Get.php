@@ -86,7 +86,7 @@ final class Get extends AbstractApi implements EventApiInterface
     public function index(): string
     {
         $arguments = $this->request->getArguments();
-        $responseData = '';
+        $responseData = [];
         $responseCode = ApiResponseInterface::EVENT_GET_ERROR;
         $id = $arguments[self::PARAMETER_ID];
 
@@ -100,7 +100,7 @@ final class Get extends AbstractApi implements EventApiInterface
         );
 
         if(!empty($job)) {
-            $responseData = json_encode($job[Job::FIELD_PAYLOAD], JSON_THROW_ON_ERROR);
+            $responseData = json_decode($job[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
             $responseCode = ApiResponseInterface::EVENT_GET_SUCCESS;
         }
 

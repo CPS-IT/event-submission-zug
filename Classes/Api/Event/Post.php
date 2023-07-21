@@ -102,8 +102,10 @@ final class Post extends AbstractApi
 
         if ($job instanceof Job) {
             try {
+                /** @var Job $job */
                 $job = \nn\t3::Db()->insert($job);
-                return $this->responseFactory->successResponse($job)->__toString();
+                $data = json_decode($job->getPayload(), true, 512, JSON_THROW_ON_ERROR);
+                return $this->responseFactory->successResponse($data)->__toString();
             } catch (\Exception $e) {
                 return $this->responseFactory->errorResponse()->__toString();
             }

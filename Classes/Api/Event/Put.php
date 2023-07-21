@@ -108,7 +108,7 @@ final class Put extends AbstractApi implements EventApiInterface
     public function update(): string
     {
         $arguments = $this->request->getArguments();
-        $responseData = '';
+        $responseData = [];
         $responseCode = ApiResponseInterface::EVENT_UPDATE_ERROR;
         $id = $arguments[self::PARAMETER_ID];
 
@@ -128,7 +128,7 @@ final class Put extends AbstractApi implements EventApiInterface
             $job[Job::FIELD_REQUEST_DATE_TIME] = time();
             $this->db->update(Job::TABLE_NAME, $job, $job[Job::FIELD_UID]);
 
-            $responseData = json_encode($job[Job::FIELD_PAYLOAD], JSON_THROW_ON_ERROR);
+            $responseData = json_decode($job[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
             $responseCode = ApiResponseInterface::EVENT_UPDATE_SUCCESS;
         }
 

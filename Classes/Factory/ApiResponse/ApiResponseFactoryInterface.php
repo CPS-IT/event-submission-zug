@@ -16,7 +16,11 @@ use Cpsit\EventSubmission\Domain\Model\ApiResponse;
 
 interface ApiResponseFactoryInterface
 {
-    public function create(int $code, string $data): ApiResponse;
+    public function create(int $code, array $data = []): ApiResponse;
+
+    public function errorResponse(array $data = []): ApiResponse;
+
+    public function successResponse(array $data = []): ApiResponse;
 
     /**
      * Factory index within dependency injection

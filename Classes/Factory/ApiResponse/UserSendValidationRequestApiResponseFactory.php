@@ -12,35 +12,14 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Factory\ApiResponse;
 
-use Cpsit\EventSubmission\Domain\Model\ApiResponse;
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
-use Cpsit\EventSubmission\Domain\Model\Job;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class UserSendValidationRequestApiResponseFactory implements ApiResponseFactoryInterface
 {
-    public function successResponse(string $validationHash): ApiResponse
-    {
-        $data = [
-            'validationHash' => $validationHash
-        ];
-        return $this->create(ApiResponseInterface::USER_SEND_VALIDATION_REQUEST_SUCCESS, json_encode($data));
-    }
+    use ApiResponseFactoryTrait;
 
-    public function errorResponse(): ApiResponse
-    {
-        return $this->create(ApiResponseInterface::USER_SEND_VALIDATION_REQUEST_ERROR, '');
-    }
-
-    public function create($code, $data): ApiResponse
-    {
-        return GeneralUtility::makeInstance(ApiResponse::class, $code, $data);
-    }
-
-    public static function getDefaultApiResponseFactoryName(): string
-    {
-        return 'UserSendValidationRequestApiResponse';
-    }
-
+    public const DEFAULT_FACTORY_NAME = 'UserSendValidationRequestApiResponse';
+    public const SUCCESS_CODE = ApiResponseInterface::USER_SEND_VALIDATION_REQUEST_SUCCESS;
+    public const ERROR_CODE = ApiResponseInterface::USER_SEND_VALIDATION_REQUEST_ERROR;
 
 }

@@ -21,6 +21,12 @@
 			<trans-unit id="api_response_message.600">
 				<source>Event update submission error</source>
 			</trans-unit>
+			<trans-unit id="api_response_message.700">
+				<source>Event submission found</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.800">
+				<source>Requested event submission could not be found</source>
+			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.title">
 				<source>Validation email</source>
 			</trans-unit>

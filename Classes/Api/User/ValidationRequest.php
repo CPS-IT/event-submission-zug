@@ -140,7 +140,12 @@ final class ValidationRequest extends AbstractApi
                 'attachments' => '',
             ]);
 
-            return $apiResponseFactory->successResponse($this->getRequest()->getBody()['validationHash'])->__toString();
+
+            $data = [
+                'validationHash' => $this->getRequest()->getBody()['validationHash']
+            ];
+
+            return $apiResponseFactory->successResponse($data)->__toString();
 
         } catch (\Exception $e) {
             return $apiResponseFactory->errorResponse()->__toString();

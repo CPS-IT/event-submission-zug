@@ -13,12 +13,13 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Domain\Model;
 
 use Cpsit\EventSubmission\Service\TranslationService;
+use JsonException;
 
 class ApiResponse implements ApiResponseInterface
 {
     public function __construct(
         protected int $code,
-        protected string $data,
+        protected array $data,
     ) {
     }
 
@@ -32,12 +33,12 @@ class ApiResponse implements ApiResponseInterface
         $this->code = $code;
     }
 
-    public function getData(): string
+    public function getData(): array
     {
         return $this->data;
     }
 
-    public function setData(string $data): void
+    public function setData(array $data): void
     {
         $this->data = $data;
     }
@@ -47,6 +48,9 @@ class ApiResponse implements ApiResponseInterface
         return TranslationService::translate('api_response_message.' . $this->getCode());
     }
 
+    /**
+     * @throws JsonException
+     */
     public function __toString(): string
     {
         $response = [
@@ -55,6 +59,6 @@ class ApiResponse implements ApiResponseInterface
             'data' => $this->getData(),
         ];
 
-        return json_encode($response);
+        return json_encode($response, JSON_THROW_ON_ERROR);
     }
 }

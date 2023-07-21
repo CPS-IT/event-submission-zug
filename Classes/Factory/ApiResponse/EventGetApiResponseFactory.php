@@ -12,34 +12,14 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Factory\ApiResponse;
 
-use Cpsit\EventSubmission\Domain\Model\ApiResponse;
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
-use Cpsit\EventSubmission\Domain\Model\Job;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class EventGetApiResponseFactory implements ApiResponseFactoryInterface
 {
+    use ApiResponseFactoryTrait;
+
     public const SUCCESS_CODE = ApiResponseInterface::EVENT_GET_SUCCESS;
     public const ERROR_CODE = ApiResponseInterface::EVENT_GET_ERROR;
     public const DEFAULT_FACTORY_NAME = 'EventGetApiResponse';
-    public function successResponse(Job $job): ApiResponse
-    {
-        $data = $job->getPayload();
-        return $this->create(self::SUCCESS_CODE, $data);
-    }
 
-    public function errorResponse(): ApiResponse
-    {
-        return $this->create(self::ERROR_CODE, '');
-    }
-
-    public function create($code, $data): ApiResponse
-    {
-        return GeneralUtility::makeInstance(ApiResponse::class, $code, $data);
-    }
-
-    public static function getDefaultApiResponseFactoryName(): string
-    {
-        return self::DEFAULT_FACTORY_NAME;
-    }
 }
