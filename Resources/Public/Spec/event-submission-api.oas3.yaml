@@ -86,14 +86,18 @@ paths:
       security:
         - bearerAuth: [ ]
       responses:
-        "200":
+        '200':
           description: Successful request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
+                $ref: '#/components/schemas/EventGetResult'
         '404':
           description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventGetError'
     put:
       summary: Change an existing event proposal
       operationId: putEvent
@@ -144,7 +148,7 @@ paths:
             type: integer
             format: int32
       responses:
-        "200":
+        '200':
           description: Successfully deleted event proposal
           content:
             application/json:
@@ -278,6 +282,29 @@ components:
         data:
           allOf:
             - $ref: '#/components/schemas/Event'
+    EventGetResult:
+      type: object
+      description: Response for successful GET request of an event submission
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        code:
+          example: 700
+        message:
+          example: Event submission found
+        data:
+          allOf:
+            - $ref: '#/components/schemas/Event'
+    EventGetError:
+      type: object
+      description: Response for failed GET request of an event proposal
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        code:
+          example: 800
+        message:
+          example: Requested event proposal could not be found
     EventUpdateError:
       type: object
       description: Response for failed update of an event proposal
