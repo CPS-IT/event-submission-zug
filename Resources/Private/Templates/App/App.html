@@ -4,6 +4,7 @@
     Event Submission Form
 </f:comment>
 <f:layout name="App"/>
+
 <f:section name="Main">
 
     <noscript>
@@ -11,7 +12,14 @@
             Please enable it to continue.</p>
     </noscript>
 
-    <div id="event-submission-app"></div>
+
+    <div
+        id="event-submission-app"
+        data-api-validate="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/sendValidationRequest"
+        data-api-create="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/event"
+        data-api-update="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/event/"
+        data-api-get="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/event/"
+    ></div>
     <f:asset.css identifier="eventSubmissionApp" href="assets/event-submission-form/assets/index.css" rel="stylesheet"/>
     <f:asset.script
         type="module"

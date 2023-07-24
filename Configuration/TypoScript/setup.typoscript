@@ -41,7 +41,9 @@ plugin.tx_nnrestapi {
 # CType: eventsubmission_app
 
 tt_content.eventsubmission_app.20 {
-  view =< plugin.tx_eventSubmission.view
+  view =< plugin.tx_eventsubmission.view
   templateName = App
-
+  settings {
+    appPid = 0
+  }
 }
