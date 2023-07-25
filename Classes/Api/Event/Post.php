@@ -103,7 +103,10 @@ final class Post extends AbstractApi
             try {
                 /** @var Job $job */
                 $job = \nn\t3::Db()->insert($job);
-                $data = json_decode($job->getPayload(), true, 512, JSON_THROW_ON_ERROR);
+                $data = [
+                    'editToken' => $job->getUuid(),
+                    'id' => $job->getUid()
+                ];
                 return $this->responseFactory->successResponse($data)->__toString();
             } catch (Exception $e) {
                 return $this->responseFactory->errorResponse()->__toString();
