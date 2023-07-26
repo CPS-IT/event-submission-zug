@@ -67,7 +67,7 @@ final class ValidationRequest extends AbstractApi
      * "message": "Validation email successfully sent",
      * "data": {
      *   "validationHash": "dfde719e-9f19-40b5-af2e-6f96d4034cda"
-     *   }
+     *  }
      * }
      * ```
      *
@@ -164,7 +164,7 @@ final class ValidationRequest extends AbstractApi
             ->get('UserSendValidationRequest');
 
         // Early return request body validation failed
-        if (!$validator->isValid($this->getRequest()->getBody())) {
+        if (!$validator->isValid($this->getRequest()->getBody() ?? [])) {
             throw new \Exception(
                 'Invalid request body for UserSendValidationRequest',
                 1689928124
