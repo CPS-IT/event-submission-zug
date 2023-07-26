@@ -6,7 +6,7 @@
 <f:layout name="App"/>
 
 <f:section name="Main">
-
+<f:debug>{_all}</f:debug>
     <noscript>
         <p class="u-typo:bold">We're sorry but the event submission form can not be displayed without JavaScript enabled.
             Please enable it to continue.</p>
@@ -15,10 +15,10 @@
 
     <div
         id="event-submission-app"
-        data-api-validate="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/sendValidationRequest"
-        data-api-create="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/event"
-        data-api-update="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/event/"
-        data-api-get="{f:uri.typolink(parameter: '{settings.appPid}', absolute:true)}api/event/"
+        data-api-validate="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/sendValidationRequest"
+        data-api-create="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/event"
+        data-api-update="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/event/"
+        data-api-get="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/event/"
     ></div>
     <f:asset.css identifier="eventSubmissionApp" href="assets/event-submission-form/assets/index.css" rel="stylesheet"/>
     <f:asset.script

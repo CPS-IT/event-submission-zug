@@ -19,6 +19,12 @@ class AppController extends ActionController
 {
     public function appAction(): ResponseInterface
     {
+        $this->view->assignMultiple(
+            [
+                'baseUrl' => \nn\t3::Environment()->getBaseUrl(),
+                'siteConfig' => \nn\t3::Settings()->getSiteConfig()
+            ]
+        );
         return $this->htmlResponse();
     }
 }
