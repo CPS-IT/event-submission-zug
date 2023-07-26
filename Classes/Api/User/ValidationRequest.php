@@ -15,6 +15,7 @@ namespace Cpsit\EventSubmission\Api\User;
 use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
+use Cpsit\EventSubmission\Helper\EmailUrlBuilder;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
@@ -115,9 +116,14 @@ final class ValidationRequest extends AbstractApi
 
     protected function renderEmailBody(): string
     {
+        $validationUrl = EmailUrlBuilder::build(
+            (int)$this->request->getSettings()['eventSubmission']['appPid'] ?? 0,
+            ['validationHash' => $this->getRequest()->getBody()['validationHash']],
+        );
+
         $templateVariables = [
             'mailTitle' => \nn\t3::LL()->get('user.sendValidationRequest.mail.title', Extension::NAME),
-            'validationUrl' => $this->buildValidationUrl(),
+            'validationUrl' => $validationUrl,
             'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
             'extensionName' => Extension::NAME,
             'logoImage' => $this->request->getSettings()['eventSubmission']['mail']['logoImage'] ?? '',
@@ -127,29 +133,6 @@ final class ValidationRequest extends AbstractApi
             self::MAIL_TEMPLATE_NAME,
             $this->request->getSettings()['eventSubmission']['view'] ?? [],
             $templateVariables
-        );
-    }
-
-    /**
-     * @throws Exception
-     */
-    protected function buildValidationUrl(): string
-    {
-        $pid = $this->request->getSettings()['eventSubmission']['appPid'] ?? 0;
-
-        // Pid should not be 0 or less.
-        if ($pid <= 0) {
-            throw new Exception(
-                'Invalid pid, validation url could not be properly generated.',
-                1689946419
-            );
-        }
-
-        // Validation URL
-        return \nn\t3::Http()->buildUri(
-            $pid,
-            ['validationHash' => $this->getRequest()->getBody()['validationHash']],
-            true
         );
     }
 

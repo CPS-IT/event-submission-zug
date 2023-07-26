@@ -118,6 +118,7 @@ final class Post extends AbstractApi
         }
     }
 
+
     protected function hydrateJob(): Job
     {
         $hydrateJob = HydrateJobFromEventPostRequest::hydrate($this->request, $this->response);
