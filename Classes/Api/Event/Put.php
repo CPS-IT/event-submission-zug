@@ -125,11 +125,11 @@ final class Put extends AbstractApi implements EventApiInterface
         // update job
         if (!empty($job)) {
             // replace payload
-            $job[Job::FIELD_PAYLOAD] = $this->request->getRawBody();
+            $job[Job::FIELD_PAYLOAD] = json_encode($this->request->getBody());
             $job[Job::FIELD_REQUEST_DATE_TIME] = time();
             $this->db->update(Job::TABLE_NAME, $job, $job[Job::FIELD_UID]);
 
-            $responseData = json_decode($job[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
+            $responseData = $this->request->getBody();
             $responseCode = ApiResponseInterface::EVENT_UPDATE_SUCCESS;
         }
 
