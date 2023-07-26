@@ -15,18 +15,19 @@ namespace Cpsit\EventSubmission\Validator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Validate send validation request payload
+ * Validate event post request payload
  *
  * Expects: array $requestBody
  * Example:
  * ```
  * [
  *   "email" => "nix@foo.org",
- *   "validationHash" => "dfde719e-9f19-40b5-af2e-6f96d4034cda"
+ *   "title" => "Event post title"
+ *    ...
  * ]
  * ```
  */
-class UserSendValidationRequestValidator implements \Cpsit\EventSubmission\Validator\ValidatorInterface
+class EventPostValidator implements \Cpsit\EventSubmission\Validator\ValidatorInterface
 {
     public function isValid(array $requestBody): bool
     {
@@ -35,7 +36,7 @@ class UserSendValidationRequestValidator implements \Cpsit\EventSubmission\Valid
             return false;
         }
 
-        if (empty($requestBody['validationHash'])) {
+        if (empty($requestBody['title'])) {
             return false;
         }
 
@@ -47,6 +48,6 @@ class UserSendValidationRequestValidator implements \Cpsit\EventSubmission\Valid
      */
     public static function getDefaultValidatorName(): string
     {
-        return 'UserSendValidationRequest';
+        return 'EventPostValidator';
     }
 }

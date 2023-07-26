@@ -30,7 +30,7 @@ services:
     arguments:
       $factories: !tagged_iterator { tag: 'EventSubmission.JobFactory', index_by: 'JobFactory' }
 
-  Cpsit\EventSubmission\Validator\ValidatorFactory:
+  Cpsit\EventSubmission\Validator\ValidatorFactoryFactory:
     public: true
     arguments:
       $factories: !tagged_iterator { tag: 'EventSubmission.Validator', index_by: 'Validator' }

@@ -15,7 +15,7 @@ namespace Cpsit\EventSubmission\Validator;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use TYPO3\CMS\Impexp\Exception;
 
-class ValidatorFactory
+class ValidatorFactoryFactory
 {
     protected array $factories = [];
 

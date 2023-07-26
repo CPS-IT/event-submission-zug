@@ -17,6 +17,9 @@ use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
+use Cpsit\EventSubmission\Service\MailService;
+use Cpsit\EventSubmission\Service\TemplateService;
+use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
 use Exception;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -28,14 +31,17 @@ use Nng\Nnrestapi\Api\AbstractApi;
  */
 final class Post extends AbstractApi
 {
-
+    public const MAIL_TEMPLATE_NAME = 'SendPostConfirmation';
     public const RESPONSE_NAME = 'EventPostApiResponse';
 
     protected ApiResponseFactoryInterface $responseFactory;
 
     public function __construct(
         protected ApiResponseFactoryFactory $apiResponseFactory,
-        protected JobFactory $jobFactory
+        protected JobFactory $jobFactory,
+        protected TemplateService $templateService,
+        protected MailService $mailService,
+        protected ValidatorFactoryFactory $validatorFactoryFactory
     ) {
         $this->responseFactory = $apiResponseFactory->get(self::RESPONSE_NAME);
     }
@@ -96,22 +102,46 @@ final class Post extends AbstractApi
      */
     public function create(): string
     {
+        try {
+            $this->assertValidRequest();
+            $job = $this->hydrateJob();
+
+            /** @var Job $job */
+            $job = \nn\t3::Db()->insert($job);
+            $data = [
+                'editToken' => $job->getUuid(),
+                'id' => $job->getUid()
+            ];
+            return $this->responseFactory->successResponse($data)->__toString();
+        } catch (Exception $e) {
+            return $this->responseFactory->errorResponse()->__toString();
+        }
+    }
+
+    protected function hydrateJob(): Job
+    {
         $hydrateJob = HydrateJobFromEventPostRequest::hydrate($this->request, $this->response);
         $job = $this->jobFactory->get('FromArray', $hydrateJob);
 
-        if ($job instanceof Job) {
-            try {
-                /** @var Job $job */
-                $job = \nn\t3::Db()->insert($job);
-                $data = [
-                    'editToken' => $job->getUuid(),
-                    'id' => $job->getUid()
-                ];
-                return $this->responseFactory->successResponse($data)->__toString();
-            } catch (Exception $e) {
-                return $this->responseFactory->errorResponse()->__toString();
-            }
+        if (!$job instanceof Job) {
+            throw new Exception(
+                'Job object could not be created',
+                1690362873
+            );
         }
-        return $this->responseFactory->errorResponse()->__toString();
+        return $job;
+    }
+
+    protected function assertValidRequest(): void
+    {
+        $validator = $this->validatorFactoryFactory->get('EventPostValidator');
+
+        // Early return request body validation failed
+        if (!$validator->isValid($this->getRequest()->getBody() ?? [])) {
+            throw new Exception(
+                'Invalid request body for event post',
+                1690361811
+            );
+        }
     }
 }

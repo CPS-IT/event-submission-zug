@@ -17,12 +17,10 @@ use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
-use Cpsit\EventSubmission\Validator\ValidatorFactory;
-use Cpsit\EventSubmission\Validator\ValidatorInterface;
+use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
+use Exception;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Impexp\Exception;
 
 /**
  * Event post api end point
@@ -40,6 +38,7 @@ final class ValidationRequest extends AbstractApi
         protected ApiResponseFactoryFactory $apiResponseFactory,
         protected TemplateService $templateService,
         protected MailService $mailService,
+        protected ValidatorFactoryFactory $validatorFactoryFactory
     ) {
         $this->responseFactory = $apiResponseFactory->get(self::RESPONSE_NAME);
     }
@@ -109,7 +108,7 @@ final class ValidationRequest extends AbstractApi
 
             return $this->responseFactory->successResponse($data)->__toString();
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->responseFactory->errorResponse()->__toString();
         }
     }
@@ -132,7 +131,7 @@ final class ValidationRequest extends AbstractApi
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected function buildValidationUrl(): string
     {
@@ -140,7 +139,7 @@ final class ValidationRequest extends AbstractApi
 
         // Pid should not be 0 or less.
         if ($pid <= 0) {
-            throw new \Exception(
+            throw new Exception(
                 'Invalid pid, validation url could not be properly generated.',
                 1689946419
             );
@@ -159,17 +158,14 @@ final class ValidationRequest extends AbstractApi
      */
     protected function assertValidRequest(): void
     {
-        /** @var ValidatorInterface $validator */
-        $validator = GeneralUtility::makeInstance(ValidatorFactory::class)
-            ->get('UserSendValidationRequest');
+        $validator = $this->validatorFactoryFactory->get('UserSendValidationRequest');
 
         // Early return request body validation failed
         if (!$validator->isValid($this->getRequest()->getBody() ?? [])) {
-            throw new \Exception(
+            throw new Exception(
                 'Invalid request body for UserSendValidationRequest',
                 1689928124
             );
         }
-
     }
 }
