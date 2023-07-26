@@ -6,13 +6,10 @@
 <f:layout name="App"/>
 
 <f:section name="Main">
-<f:debug>{_all}</f:debug>
     <noscript>
         <p class="u-typo:bold">We're sorry but the event submission form can not be displayed without JavaScript enabled.
             Please enable it to continue.</p>
     </noscript>
-
-
     <div
         id="event-submission-app"
         data-api-validate="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/sendValidationRequest"
