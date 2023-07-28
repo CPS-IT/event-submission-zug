@@ -34,3 +34,5 @@ ArrayUtility::mergeRecursiveWithOverrule(
         ],
     ]
 );
+
+Extension::registerAdditionalRenderTypes();

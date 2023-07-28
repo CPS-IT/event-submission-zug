@@ -74,10 +74,8 @@ return [
         'payload' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.payload',
             'config' => [
-                'type' => 'text',
-                'width' => 200,
-                'eval' => 'trim',
-                'readOnly' => true,
+                'type' => 'user',
+                'renderType' => \Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode::getNodeName()
             ],
         ],
         'response_code' => [
