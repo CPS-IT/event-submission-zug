@@ -67,6 +67,39 @@
 					email.
 				</source>
 			</trans-unit>
+
+			<trans-unit id="user.eventPostConfirmation.mail.title">
+				<source>Confirmation email</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.subject">
+				<source>Thanks! for your event submission</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.greeting">
+				<source>Hello,</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.1">
+				<source>Thank you for submitting your event to be listed on our platform.</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.2">
+				<source>Please note that before your event can be listed, it will undergo a brief
+					review and approval process. This is to ensure that all events meet our guidelines and provide
+					a seamless experience for our users.</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.3">
+				<source>We will notify you promptly once your event is approved and listed on our platform.</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.4">
+				<source>Please use the link below to update or delete the event.</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.confirmation.button">
+				<source>Edit event</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.signature">
+				<source>Best regards</source>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.footer">
+				<source>Die Internationale Klimaschutzinitiative (IKI)</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

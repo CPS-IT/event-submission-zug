@@ -12,13 +12,16 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Api\Event;
 
+use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
+use Cpsit\EventSubmission\Helper\EmailUrlBuilder;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
+use Cpsit\EventSubmission\Service\TranslationService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
 use Exception;
 use Nng\Nnrestapi\Annotations as Api;
@@ -31,7 +34,7 @@ use Nng\Nnrestapi\Api\AbstractApi;
  */
 final class Post extends AbstractApi
 {
-    public const MAIL_TEMPLATE_NAME = 'SendPostConfirmation';
+    public const MAIL_TEMPLATE_NAME = 'EventPostConfirmationEmail';
     public const RESPONSE_NAME = 'EventPostApiResponse';
 
     protected ApiResponseFactoryInterface $responseFactory;
@@ -108,6 +111,16 @@ final class Post extends AbstractApi
 
             /** @var Job $job */
             $job = \nn\t3::Db()->insert($job);
+
+            $this->mailService->send(
+                $this->getRequest()->getBody()['email'],
+                TranslationService::translate('user.eventPostConfirmation.mail.subject'),
+                $this->renderEmailBody($job),
+                '',
+                $this->request->getSettings()['eventSubmission']['mail']['fromEmail'],
+                $this->request->getSettings()['eventSubmission']['mail']['fromName']
+            );
+
             $data = [
                 'editToken' => $job->getUuid(),
                 'id' => $job->getUid()
@@ -118,6 +131,28 @@ final class Post extends AbstractApi
         }
     }
 
+    protected function renderEmailBody(Job $job): string
+    {
+        $editUrl = EmailUrlBuilder::build(
+            (int)$this->request->getSettings()['eventSubmission']['appPid'] ?? 0,
+            ['editToken' => $job->getUuid()],
+        );
+
+        $templateVariables = [
+            'mailTitle' => TranslationService::translate('user.eventPostConfirmation.mail.title'),
+            'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
+            'extensionName' => Extension::NAME,
+            'settings' => $this->request->getSettings(),
+            'editUrl' => $editUrl,
+            'job' => $job,
+        ];
+
+        return $this->templateService->render(
+            self::MAIL_TEMPLATE_NAME,
+            $this->request->getSettings()['eventSubmission']['view'] ?? [],
+            $templateVariables
+        );
+    }
 
     protected function hydrateJob(): Job
     {

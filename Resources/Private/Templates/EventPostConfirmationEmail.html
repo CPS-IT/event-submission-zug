@@ -11,33 +11,36 @@
                     <!-- Header -->
                     <tr>
                         <td align="left" valign="top" bgcolor="#fff" style="padding: 20px 0;">
-                            <f:if condition="{logoImage}">
-                                <f:image src="{logoImage}" absolute="1" />
+
+                            <f:if condition="{eventSubmission.mail.logoImage}">
+                                <f:image src="{eventSubmission.mail.logoImage}" absolute="1" />
                             </f:if>
                         </td>
                     </tr>
                     <!-- Content -->
                     <tr>
                         <td align="left" valign="top" style="padding: 30px;">
-                            <p>{f:translate(key: 'user.sendValidationRequest.mail.greeting', extensionName: '{extensionName}')}</p>
-                            <p>{f:translate(key: 'user.sendValidationRequest.mail.message.1', extensionName: '{extensionName}')}</p>
+                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.greeting', extensionName: '{extensionName}')}</p>
+                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.1', extensionName: '{extensionName}')}</p>
+                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.2', extensionName: '{extensionName}')}</p>
+                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.3', extensionName: '{extensionName}')}</p>
+                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.4', extensionName: '{extensionName}')}</p>
+
                             <!-- Call-to-Action Button -->
                             <p>
-                                <a href="{validationUrl}" target="_blank"
+                                <a href="{editUrl}" target="_blank"
                                    style="background-color: #1b2b3a; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
-                                    {f:translate(key: 'user.sendValidationRequest.mail.confirmation.button', extensionName: '{extensionName}')}
+                                    {f:translate(key: 'user.eventPostConfirmation.mail.confirmation.button', extensionName: '{extensionName}')}
                                 </a>
                             </p>
-                            <p>{f:translate(key: 'user.sendValidationRequest.mail.message.2', extensionName: '{extensionName}')}</p>
 
-                            <p>{f:translate(key: 'user.sendValidationRequest.mail.message.3', extensionName: '{extensionName}')}</p>
                             <p>{f:translate(key: 'user.sendValidationRequest.mail.signature', extensionName: '{extensionName}')}</p>
                         </td>
                     </tr>
                     <!-- Footer -->
                     <tr>
                         <td align="center" valign="top" bgcolor="#1b2b3a" style="padding: 20px 0;">
-                            <p style="color: #ffffff;">{f:translate(key: 'user.sendValidationRequest.mail.footer', extensionName: '{extensionName}')}</p>
+                            <p style="color: #ffffff;">{f:translate(key: 'user.eventPostConfirmation.mail.footer', extensionName: '{extensionName}')}</p>
                         </td>
                     </tr>
                 </table>
