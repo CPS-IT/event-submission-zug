@@ -26,10 +26,10 @@ return [
     'types' => [
         '0' => [
             'showitem' => '
+                approved,
                 email,
                 uuid,
                 payload,
-                approved,
             --div--;' . $ll . 'tx_eventsubmission_domain_model_job.tab.request,
                 request_date_time,
                 response_code,
@@ -113,7 +113,6 @@ return [
         'job_triggered_date_time' => [
             'exclude' => true,
             'label' => $ll . 'tx_eventsubmission_domain_model_job.job_triggered_date_time',
-            'exclude' => true,
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -170,15 +169,16 @@ return [
         ],
         'approved' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.approved',
+            'description' => $ll . 'tx_eventsubmission_domain_model_job.approved_description',
             'config' => [
                 'type' => 'check',
-                'renderType' => 'checkboxToggle',
+                'renderType' => 'checkboxLabeledToggle',
                 'items' => [
                     [
-                        0 => '',
                         1 => '',
-                        'labelChecked' => 'Approved',
-                        'labelUnchecked' => 'Rejected',
+                        0 => '',
+                        'labelChecked' => $ll . 'tx_eventsubmission_domain_model_job.approved.1',
+                        'labelUnchecked' => $ll . 'tx_eventsubmission_domain_model_job.approved.0',
                     ],
                 ],
             ],

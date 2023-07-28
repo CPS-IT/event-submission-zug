@@ -51,6 +51,15 @@
             <trans-unit id="tx_eventsubmission_domain_model_job.approved">
                 <source>Release event submission</source>
             </trans-unit>
+			<trans-unit id="tx_eventsubmission_domain_model_job.approved.0">
+				<source>Event submission rejected</source>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_domain_model_job.approved.1">
+				<source>Approved</source>
+			</trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved_description">
+                <source>Click on the button below to accept or decline the event.</source>
+            </trans-unit>
             <trans-unit id="tt_content.CType.eventsubmission_app">
                 <source>Event Submission Form</source>
             </trans-unit>

@@ -67,6 +67,18 @@
                 <source>Release event submission</source>
 				<target>Veranstaltung freigeben</target>
             </trans-unit>
+			<trans-unit id="tx_eventsubmission_domain_model_job.approved.0">
+				<source>Event submission rejected</source>
+				<target>Veranstaltung nicht freigeben</target>
+			</trans-unit>
+			<trans-unit id="tx_eventsubmission_domain_model_job.approved.1">
+				<source>Approved</source>
+				<target>Veranstaltung freigegeben</target>
+			</trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved_description">
+                <source>Click on the button below to accept or decline the event.</source>
+				<target>Klicken Sie auf den button unten um die Veranstaltung anzunehmen oder abzulehnen.</target>
+            </trans-unit>
             <trans-unit id="tt_content.CType.eventsubmission_app">
                 <source>Event Submission Form</source>
 				<target>Formular zur Einreichung einer Veranstaltung</target>
