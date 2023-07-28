@@ -35,7 +35,19 @@ implements RegistrableInterface
     public const DEFAULT_LANGUAGE_FILE = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf';
 
     public const FIELD_ORDER = [
-        'title', 'email', 'teaser', 'timezone', 'datetime', 'event_end', 'bodytext'
+        'title',
+        'teaser',
+        'location_simple',
+        'organizer_simple',
+        'email',
+        'timezone',
+        'datetime',
+        'event_end',
+        'bodytext',
+        'language',
+        'event_mode',
+        'emailValidated',
+        'validationHash'
     ];
     /**
      * @inheritDoc
@@ -49,7 +61,13 @@ implements RegistrableInterface
         try {
             $payload = json_decode($row[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
             // re-order by static::FIELD_ORDER
-            $payload = array_merge(array_flip(static::FIELD_ORDER), $payload);
+            $order = static::FIELD_ORDER;
+            foreach ($order as $key=>$value) {
+                if(!isset($payload[$value])) {
+                    unset($order[$key]);
+                }
+            }
+            $payload = array_merge(array_flip($order), $payload);
         } catch (JsonException $e) {
             // render error message
             $payload= [

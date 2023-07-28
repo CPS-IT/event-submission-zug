@@ -87,8 +87,26 @@
             <trans-unit id="payload.label.email">
                 <source>Email</source>
             </trans-unit>
+            <trans-unit id="payload.label.language">
+                <source>Language</source>
+            </trans-unit>
+            <trans-unit id="payload.label.location_simple">
+                <source>Location</source>
+            </trans-unit>
             <trans-unit id="payload.label.reference_id">
-                <source>External Reference</source>
+                <source>External Reference ID</source>
+            </trans-unit>
+            <trans-unit id="payload.label.emailValidated">
+                <source>Email Validated</source>
+            </trans-unit>
+            <trans-unit id="payload.label.event_mode">
+                <source>Event Mode</source>
+            </trans-unit>
+            <trans-unit id="payload.label.organizer_simple">
+                <source>Organizer</source>
+            </trans-unit>
+            <trans-unit id="payload.label.validationHash">
+                <source>Validation Hash</source>
             </trans-unit>
             <trans-unit id="payload.label.error">
                 <source>Error</source>
