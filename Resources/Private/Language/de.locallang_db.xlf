@@ -5,57 +5,75 @@
         <body>
             <trans-unit id="tx_eventsubmission_domain_model_job.tab.request">
                 <source>Internal Request information</source>
+				<target>Interne Request Informationen</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.tab.internal">
                 <source>Internal job process information </source>
+				<target>Informationen zum internen Jobprozess</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job">
                 <source>Event submission job</source>
+				<target>Einreichung einer Veranstaltung</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.email">
                 <source>Email</source>
+				<target>E-Mail</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.uuid">
                 <source>Record universal uuid</source>
+				<target>Universelle UUID aufzeichnen</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.request_date_time">
                 <source>Request datetime</source>
+				<target>Datum und Uhrzeit der Anfrage</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.payload">
                 <source>Payload</source>
+				<target>Payload</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.response_code">
                 <source>Response code</source>
+				<target></target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error">
                 <source>Api request status</source>
+				<target>Antwortcode</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.error">
                 <source>Error</source>
+				<target>Fehler</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.success">
                 <source>Success</source>
+				<target>Fehler</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.job_triggered_date_time">
                 <source>Job internally triggered at</source>
+				<target>Erfolg</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_done">
                 <source>Job internally done</source>
+				<target>Job intern ausgelöst um</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.internal_log_message">
                 <source>Job internal log message</source>
+				<target>Job Interne Protokollmeldung</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_internal_error">
                 <source>Internal job status</source>
+				<target>Interner Jobstatus</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.approved">
                 <source>Release event submission</source>
+				<target>Veranstaltung freigeben</target>
             </trans-unit>
             <trans-unit id="tt_content.CType.eventsubmission_app">
                 <source>Event Submission Form</source>
+				<target>Formular zur Einreichung einer Veranstaltung</target>
             </trans-unit>
             <trans-unit id="tt_content.CType.eventsubmission_app.configuration">
                 <source>Configuration</source>
+				<target>Konfiguration</target>
             </trans-unit>
         </body>
     </file>

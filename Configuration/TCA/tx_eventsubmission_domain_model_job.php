@@ -62,6 +62,7 @@ return [
         ],
         'request_date_time' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.request_date_time',
+            'exclude' => true,
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -82,6 +83,7 @@ return [
         ],
         'response_code' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.response_code',
+            'exclude' => true,
             'config' => [
                 'type' => 'input',
                 'width' => 10,
@@ -92,6 +94,7 @@ return [
         ],
         'is_api_error' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.is_api_error',
+            'exclude' => true,
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxLabeledToggle',
@@ -110,6 +113,7 @@ return [
         'job_triggered_date_time' => [
             'exclude' => true,
             'label' => $ll . 'tx_eventsubmission_domain_model_job.job_triggered_date_time',
+            'exclude' => true,
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -121,6 +125,7 @@ return [
         ],
         'is_done' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.is_done',
+            'exclude' => true,
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxLabeledToggle',
@@ -137,6 +142,7 @@ return [
         ],
         'internal_log_message' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.internal_log_message',
+            'exclude' => true,
             'config' => [
                 'type' => 'input',
                 'width' => 200,
@@ -146,6 +152,7 @@ return [
         ],
         'is_internal_error' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.is_internal_error',
+            'exclude' => true,
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxLabeledToggle',
