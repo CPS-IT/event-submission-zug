@@ -12,9 +12,30 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Configuration;
 
+use Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode;
+use Cpsit\EventSubmission\Form\RegistrableInterface;
+
 class Extension
 {
     public const NAME = 'EventSubmission';
     public const VENDOR_NAME = 'Cpsit';
     public const EXTENSION_KEY = 'event_submission';
+
+    public const ADDITIONAL_RENDER_TYPES = [
+        SubmissionPayloadDisplayNode::class
+    ];
+    public static function registerAdditionalRenderTypes():void
+    {
+        foreach (self::ADDITIONAL_RENDER_TYPES as $class) {
+            if(!in_array(RegistrableInterface::class, class_implements($class,), true)) {
+                continue;
+            }
+
+            $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][$class::getNodeId()] = [
+                    'nodeName' => $class::getNodeName(),
+                    'priority' => $class::getPriority(),
+                    'class' => $class,
+                ];
+        }
+    }
 }
