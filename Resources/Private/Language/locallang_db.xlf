@@ -49,16 +49,22 @@
                 <source>Internal job status</source>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.approved">
-                <source>Release event submission</source>
+                <source>Approved</source>
             </trans-unit>
-			<trans-unit id="tx_eventsubmission_domain_model_job.approved.0">
-				<source>Event submission rejected</source>
-			</trans-unit>
-			<trans-unit id="tx_eventsubmission_domain_model_job.approved.1">
-				<source>Approved</source>
-			</trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved.0">
+                <source>Not approved</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved.1">
+                <source>Approved</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.event">
+                <source>Event</source>
+            </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.approved_description">
                 <source>Click on the button below to accept or decline the event.</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.event_description">
+                <source>Event created from this submission.</source>
             </trans-unit>
             <trans-unit id="tt_content.CType.eventsubmission_app">
                 <source>Event Submission Form</source>
@@ -113,6 +119,20 @@
             </trans-unit>
             <trans-unit id="payload.message.invalidJsonInPayload">
                 <source>Invalid content in submitted event proposal.</source>
+            </trans-unit>
+            <trans-unit id="approval_status.header">
+                <source>Approval Status</source>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovalPending">
+                <source>Event submission has not been approved yet.</source>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovedEventCreated">
+                <source>Event submission has been approved. The proposed event record has been created.
+                    The submission can not be edited anymore.<br />
+                </source>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovedEventCreationPending">
+                <source>Event submission has been approved and the proposed event record has not been created yet.</source>
             </trans-unit>
         </body>
     </file>

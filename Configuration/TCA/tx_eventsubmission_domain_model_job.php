@@ -6,8 +6,8 @@ $ll = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf:';
 return [
     'ctrl' => [
         'title' => $ll . 'tx_eventsubmission_domain_model_job',
-        'label' => 'uuid',
-        'label_alt' => 'email',
+        'label' => 'request_date_time',
+        'label_alt' => 'email,event',
         'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -26,9 +26,10 @@ return [
     'types' => [
         '0' => [
             'showitem' => '
+                approval_status,
                 approved,
+                event,
                 email,
-                uuid,
                 payload,
             --div--;' . $ll . 'tx_eventsubmission_domain_model_job.tab.request,
                 request_date_time,
@@ -37,6 +38,7 @@ return [
             --div--;' . $ll . 'tx_eventsubmission_domain_model_job.tab.internal,
                 job_triggered_date_time,
                 is_done,
+                uuid,
                 internal_log_message,
                 is_internal_error'
         ],
@@ -168,6 +170,11 @@ return [
         'approved' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.approved',
             'description' => $ll . 'tx_eventsubmission_domain_model_job.approved_description',
+            'displayCond' => [
+                'AND' => [
+                    'FIELD:is_done:!=:1',
+                ],
+            ],
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxLabeledToggle',
@@ -181,5 +188,54 @@ return [
                 ],
             ],
         ],
+        'approval_status' => [
+            'label' => $ll . 'tx_eventsubmission_domain_model_job.approval_status',
+            'description' => $ll . 'tx_eventsubmission_domain_model_job.approval_status_description',
+            'config' => [
+                'type' => 'user',
+                'renderType' => \Cpsit\EventSubmission\Form\Element\SubmissionApprovalStatusNode::getNodeName()
+            ]
+        ],
+        'event' => [
+            'label' => $ll . 'tx_eventsubmission_domain_model_job.event',
+            'description' => $ll . 'tx_eventsubmission_domain_model_job.event_description',
+            'config' => [
+                'type' => 'group',
+                'allowed' => 'tx_news_domain_model_news',
+                'maxitems' => 1,
+                'minitems' => 1,
+                'size' => 1,
+                // we cannot use this option: if enabled form engine produces JS error
+                //'hideDeleteIcon' => true,
+                'hideSuggest' => true,
+                'fieldWizard' => [
+                    'tableList' => [
+                        'disabled' => true
+                    ],
+                ],
+                'fieldControl' => [
+                    'elementBrowser' => [
+                        'disabled' => true,
+                    ],
+                    'editPopup' => [
+                        'disabled' => false,
+                    ],
+                    'addRecord' => [
+                        'disabled' => true,
+                    ],
+                    'listModule' => [
+                        'disabled' => true,
+                    ],
+                ],
+            ],
+            'displayCond' => [
+                'AND' => [
+                    'FIELD:is_done:=:1',
+                    'FIELD:is_internal_error:!=:1',
+                    'FIELD:approved:=:1'
+                ],
+            ]
+
+        ]
     ],
 ];

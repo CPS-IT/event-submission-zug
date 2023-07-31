@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Configuration;
 
+use Cpsit\EventSubmission\Form\Element\SubmissionApprovalStatusNode;
 use Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode;
 use Cpsit\EventSubmission\Form\RegistrableInterface;
 
@@ -22,7 +23,8 @@ class Extension
     public const EXTENSION_KEY = 'event_submission';
 
     public const ADDITIONAL_RENDER_TYPES = [
-        SubmissionPayloadDisplayNode::class
+        SubmissionPayloadDisplayNode::class,
+        SubmissionApprovalStatusNode::class
     ];
     public static function registerAdditionalRenderTypes():void
     {

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Domain\Model;
 
+use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Job extends AbstractEntity
@@ -44,6 +45,7 @@ class Job extends AbstractEntity
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
+    protected News $event;
 
     public function getUuid(): string
     {
@@ -174,5 +176,18 @@ class Job extends AbstractEntity
     public function setApproved(bool $approved): void
     {
         $this->approved = $approved;
+    }
+
+    /**
+     * @param News $event
+     * @return void
+     */
+    public function setEvent(News $event): void
+    {
+        $this->event = $event;
+    }
+    public function getEvent(): News
+    {
+        return $this->event;
     }
 }
