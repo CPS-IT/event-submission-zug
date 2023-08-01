@@ -18,8 +18,10 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => 'uid, email, uuid, payload',
+        'typeicon_column' => 'approved',
         'typeicon_classes' => [
             'default' => 'event-submission-job',
+            '1' => 'event-submission-job-approved'
         ],
     ],
     'interface' => [],

@@ -29,15 +29,15 @@
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.payload">
                 <source>Payload</source>
-				<target>Payload</target>
+				<target>Daten</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.response_code">
                 <source>Response code</source>
-				<target></target>
+				<target>Anwort-Kode</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error">
-                <source>Api request status</source>
-				<target>Antwortcode</target>
+                <source>API Request Status</source>
+				<target>Status der API-Anfrage</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.error">
                 <source>Error</source>
@@ -45,39 +45,50 @@
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.success">
                 <source>Success</source>
-				<target>Fehler</target>
+				<target>Erfolg</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.job_triggered_date_time">
                 <source>Job internally triggered at</source>
-				<target>Erfolg</target>
+				<target>interne Bearbeitung des Auftrags gestartet um</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_done">
                 <source>Job internally done</source>
-				<target>Job intern ausgelöst um</target>
+				<target>interne Bearbeitung des Auftrag abgeschlossen um</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.internal_log_message">
                 <source>Job internal log message</source>
-				<target>Job Interne Protokollmeldung</target>
+				<target>interne Protokollmeldung</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.is_internal_error">
                 <source>Internal job status</source>
-				<target>Interner Jobstatus</target>
+				<target>Interner Auftragsstatus</target>
             </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.approved">
-                <source>Release event submission</source>
-				<target>Veranstaltung freigeben</target>
+                <source>Approved</source>
+				<target>Freigabe</target>
             </trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.approved.0">
-				<source>Event submission rejected</source>
-				<target>Veranstaltung nicht freigeben</target>
+				<source>Not approved</source>
+				<target>nicht freigegeben</target>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.approved.1">
 				<source>Approved</source>
-				<target>Veranstaltung freigegeben</target>
+				<target>freigegeben</target>
 			</trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.event">
+                <source>Event</source>
+                <target>Veranstaltung</target>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approval_status">
+                <!-- intentionally left blank-->
+            </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.approved_description">
-                <source>Click on the button below to accept or decline the event.</source>
-				<target>Klicken Sie auf den button unten um die Veranstaltung anzunehmen oder abzulehnen.</target>
+                <source>Click the button below to accept or decline the event.</source>
+				<target>Klicken Sie auf den Button unten um die Veranstaltung freizugeben oder abzulehnen.</target>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.event_description">
+                <source>Event created from this submission.</source>
+                <target>zugehörige Veranstaltung (aus diesem Vorschlag erstellt)</target>
             </trans-unit>
             <trans-unit id="tt_content.CType.eventsubmission_app">
                 <source>Event Submission Form</source>
@@ -87,6 +98,90 @@
                 <source>Configuration</source>
 				<target>Konfiguration</target>
             </trans-unit>
+            <!-- edit from here -->
+            <trans-unit id="payload.label.bodytext">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="payload.label.datetime">
+                <source>Date and Time</source>
+                <target>Datum und Uhrzeit</target>
+            </trans-unit>
+            <trans-unit id="payload.label.event_end">
+                <source>Event End Time</source>
+                <target>Endzeit</target>
+            </trans-unit>
+            <trans-unit id="payload.label.teaser">
+                <source>Teaser</source>
+                <target>Teaser</target>
+            </trans-unit>
+            <trans-unit id="payload.label.title">
+                <source>Title</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="payload.label.timezone">
+                <source>Time Zone</source>
+                <target>Zeitzone</target>
+            </trans-unit>
+            <trans-unit id="payload.label.email">
+                <source>Email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="payload.label.language">
+                <source>Language</source>
+                <target>Sprache</target>
+            </trans-unit>
+            <trans-unit id="payload.label.location_simple">
+                <source>Location</source>
+                <target>Veranstaltungsort</target>
+            </trans-unit>
+            <trans-unit id="payload.label.reference_id">
+                <source>External Reference ID</source>
+                <target>externe Referenz-ID</target>
+            </trans-unit>
+            <trans-unit id="payload.label.emailValidated">
+                <source>Email Validated</source>
+                <target>E-Mail validiert</target>
+            </trans-unit>
+            <trans-unit id="payload.label.event_mode">
+                <source>Event Mode</source>
+                <target>Modus</target>
+            </trans-unit>
+            <trans-unit id="payload.label.organizer_simple">
+                <source>Organizer</source>
+                <target>Organisator</target>
+            </trans-unit>
+            <trans-unit id="payload.label.validationHash">
+                <source>Validation Hash</source>
+            </trans-unit>
+            <trans-unit id="payload.label.error">
+                <source>Error</source>
+                <target>Fehler</target>
+            </trans-unit>
+            <trans-unit id="payload.message.invalidJsonInPayload">
+                <source>Invalid content in submitted event proposal.</source>
+                <target>Ungültige Inhalte im eingereichten Veranstaltungsvorschlag</target>
+            </trans-unit>
+            <trans-unit id="approval_status.header">
+                <source>Approval Status</source>
+                <target>Freigabestatus</target>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovalPending">
+                <source>Event submission has not been approved yet.</source>
+                <target>Der eingereichte Vorschlag wurde noch nicht freigegeben.</target>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovedEventCreated">
+                <source>Event submission has been approved. The proposed event record has been created.
+                    The submission can not be edited anymore.<br />
+                </source>
+                <target>Vorschlag freigegeben. Der vorgeschlagene Veranstaltungsdatensatz wurde angelegt.
+                Der Vorschlag kann nicht mehr bearbeitet werden.</target>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovedEventCreationPending">
+                <source>Event submission has been approved and the proposed event record has not been created yet.</source>
+                <target>Der Vorschlag wurde freigegeben. Der Veranstaltungsdatensatz wurde noch nicht erstellt.</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
