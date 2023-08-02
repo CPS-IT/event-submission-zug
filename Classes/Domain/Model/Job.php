@@ -45,7 +45,7 @@ class Job extends AbstractEntity
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
-    protected News $event;
+    protected ?News $event = null;
 
     public function getUuid(): string
     {
@@ -186,7 +186,11 @@ class Job extends AbstractEntity
     {
         $this->event = $event;
     }
-    public function getEvent(): News
+
+    /**
+     * @return News|null
+     */
+    public function getEvent(): ?News
     {
         return $this->event;
     }
