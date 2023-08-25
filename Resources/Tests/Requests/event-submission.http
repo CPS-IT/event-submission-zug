@@ -29,7 +29,12 @@ Accept-Language: {{language}}
     "location_simple": "A cool venue",
     "reference_id": "994432",
     "country": 13,
-    "language": "de"
+    "language": "de",
+    "location": {
+        "location_title": "location title",
+        "location_short_title": "location short title",
+        "location_description": "location description"
+    }
 }
 
 ### delete an existing event proposal
