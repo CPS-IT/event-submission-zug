@@ -100,6 +100,11 @@ class SubmissionPayloadDisplayNode extends AbstractFormElement
             $label = $languageService->sL(static::DEFAULT_LANGUAGE_FILE . ':payload.label.' . $key);
             $label = (empty($label) ? $key : $label);
             $html[] = '<dt >' . htmlspecialchars($label) . '</dt>';
+
+            // todo specification requires sub classes, find output independent from structure.
+            if(is_array($value)) {
+                $value = implode(", ", $value);
+            }
             $html[] = '<dd>' . htmlspecialchars($value) . '</dd>';
         }
         $html[] = '</dl>';

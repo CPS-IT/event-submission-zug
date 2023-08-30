@@ -12,10 +12,11 @@
     </noscript>
     <div
         id="event-submission-app"
-        data-api-validate="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/sendValidationRequest"
+        data-api-validate="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/user/sendValidationRequest"
         data-api-create="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/event"
         data-api-update="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/event/"
         data-api-get="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/event/"
+        data-api-delete="{f:uri.typolink(parameter: '{siteConfig.rootPageId}', absolute:1)}api/event/"
     ></div>
     <f:asset.css identifier="eventSubmissionApp" href="assets/event-submission-form/assets/index.css" rel="stylesheet"/>
     <f:asset.script

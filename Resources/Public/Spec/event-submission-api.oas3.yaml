@@ -228,13 +228,29 @@ components:
           default: on_site
         organizer_simple:
           type: string
-          maxLength: 30
+          maxLength: 255
           description: 'Organizer of an event. (Note: This property is not a reference)'
           example: International Climate Initiative
-        location_simple:
-          maxLength: 30
-          description: 'Location of an event. (Note: This property is not a reference)'
-          example: A cool venue
+        location:
+          type: object
+          required:
+            - location_title
+          description: Location for event proposal
+          properties:
+            location_title:
+              type: string
+              maxLength: 250
+              example: A cool location
+              description: Location title of an event.
+            location_short_title:
+              type: string
+              maxLength: 30
+              example: A cool little location
+              description: Short location title of an event.
+            location_description:
+              type: string
+              example: A cool little location description like an address
+              description: Location description like an address.
         external_reference:
           type: string
           example: Foo external reference for event
