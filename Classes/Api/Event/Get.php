@@ -90,17 +90,17 @@ final class Get extends AbstractApi implements EventApiInterface
         $responseCode = ApiResponseInterface::EVENT_GET_ERROR;
         $id = $arguments[self::PARAMETER_ID];
 
-        // find job by identifier, job must not be approved and imported yet
+        // find job by identifier
+        // Note: job could be approved and imported yet
         $job = $this->db->findOneByValues(Job::TABLE_NAME,
             [
                 Job::FIELD_UUID => $id,
-                Job::FIELD_APPROVED => 0,
-                Job::FIELD_IS_DONE => 0
             ]
         );
 
         if (!empty($job)) {
             $responseData = json_decode($job[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
+            $responseData['approved'] = (bool)$job[Job::FIELD_APPROVED];
             $responseCode = ApiResponseInterface::EVENT_GET_SUCCESS;
         }
 
