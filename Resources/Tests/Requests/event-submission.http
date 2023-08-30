@@ -17,19 +17,22 @@ Authorization: Bearer {{authToken}}
 Accept-Language: {{language}}
 
 {
-    "email": "nix@foo.org",
-    "title": "New event proposal with title",
-    "teaser": "Teaser text for event proposal. The teaser must not  contain any html tags",
-    "datetime": "2017-07-21T17:00:00",
-    "event_end": "2017-07-21T19:00:00",
-    "timezone": 1575,
-    "bodytext": "Do not miss this event! It will be awesome.",
-    "event_mode": "hybrid",
-    "organizer_simple": "International Climate Initiative",
-    "location_simple": "A cool venue",
-    "reference_id": "994432",
-    "country": 13,
-    "language": "de"
+  "email": "nix@foo.org",
+  "title": "New event proposal with title",
+  "teaser": "Teaser text for event proposal. The teaser must not  contain any html tags",
+  "datetime": "2017-07-21T17:00:00",
+  "event_end": "2017-07-21T19:00:00",
+  "timezone": 1575,
+  "bodytext": "Do not miss this event! It will be awesome.",
+  "event_mode": "hybrid",
+  "organizer_simple": "International Climate Initiative",
+  "location_simple": "A cool venue",
+  "location_title": "Full Name of Location",
+  "location_short_title": "Short Name of Location",
+  "location_description": "near you",
+  "reference_id": "994432",
+  "country": 13,
+  "language": "de"
 }
 
 ### delete an existing event proposal

@@ -183,6 +183,10 @@ components:
         - bodytext
       description: Event proposal
       properties:
+        approved:
+          type: boolean
+          description: Approval status of event submission
+          example: true
         email:
           type: string
           format: email
