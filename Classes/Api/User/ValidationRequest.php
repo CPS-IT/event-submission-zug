@@ -15,11 +15,11 @@ namespace Cpsit\EventSubmission\Api\User;
 use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
-use Cpsit\EventSubmission\Helper\EmailUrlBuilder;
 use Cpsit\EventSubmission\Service\LinkService;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
+use Cpsit\EventSubmission\Exceptions\InvalidConfigurationException;
 use Exception;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -118,18 +118,15 @@ final class ValidationRequest extends AbstractApi
 
     /**
      * @throws Exception
+     * @throws \Cpsit\EventSubmission\Exceptions\InvalidConfigurationException
      */
     protected function renderEmailBody(): string
     {
-        $linkService = GeneralUtility::makeInstance(LinkService::class);
         $settings = $this->request->getSettings();
+        $this->assertValidSettings($settings);
 
-        if (
-            empty($settings['eventSubmission']['appPid'])
-        ) {
-            // throw
-        }
         $appPid = (int)$settings['eventSubmission']['appPid'];
+        $linkService = GeneralUtility::makeInstance(LinkService::class);
         $validationUrl = $linkService->build(
              $appPid,
             ['validationHash' => $this->getRequest()->getBody()['validationHash']],
@@ -162,6 +159,23 @@ final class ValidationRequest extends AbstractApi
             throw new Exception(
                 'Invalid request body for UserSendValidationRequest',
                 1689928124
+            );
+        }
+    }
+
+    /**
+     * @param array $settings
+     * @return void
+     * @throws InvalidConfigurationException
+     */
+    protected function assertValidSettings(array $settings): void
+    {
+        if (
+            empty($settings['eventSubmission']['appPid'])
+        ) {
+            throw new InvalidConfigurationException(
+                'Missing or invalid value for settings.eventSubmission.appPid',
+                1693498335
             );
         }
     }
