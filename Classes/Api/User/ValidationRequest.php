@@ -21,6 +21,7 @@ use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
 use Cpsit\EventSubmission\Exceptions\InvalidConfigurationException;
 use Exception;
+use nn\t3;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -98,7 +99,7 @@ final class ValidationRequest extends AbstractApi
 
             $this->mailService->send(
                 $this->getRequest()->getBody()['email'],
-                \nn\t3::LL()->get('user.sendValidationRequest.mail.subject', Extension::NAME),
+                t3::LL()->get('user.sendValidationRequest.mail.subject', Extension::NAME),
                 $this->renderEmailBody(),
                 '',
                 $this->request->getSettings()['eventSubmission']['mail']['fromEmail'],
@@ -118,7 +119,7 @@ final class ValidationRequest extends AbstractApi
 
     /**
      * @throws Exception
-     * @throws \Cpsit\EventSubmission\Exceptions\InvalidConfigurationException
+     * @throws InvalidConfigurationException
      */
     protected function renderEmailBody(): string
     {
@@ -133,9 +134,9 @@ final class ValidationRequest extends AbstractApi
         );
 
         $templateVariables = [
-            'mailTitle' => \nn\t3::LL()->get('user.sendValidationRequest.mail.title', Extension::NAME),
+            'mailTitle' => t3::LL()->get('user.sendValidationRequest.mail.title', Extension::NAME),
             'validationUrl' => $validationUrl,
-            'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
+            'htmlLang' => t3::Environment()->getLanguageKey(),
             'extensionName' => Extension::NAME,
             'logoImage' => $this->request->getSettings()['eventSubmission']['mail']['logoImage'] ?? '',
         ];
