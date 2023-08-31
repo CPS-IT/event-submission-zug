@@ -71,3 +71,9 @@ Accept-Language: {{language}}
 }
 
 ###
+
+### Get a link to the application page
+GET https://{{host}}/api/service/appPageLink/{{appPageId}}
+Accept: application/json
+Authorization: Bearer {{authToken}}
+Accept-Language: {{language}}

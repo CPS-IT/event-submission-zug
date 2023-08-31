@@ -27,6 +27,8 @@ interface ApiResponseInterface extends Stringable
     public const EVENT_DELETE_SUCCESS = 900;
     public const EVENT_DELETE_ERROR = 1000;
 
+    public const APP_PAGE_LINK_REQUEST_SUCCESS = 1100;
+    public const APP_PAGE_LINK_REQUEST_ERROR = 1200;
     public function __toString(): string;
 
 

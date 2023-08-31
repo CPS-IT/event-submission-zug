@@ -65,12 +65,15 @@ class ApiResponse implements ApiResponseInterface
      */
     public function __toString(): string
     {
-        $response = [
+        return json_encode($this->toArray(), JSON_THROW_ON_ERROR);
+    }
+
+    public function toArray(): array
+    {
+        return [
             'code' => $this->getCode(),
             'message' => $this->getMessage(),
             'data' => $this->getData(),
         ];
-
-        return json_encode($response, JSON_THROW_ON_ERROR);
     }
 }

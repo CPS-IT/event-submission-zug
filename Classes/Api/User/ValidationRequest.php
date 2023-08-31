@@ -16,12 +16,14 @@ use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Helper\EmailUrlBuilder;
+use Cpsit\EventSubmission\Service\LinkService;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
 use Exception;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Event post api end point
@@ -114,10 +116,22 @@ final class ValidationRequest extends AbstractApi
         }
     }
 
+    /**
+     * @throws Exception
+     */
     protected function renderEmailBody(): string
     {
-        $validationUrl = EmailUrlBuilder::build(
-            (int)$this->request->getSettings()['eventSubmission']['appPid'] ?? 0,
+        $linkService = GeneralUtility::makeInstance(LinkService::class);
+        $settings = $this->request->getSettings();
+
+        if (
+            empty($settings['eventSubmission']['appPid'])
+        ) {
+            // throw
+        }
+        $appPid = (int)$settings['eventSubmission']['appPid'];
+        $validationUrl = $linkService->build(
+             $appPid,
             ['validationHash' => $this->getRequest()->getBody()['validationHash']],
         );
 

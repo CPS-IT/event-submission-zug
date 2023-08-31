@@ -14,18 +14,25 @@ namespace Cpsit\EventSubmission\Api\Event;
 
 use Cpsit\EventSubmission\Configuration\Extension;
 use Cpsit\EventSubmission\Domain\Model\Job;
+use Cpsit\EventSubmission\Exceptions\InvalidConfigurationException;
+use Cpsit\EventSubmission\Exceptions\InvalidRecordException;
+use Cpsit\EventSubmission\Exceptions\InvalidResponseException;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Helper\EmailUrlBuilder;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
+use Cpsit\EventSubmission\Service\LinkService;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Service\TranslationService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
 use Exception;
+use JsonException;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Event post api end point
@@ -131,12 +138,17 @@ final class Post extends AbstractApi
         }
     }
 
+    /**
+     * @throws SiteNotFoundException
+     * @throws InvalidResponseException
+     * @throws InvalidRecordException
+     * @throws InvalidConfigurationException
+     * @throws JsonException
+     */
     protected function renderEmailBody(Job $job): string
     {
-        $editUrl = EmailUrlBuilder::build(
-            (int)$this->request->getSettings()['eventSubmission']['appPid'] ?? 0,
-            ['editToken' => $job->getUuid()],
-        );
+        $linkService = GeneralUtility::makeInstance(LinkService::class);
+        $editUrl = $linkService->createEventEditLink($job);
 
         $templateVariables = [
             'mailTitle' => TranslationService::translate('user.eventPostConfirmation.mail.title'),
