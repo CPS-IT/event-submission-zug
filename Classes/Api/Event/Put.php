@@ -103,10 +103,10 @@ final class Put extends AbstractApi implements EventApiInterface
      *
      * @Api\Route("PUT /event/{id}")
      * @Api\Access("public")
-     * @return string
+     * @return array
      * @throws JsonException
      */
-    public function update(): string
+    public function update(): array
     {
         $arguments = $this->request->getArguments();
         $responseData = [];
@@ -124,7 +124,7 @@ final class Put extends AbstractApi implements EventApiInterface
         // update job
         if (!empty($job)) {
             // replace payload
-            $job[Job::FIELD_PAYLOAD] = json_encode($this->request->getBody());
+            $job[Job::FIELD_PAYLOAD] = json_encode($this->request->getBody(), JSON_THROW_ON_ERROR);
             $job[Job::FIELD_REQUEST_DATE_TIME] = time();
             // any change requires new approval and re-generation of event
             $job[Job::FIELD_IS_DONE] = 0;
@@ -137,6 +137,6 @@ final class Put extends AbstractApi implements EventApiInterface
 
         return $this->responseFactory
             ->create($responseCode, $responseData)
-            ->__toString();
+            ->toArray();
     }
 }

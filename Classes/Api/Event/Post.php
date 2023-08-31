@@ -107,10 +107,9 @@ final class Post extends AbstractApi
      *
      * @Api\Route("POST /event")
      * @Api\Access("public")
-     * @return string
-     * @throws Exception
+     * @return array
      */
-    public function create(): string
+    public function create(): array
     {
         try {
             $this->assertValidRequest();
@@ -132,9 +131,9 @@ final class Post extends AbstractApi
                 'editToken' => $job->getUuid(),
                 'id' => $job->getUid()
             ];
-            return $this->responseFactory->successResponse($data)->__toString();
+            return $this->responseFactory->successResponse($data)->toArray();
         } catch (Exception $e) {
-            return $this->responseFactory->errorResponse()->__toString();
+            return $this->responseFactory->errorResponse()->toArray();
         }
     }
 

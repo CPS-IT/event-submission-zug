@@ -80,10 +80,10 @@ final class Get extends AbstractApi implements EventApiInterface
      *
      * @Api\Route("GET /event/{id}")
      * @Api\Access("public")
-     * @return string
+     * @return array
      * @throws JsonException
      */
-    public function index(): string
+    public function index(): array
     {
         $arguments = $this->request->getArguments();
         $responseData = [];
@@ -106,6 +106,6 @@ final class Get extends AbstractApi implements EventApiInterface
 
         return $this->responseFactory
             ->create($responseCode, $responseData)
-            ->__toString();
+            ->toArray();
     }
 }

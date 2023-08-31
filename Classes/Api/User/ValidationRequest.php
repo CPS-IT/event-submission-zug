@@ -88,10 +88,10 @@ final class ValidationRequest extends AbstractApi
      * @Api\Route("POST /user/sendValidationRequest")
      * @Api\Access("public")
      * @Api\Localize()
-     * @return string
+     * @return array
      * @throws Exception
      */
-    public function send(): string
+    public function send(): array
     {
         try {
             $this->assertValidRequest();
@@ -109,10 +109,10 @@ final class ValidationRequest extends AbstractApi
                 'validationHash' => $this->getRequest()->getBody()['validationHash']
             ];
 
-            return $this->responseFactory->successResponse($data)->__toString();
+            return $this->responseFactory->successResponse($data)->toArray();
 
         } catch (Exception $e) {
-            return $this->responseFactory->errorResponse()->__toString();
+            return $this->responseFactory->errorResponse()->toArray();
         }
     }
 

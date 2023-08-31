@@ -76,10 +76,10 @@ final class Delete extends AbstractApi implements EventApiInterface
      *
      * @Api\Route("DELETE /event/{id}")
      * @Api\Access("public")
-     * @return string
+     * @return array
      * @throws JsonException
      */
-    public function delete(): string
+    public function delete(): array
     {
         $arguments = $this->request->getArguments();
         $responseCode = ApiResponseInterface::EVENT_DELETE_ERROR;
@@ -104,6 +104,6 @@ final class Delete extends AbstractApi implements EventApiInterface
 
         return $this->responseFactory
             ->create($responseCode, $responseData)
-            ->__toString();
+            ->toArray();
     }
 }

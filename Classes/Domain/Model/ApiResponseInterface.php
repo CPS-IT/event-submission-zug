@@ -31,5 +31,5 @@ interface ApiResponseInterface extends Stringable
     public const APP_PAGE_LINK_REQUEST_ERROR = 1200;
     public function __toString(): string;
 
-
+    public function toArray(): array;
 }
