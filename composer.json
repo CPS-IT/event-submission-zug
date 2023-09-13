@@ -1,9 +1,15 @@
 {
 	"name": "cpsit/event-submission",
-	"description": "Event Submission",
+	"description": "Submit event proposals. This is an extension to the TYPO3 CMS",
 	"homepage": "https://github.com/CPS-IT/event-submission",
 	"license": "GPL-3.0-or-later",
 	"type": "typo3-cms-extension",
+	"keywords": [
+		"TYPO3",
+		"extension",
+		"event",
+		"submission"
+	],
 	"authors": [
 		{
 			"name": "Dirk Wenzel",
@@ -28,7 +34,8 @@
 		"ramsey/uuid": "^4.0"
 	},
 	"require-dev": {
-		"roave/security-advisories": "dev-master"
+		"roave/security-advisories": "dev-latest",
+		"phpunit/phpunit": "^8"
 	},
 	"extra": {
 		"typo3/cms": {
@@ -39,5 +46,29 @@
 		"psr-4": {
 			"Cpsit\\EventSubmission\\": "Classes"
 		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Cpsit\\EventSubmission\\Tests\\": "Tests"
+		}
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin",
+		"allow-plugins": {
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true,
+			"composer/installers": true
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"mkdir -p .Build/Web/typo3conf/ext/",
+			"mkdir -p .Build/log/coverage/",
+			"[ -L .Build/Web/typo3conf/ext/event_submission ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/event_submission"
+		],
+		"test:unit": [
+			".Build/bin/phpunit -c Tests/Build/UnitTests.xml Tests/Unit"
+		]
 	}
 }

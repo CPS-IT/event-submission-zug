@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Domain\Model;
 
+use Cpsit\EventSubmission\Type\SubmissionStatus;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
 
@@ -46,6 +47,8 @@ class Job extends AbstractDomainObject
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
+    protected SubmissionStatus $status;
+
     /**
      * @var \GeorgRinger\News\Domain\Model\News|null
      */
@@ -198,5 +201,23 @@ class Job extends AbstractDomainObject
     public function getEvent(): ?\GeorgRinger\News\Domain\Model\News
     {
         return $this->event;
+    }
+
+    /**
+     * @param SubmissionStatus $status
+     * @return Job
+     */
+    public function setStatus(SubmissionStatus $status): Job
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return SubmissionStatus
+     */
+    public function getStatus(): SubmissionStatus
+    {
+        return $this->status;
     }
 }
