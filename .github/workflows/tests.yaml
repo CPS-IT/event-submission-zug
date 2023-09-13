@@ -4,6 +4,7 @@ on: [ push, pull_request ]
 jobs:
   tests:
     name: PHP ${{ matrix.php-version }} & TYPO3 ${{ matrix.typo3-version }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
