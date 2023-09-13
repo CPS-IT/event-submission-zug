@@ -13,9 +13,9 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Domain\Model;
 
 use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
 
-class Job extends AbstractEntity
+class Job extends AbstractDomainObject
 {
     public const
         TABLE_NAME = 'tx_eventsubmission_domain_model_job',
@@ -32,7 +32,8 @@ class Job extends AbstractEntity
         FIELD_INTERNAL_LOG_MESSAGE = 'internal_log_message',
         FIELD_IS_INTERNAL_ERROR = 'is_internal_error',
         FIELD_DELETED = 'deleted',
-        FIELD_APPROVED = 'approved';
+        FIELD_APPROVED = 'approved',
+        FIELD_STATUS = 'status';
 
     protected string $uuid = '';
     protected string $email = '';
@@ -45,6 +46,9 @@ class Job extends AbstractEntity
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
+    /**
+     * @var \GeorgRinger\News\Domain\Model\News|null
+     */
     protected ?News $event = null;
 
     public function getUuid(): string
@@ -179,18 +183,19 @@ class Job extends AbstractEntity
     }
 
     /**
-     * @param News $event
+     * Note: keep fully qualified namespace for extbase reflection
+     * @param \GeorgRinger\News\Domain\Model\News $event
      * @return void
      */
-    public function setEvent(News $event): void
+    public function setEvent(\GeorgRinger\News\Domain\Model\News $event): void
     {
         $this->event = $event;
     }
 
     /**
-     * @return News|null
+     * @return \GeorgRinger\News\Domain\Model\News|null
      */
-    public function getEvent(): ?News
+    public function getEvent(): ?\GeorgRinger\News\Domain\Model\News
     {
         return $this->event;
     }

@@ -207,6 +207,7 @@ return [
                 'maxitems' => 1,
                 'minitems' => 1,
                 'size' => 1,
+                'foreign_table' => 'tx_news_domain_model_news',
                 // we cannot use this option: if enabled form engine produces JS error
                 //'hideDeleteIcon' => true,
                 'hideSuggest' => true,
