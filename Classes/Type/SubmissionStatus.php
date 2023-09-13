@@ -20,42 +20,20 @@ use TYPO3\CMS\Core\Type\Enumeration;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-class SubmissionStatus extends Enumeration
+enum SubmissionStatus: int
 {
 
-    public const __default = self::UNKNOWN;
-    public const UNKNOWN = 0;
-    /**
-     * submitted by frontend user
-     */
-    public const NEW = 1;
+    case unknown       = 0;  // unknown
+    case new           = 1;  // submitted by frontend user
+    case approved      = 2;  // approved by editor, ready for processing, event not yet created
+    case eventCreated  = 3;  // event created after approval
+    case updated       = 4;  // updated by frontend user, new approval required
+    case error         = 7;  // something went wrong, might need intervention by editor
 
-    /**
-     * updated by frontend user before approval
-     */
-    public const UPDATED_BEFORE_APPROVAL = 2;
-    /**
-     * approved by editor, ready for processing, event not yet created
-     */
-    public const APPROVED = 3;
-
-    /**
-     * event created after approval
-     */
-    public const EVENT_CREATED = 4;
-
-    /**
-     * updated by frontend user after approval
-     */
-    public const UPDATED_AFTER_APPROVAL = 5;
-    /**
-     * updated by frontend user after event creation
-     */
-    public const UPDATED_AFTER_EVENT_CREATION = 6;
-
-    /**
-     * something went wrong during submission, approval or event creation
-     * might need intervention by editor
-     */
-    public const ERROR = 7;
+    public const UNKNOWN = self::unknown->value;
+    public const NEW = self::new->value;
+    public const APPROVED = self::approved->value;
+    public const EVENT_CREATED = self::eventCreated->value;
+    public const UPDATED = self::updated->value;
+    public const ERROR = self::error->value;
 }

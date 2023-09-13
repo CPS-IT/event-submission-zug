@@ -16,6 +16,7 @@ use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
+use Cpsit\EventSubmission\Type\SubmissionStatus;
 use JsonException;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
@@ -105,6 +106,7 @@ final class Put extends AbstractApi implements EventApiInterface
      * @Api\Access("public")
      * @return array
      * @throws JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function update(): array
     {
@@ -123,12 +125,15 @@ final class Put extends AbstractApi implements EventApiInterface
 
         // update job
         if (!empty($job)) {
+
             // replace payload
             $job[Job::FIELD_PAYLOAD] = json_encode($this->request->getBody(), JSON_THROW_ON_ERROR);
             $job[Job::FIELD_REQUEST_DATE_TIME] = time();
             // any change requires new approval and re-generation of event
             $job[Job::FIELD_IS_DONE] = 0;
             $job[Job::FIELD_APPROVED] = 0;
+            $job[Job::FIELD_STATUS] = SubmissionStatus::UPDATED;
+
             $this->db->update(Job::TABLE_NAME, $job, $job[Job::FIELD_UID]);
 
             $responseData = $this->request->getBody();

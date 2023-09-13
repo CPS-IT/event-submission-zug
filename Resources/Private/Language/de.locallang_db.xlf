@@ -181,6 +181,30 @@
                 <source>Event submission has been approved and the proposed event record has not been created yet.</source>
                 <target>Der Vorschlag wurde freigegeben. Der Veranstaltungsdatensatz wurde noch nicht erstellt.</target>
             </trans-unit>
+            <trans-unit id="label.status.unknown">
+                <source>unknown</source>
+                <target>unbekannt</target>
+            </trans-unit>
+            <trans-unit id="label.status.new">
+                <source>new</source>
+                <target>neu</target>
+            </trans-unit>
+            <trans-unit id="label.status.updated">
+                <source>updated</source>
+                <target>geändert</target>
+            </trans-unit>
+            <trans-unit id="label.status.approved">
+                <source>approved</source>
+                <target>freigegeben</target>
+            </trans-unit>
+            <trans-unit id="label.status.eventCreated">
+                <source>event created</source>
+                <target>Veranstaltung angelegt</target>
+            </trans-unit>
+            <trans-unit id="label.status.error">
+                <source>error</source>
+                <target>Fehler</target>
+            </trans-unit>
 
         </body>
     </file>

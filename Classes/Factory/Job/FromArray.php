@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Factory\Job;
 
 use Cpsit\EventSubmission\Domain\Model\Job;
-use mysql_xdevapi\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FromArray implements JobFactoryInterface

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Helper;
 
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
+use Cpsit\EventSubmission\Domain\Model\Job;
 use Nng\Nnrestapi\Mvc\Request;
 use Nng\Nnrestapi\Mvc\Response;
 use Ramsey\Uuid\Uuid;
@@ -23,6 +24,7 @@ final class HydrateJobFromEventPostRequest
     {
         return [
             'uuid' => Uuid::uuid4()->toString(),
+            'status' => Job::DEFAULT_STATUS,
             'email' => $request->getBody()['email'],
             'requestDateTime' => (new \DateTime('NOW')),
             'payload' => $request->getRawBody(),

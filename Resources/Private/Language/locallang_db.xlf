@@ -137,6 +137,25 @@
             <trans-unit id="approval_status.message.submissionApprovedEventCreationPending">
                 <source>Event submission has been approved and the proposed event record has not been created yet.</source>
             </trans-unit>
+            <trans-unit id="label.status.unknown">
+                <source>unknown</source>
+            </trans-unit>
+            <trans-unit id="label.status.new">
+                <source>new</source>
+            </trans-unit>
+            <trans-unit id="label.status.updated">
+                <source>updated</source>
+            </trans-unit>
+            <trans-unit id="label.status.approved">
+                <source>approved</source>
+            </trans-unit>
+            <trans-unit id="label.status.eventCreated">
+                <source>event created</source>
+            </trans-unit>
+            <trans-unit id="label.status.error">
+                <source>error</source>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

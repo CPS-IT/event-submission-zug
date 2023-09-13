@@ -34,7 +34,9 @@ class Job extends AbstractDomainObject
         FIELD_IS_INTERNAL_ERROR = 'is_internal_error',
         FIELD_DELETED = 'deleted',
         FIELD_APPROVED = 'approved',
-        FIELD_STATUS = 'status';
+        FIELD_EVENT = 'event',
+        FIELD_STATUS = 'status',
+        DEFAULT_STATUS = SubmissionStatus::unknown->value;
 
     protected string $uuid = '';
     protected string $email = '';
@@ -47,7 +49,10 @@ class Job extends AbstractDomainObject
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
-    protected SubmissionStatus $status;
+    /**
+     * @var int<SubmissionStatus>
+     */
+    protected int $status = self::DEFAULT_STATUS;
 
     /**
      * @var \GeorgRinger\News\Domain\Model\News|null
@@ -204,20 +209,66 @@ class Job extends AbstractDomainObject
     }
 
     /**
-     * @param SubmissionStatus $status
+     * @param int<SubmissionStatus> $status
      * @return Job
      */
-    public function setStatus(SubmissionStatus $status): Job
+    public function setStatus(int $status): Job
     {
-        $this->status = $status;
+        $this->status = SubmissionStatus::tryFrom($status)?->value
+            ?? SubmissionStatus::UNKNOWN;
         return $this;
     }
 
     /**
-     * @return SubmissionStatus
+     * Set the status
+     * Note: any other value than SubmissionStatus::UPDATED might be
+     * overridden internally depending on approval status, error etc.
+     * @see Job::determineStatus()
+     * @return int<SubmissionStatus>
      */
-    public function getStatus(): SubmissionStatus
+    public function getStatus(): int
     {
+        if ($this->status === SubmissionStatus::UNKNOWN) {
+            $this->status = $this->determineStatus();
+        }
         return $this->status;
+    }
+
+    protected function determineStatus(): int
+    {
+        $status = SubmissionStatus::UNKNOWN;
+
+        // early return for any error
+        if ($this->isApiError() || $this->isInternalError()) {
+            return SubmissionStatus::ERROR;
+        }
+
+        // new and unapproved - no errors
+        if (
+            null === $this->isInternalError()
+            && !$this->isApproved()
+            && !$this->getIsApiError()
+            && !$this->isDone()
+        ) {
+            $status = SubmissionStatus::NEW;
+        }
+
+        // approved, event not yet created
+        if (
+            $this->getEvent() === null
+            && ($this->isApproved())
+        ) {
+            $status = SubmissionStatus::APPROVED;
+        }
+
+        // approved, event created
+        if (
+            $this->isApproved()
+            && $this->getEvent() instanceof News
+        ) {
+            $status = SubmissionStatus::EVENT_CREATED;
+        }
+
+        return $status;
     }
 }

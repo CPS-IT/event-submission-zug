@@ -1,6 +1,9 @@
 <?php
 defined('TYPO3') or die();
 
+use Cpsit\EventSubmission\Form\Element\SubmissionApprovalStatusNode;
+use Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode;
+use Cpsit\EventSubmission\Type\SubmissionStatus;
 $ll = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf:';
 
 return [
@@ -30,6 +33,7 @@ return [
             'showitem' => '
                 approval_status,
                 approved,
+                status,
                 event,
                 email,
                 payload,
@@ -80,7 +84,7 @@ return [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.payload',
             'config' => [
                 'type' => 'user',
-                'renderType' => \Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode::getNodeName()
+                'renderType' => SubmissionPayloadDisplayNode::getNodeName()
             ],
         ],
         'response_code' => [
@@ -195,7 +199,7 @@ return [
             'description' => $ll . 'tx_eventsubmission_domain_model_job.approval_status_description',
             'config' => [
                 'type' => 'user',
-                'renderType' => \Cpsit\EventSubmission\Form\Element\SubmissionApprovalStatusNode::getNodeName()
+                'renderType' => SubmissionApprovalStatusNode::getNodeName()
             ]
         ],
         'event' => [
@@ -239,6 +243,40 @@ return [
                 ],
             ]
 
-        ]
+        ],
+        'status' => [
+            'label' => $ll . 'tx_eventsubmission_domain_model_job.label.status',
+            'description' => $ll .'tx_eventsubmission_domain_model_job.description.status',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        $ll . 'label.status.unknown',
+                        SubmissionStatus::UNKNOWN,
+                    ],
+                    [
+                        $ll . 'label.status.new',
+                        SubmissionStatus::NEW,
+                    ],
+                    [
+                        $ll . 'label.status.approved',
+                        SubmissionStatus::APPROVED,
+                    ],
+                    [
+                        $ll . 'label.status.eventCreated',
+                        SubmissionStatus::EVENT_CREATED,
+                    ],
+                    [
+                        $ll . 'label.status.updated',
+                        SubmissionStatus::UPDATED,
+                    ],
+                    [
+                        $ll . 'label.status.error',
+                        SubmissionStatus::ERROR,
+                    ],
+                ]
+            ]
+        ],
     ],
 ];
