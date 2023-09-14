@@ -50,9 +50,9 @@ jobs:
           --log-junit .Build/log/junit.xml
 
       # Report coverage
-      - name: Run SonarCloud scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        if: ${{ matrix.coverage }}
+      #- name: Run SonarCloud scan
+      #  uses: sonarsource/sonarcloud-github-action@master
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #  if: ${{ matrix.coverage }}
