@@ -18,7 +18,16 @@
         <include>
             <directory suffix=".php">Classes</directory>
         </include>
+        <report>
+            <clover outputFile=".Build/log/coverage/clover.xml"/>
+            <html outputDirectory=".Build/log/coverage/html"/>
+            <text outputFile="php://stdout" showOnlySummary="false"/>
+        </report>
     </coverage>
+    <logging>
+        <junit outputFile=".Build/log/coverage/junit.xml"/>
+    </logging>
+
     <testsuites>
         <testsuite name="unit">
             <directory>Tests/Unit</directory>
