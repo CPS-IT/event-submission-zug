@@ -71,7 +71,8 @@
       "[ -L .Build/Web/typo3conf/ext/event_submission ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/event_submission"
     ],
     "test:unit": [
-      ".Build/bin/phpunit -c phpunit.xml"
-    ]
+      ".Build/bin/phpunit -c phpunit.xml --no-coverage"
+    ],
+    "test:unit:coverage": ".Build/bin/phpunit -c phpunit.xml"
   }
 }
