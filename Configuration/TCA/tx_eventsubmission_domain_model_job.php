@@ -21,10 +21,14 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => 'uid, email, uuid, payload',
-        'typeicon_column' => 'approved',
+        'typeicon_column' => 'status',
         'typeicon_classes' => [
-            'default' => 'event-submission-job',
-            '1' => 'event-submission-job-approved'
+            'default' => 'event-submission-job-unknown',
+            '1' => 'event-submission-job-new',
+            '2' => 'event-submission-job-approved',
+            '3' => 'event-submission-job-event-created',
+            '4' => 'event-submission-job-updated',
+            '7' => 'event-submission-job-error',
         ],
     ],
     'interface' => [],
@@ -249,31 +253,39 @@ return [
             'description' => $ll .'tx_eventsubmission_domain_model_job.description.status',
             'config' => [
                 'type' => 'select',
+                'readOnly' => true,
+                'default' => SubmissionStatus::UNKNOWN,
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
                         $ll . 'label.status.unknown',
                         SubmissionStatus::UNKNOWN,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-unknown.svg'
                     ],
                     [
                         $ll . 'label.status.new',
                         SubmissionStatus::NEW,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-new.svg'
                     ],
                     [
                         $ll . 'label.status.approved',
                         SubmissionStatus::APPROVED,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-approved.svg'
                     ],
                     [
                         $ll . 'label.status.eventCreated',
                         SubmissionStatus::EVENT_CREATED,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-event-created.svg'
                     ],
                     [
                         $ll . 'label.status.updated',
                         SubmissionStatus::UPDATED,
+                        "EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg"
                     ],
                     [
                         $ll . 'label.status.error',
                         SubmissionStatus::ERROR,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg'
                     ],
                 ]
             ]

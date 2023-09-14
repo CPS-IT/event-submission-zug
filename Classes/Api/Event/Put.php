@@ -56,7 +56,7 @@ final class Put extends AbstractApi implements EventApiInterface
      *   "teaser": "Teaser text for event proposal. The teaser must not  contain any html tags\n",
      *   "datetime": "2017-07-21T17:00:00",
      *   "event_end": "2017-07-21T19:00:00",
-     *   "timezone": 1575,
+     *   "timezone": "Europe/Berlin",
      *   "bodytext": "Do not miss this event! It will be awesome.",
      *   "event_mode": "hybrid",
      *   "organizer_simple": "International Climate Initiative",
