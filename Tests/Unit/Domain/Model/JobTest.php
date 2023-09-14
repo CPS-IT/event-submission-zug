@@ -67,16 +67,16 @@ class JobTest extends TestCase
             'approved, event not created' => [
                 [
                     Job::FIELD_APPROVED => true,
-                    Job::FIELD_IS_DONE => 0
+                    Job::FIELD_IS_DONE => false
                 ],
                 SubmissionStatus::APPROVED
             ],
             'new with api error' => [
-                ['isApiError' => true],
+                [Job::FIELD_IS_API_ERROR => true],
                 SubmissionStatus::ERROR
             ],
             'new with internal error' => [
-                ['isInternalError' => true],
+                [Job::FIELD_IS_INTERNAL_ERROR => true],
                 SubmissionStatus::ERROR
             ],
             'approved, event created' => [
@@ -99,8 +99,6 @@ class JobTest extends TestCase
     {
         $job = $this->jobFactory->create($jobTemplate);
         $this->assertNotNull($job);
-        //var_dump($job);
-        //die();
         $this->assertSame(
             $job->getStatus(),
             $expectedStatus

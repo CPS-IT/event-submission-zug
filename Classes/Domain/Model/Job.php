@@ -14,9 +14,9 @@ namespace Cpsit\EventSubmission\Domain\Model;
 
 use Cpsit\EventSubmission\Type\SubmissionStatus;
 use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-class Job extends AbstractDomainObject
+class Job extends AbstractEntity
 {
     public const
         TABLE_NAME = 'tx_eventsubmission_domain_model_job',
@@ -245,10 +245,9 @@ class Job extends AbstractDomainObject
 
         // new and unapproved - no errors
         if (
-            null === $this->isInternalError()
+            !$this->isInternalError()
             && !$this->isApproved()
             && !$this->getIsApiError()
-            && !$this->isDone()
         ) {
             $status = SubmissionStatus::NEW;
         }

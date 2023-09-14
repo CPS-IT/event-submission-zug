@@ -27,7 +27,7 @@ class FromArray implements JobFactoryInterface
         }
         $job = GeneralUtility::makeInstance(Job::class);
         foreach ($arguments as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst(GeneralUtility::underscoredToLowerCamelCase( $key));
             if (method_exists($job, $method)) {
                 $job->$method($value);
             }
