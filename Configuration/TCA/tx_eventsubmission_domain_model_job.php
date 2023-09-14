@@ -1,6 +1,9 @@
 <?php
 defined('TYPO3') or die();
 
+use Cpsit\EventSubmission\Form\Element\SubmissionApprovalStatusNode;
+use Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode;
+use Cpsit\EventSubmission\Type\SubmissionStatus;
 $ll = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf:';
 
 return [
@@ -18,10 +21,14 @@ return [
             'disabled' => 'hidden',
         ],
         'searchFields' => 'uid, email, uuid, payload',
-        'typeicon_column' => 'approved',
+        'typeicon_column' => 'status',
         'typeicon_classes' => [
-            'default' => 'event-submission-job',
-            '1' => 'event-submission-job-approved'
+            'default' => 'event-submission-job-unknown',
+            '1' => 'event-submission-job-new',
+            '2' => 'event-submission-job-approved',
+            '3' => 'event-submission-job-event-created',
+            '4' => 'event-submission-job-updated',
+            '7' => 'event-submission-job-error',
         ],
     ],
     'interface' => [],
@@ -30,6 +37,7 @@ return [
             'showitem' => '
                 approval_status,
                 approved,
+                status,
                 event,
                 email,
                 payload,
@@ -80,7 +88,7 @@ return [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.payload',
             'config' => [
                 'type' => 'user',
-                'renderType' => \Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode::getNodeName()
+                'renderType' => SubmissionPayloadDisplayNode::getNodeName()
             ],
         ],
         'response_code' => [
@@ -195,7 +203,7 @@ return [
             'description' => $ll . 'tx_eventsubmission_domain_model_job.approval_status_description',
             'config' => [
                 'type' => 'user',
-                'renderType' => \Cpsit\EventSubmission\Form\Element\SubmissionApprovalStatusNode::getNodeName()
+                'renderType' => SubmissionApprovalStatusNode::getNodeName()
             ]
         ],
         'event' => [
@@ -239,6 +247,48 @@ return [
                 ],
             ]
 
-        ]
+        ],
+        'status' => [
+            'label' => $ll . 'tx_eventsubmission_domain_model_job.label.status',
+            'description' => $ll .'tx_eventsubmission_domain_model_job.description.status',
+            'config' => [
+                'type' => 'select',
+                'readOnly' => true,
+                'default' => SubmissionStatus::UNKNOWN,
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        $ll . 'label.status.unknown',
+                        SubmissionStatus::UNKNOWN,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-unknown.svg'
+                    ],
+                    [
+                        $ll . 'label.status.new',
+                        SubmissionStatus::NEW,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-new.svg'
+                    ],
+                    [
+                        $ll . 'label.status.approved',
+                        SubmissionStatus::APPROVED,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-approved.svg'
+                    ],
+                    [
+                        $ll . 'label.status.eventCreated',
+                        SubmissionStatus::EVENT_CREATED,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-event-created.svg'
+                    ],
+                    [
+                        $ll . 'label.status.updated',
+                        SubmissionStatus::UPDATED,
+                        "EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg"
+                    ],
+                    [
+                        $ll . 'label.status.error',
+                        SubmissionStatus::ERROR,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg'
+                    ],
+                ]
+            ]
+        ],
     ],
 ];

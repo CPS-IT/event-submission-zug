@@ -60,7 +60,7 @@ sl-violations: [{"location":["response","body","datetime"],"severity":"Error","c
     "organizer_simple": "International Climate Initiative",
     "reference_id": 994432,
     "teaser": "Teaser text for event proposal. The teaser must not  contain any html tags\n",
-    "timezone": 1575,
+    "timezone": "Europe/Berlin",
     "title": "A event proposal with title"
 }
 
@@ -71,5 +71,5 @@ curl -H "Authorization: Bearer 56789" http://localhost:8080/event/
 ```
 **expected response**
 ```shell
-{"title":"A event proposal with title","teaser":"Teaser text for event proposal. The teaser must not  contain any html tags\n","datetime":"2017-07-21T17:00:00","event_end":"2017-07-21T19:00:00","timezone":1575,"bodytext":"Do not miss this event! It will be awesome.","event_mode":"on_site","organizer_simple":"International Climate Initiative","location_simple":"A cool venue","reference_id":994432,"country":13}
+{"title":"A event proposal with title","teaser":"Teaser text for event proposal. The teaser must not  contain any html tags\n","datetime":"2017-07-21T17:00:00","event_end":"2017-07-21T19:00:00","timezone":"Europe/Berlin","bodytext":"Do not miss this event! It will be awesome.","event_mode":"on_site","organizer_simple":"International Climate Initiative","location_simple":"A cool venue","reference_id":994432,"country":13}
 ```

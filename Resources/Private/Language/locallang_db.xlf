@@ -130,13 +130,34 @@
                 <source>Event submission has not been approved yet.</source>
             </trans-unit>
             <trans-unit id="approval_status.message.submissionApprovedEventCreated">
-                <source>Event submission has been approved. The proposed event record has been created.
-                    The submission can not be edited anymore.<br />
-                </source>
+                <source>Event submission has been approved. The proposed event record has been created.</source>
             </trans-unit>
             <trans-unit id="approval_status.message.submissionApprovedEventCreationPending">
                 <source>Event submission has been approved and the proposed event record has not been created yet.</source>
             </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.label.status">
+                <source>Status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="label.status.unknown">
+                <source>unknown</source>
+            </trans-unit>
+            <trans-unit id="label.status.new">
+                <source>new</source>
+            </trans-unit>
+            <trans-unit id="label.status.updated">
+                <source>updated</source>
+            </trans-unit>
+            <trans-unit id="label.status.approved">
+                <source>approved</source>
+            </trans-unit>
+            <trans-unit id="label.status.eventCreated">
+                <source>event created</source>
+            </trans-unit>
+            <trans-unit id="label.status.error">
+                <source>error</source>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

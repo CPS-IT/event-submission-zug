@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Factory\Job;
 
 use Cpsit\EventSubmission\Domain\Model\Job;
-use mysql_xdevapi\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FromArray implements JobFactoryInterface
@@ -28,7 +27,7 @@ class FromArray implements JobFactoryInterface
         }
         $job = GeneralUtility::makeInstance(Job::class);
         foreach ($arguments as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst(GeneralUtility::underscoredToLowerCamelCase( $key));
             if (method_exists($job, $method)) {
                 $job->$method($value);
             }
