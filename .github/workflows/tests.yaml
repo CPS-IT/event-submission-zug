@@ -79,8 +79,8 @@ jobs:
 
       # Report coverage
       - name: Fix coverage path
-        working-directory: .build/coverage
-        run: sed -i 's#/home/runner/work/event_submission/event_submission#${{ github.workspace }}#g' clover.xml
+        working-directory: .Build/log/coverage
+        run: sed -i 's#/home/runner/work/event-submission/event-submission#${{ github.workspace }}#g' clover.xml
       - name: CodeClimate report
         uses: paambaati/codeclimate-action@v5.0.0
         if: env.CC_TEST_REPORTER_ID
@@ -93,6 +93,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: .build/coverage
+          directory: .Build/log/coverage
           fail_ci_if_error: true
           verbose: true
