@@ -171,15 +171,16 @@
                 <target>Der eingereichte Vorschlag wurde noch nicht freigegeben.</target>
             </trans-unit>
             <trans-unit id="approval_status.message.submissionApprovedEventCreated">
-                <source>Event submission has been approved. The proposed event record has been created.
-                    The submission can not be edited anymore.<br />
-                </source>
-                <target>Vorschlag freigegeben. Der vorgeschlagene Veranstaltungsdatensatz wurde angelegt.
-                Der Vorschlag kann nicht mehr bearbeitet werden.</target>
+                <source>Event submission has been approved. The proposed event record has been created.</source>
+                <target>Vorschlag freigegeben. Der vorgeschlagene Veranstaltungsdatensatz wurde angelegt.</target>
             </trans-unit>
             <trans-unit id="approval_status.message.submissionApprovedEventCreationPending">
                 <source>Event submission has been approved and the proposed event record has not been created yet.</source>
                 <target>Der Vorschlag wurde freigegeben. Der Veranstaltungsdatensatz wurde noch nicht erstellt.</target>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.label.status">
+                <source>Status</source>
+                <target>Status</target>
             </trans-unit>
             <trans-unit id="label.status.unknown">
                 <source>unknown</source>

@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Helper;
 
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
-use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
 use Nng\Nnrestapi\Mvc\Request;
 use Nng\Nnrestapi\Mvc\Response;
