@@ -175,9 +175,10 @@ class Job extends AbstractEntity
         return $this->isInternalError;
     }
 
-    public function setIsInternalError(?bool $isInternalError): void
+    public function setIsInternalError(?bool $isInternalError): Job
     {
         $this->isInternalError = $isInternalError;
+        return $this;
     }
 
     public function isApproved(): bool

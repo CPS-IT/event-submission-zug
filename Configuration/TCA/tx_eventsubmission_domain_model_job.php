@@ -239,14 +239,7 @@ return [
                     ],
                 ],
             ],
-            'displayCond' => [
-                'AND' => [
-                    'FIELD:is_done:=:1',
-                    'FIELD:is_internal_error:!=:1',
-                    'FIELD:approved:=:1'
-                ],
-            ]
-
+            'displayCond' => 'FIELD:event:REQ:true',
         ],
         'status' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.label.status',
