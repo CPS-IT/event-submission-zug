@@ -17,12 +17,27 @@
         'bullets',
         'before'
     );
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+        'tt_content',
+        'additional_fields_configuration',
+        [
+            $ll . 'tt_content.CType.additionalFieldsConfiguration',
+            $itemName,
+            'content-form'
+        ],
+        'header_layout',
+        'after'
+    );
+    $GLOBALS['TCA']['tt_content']['columns']['bodytext']['config']['renderType'] = 'jsonForm';
+    $GLOBALS['TCA']['tt_content']['columns']['bodytext']['label'] = $ll . 'label.additionalFieldsConfiguration';
+
 
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$itemName] = 'content-form';
     $GLOBALS['TCA']['tt_content']['types']['eventsubmission_app']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
     --palette--;;general,
     --palette--;;header,
+      bodytext,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
     --palette--;;frames,
     --palette--;;appearanceLinks,
