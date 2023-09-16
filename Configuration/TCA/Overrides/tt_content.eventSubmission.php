@@ -17,17 +17,6 @@
         'bullets',
         'before'
     );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-        'tt_content',
-        'additional_fields_configuration',
-        [
-            $ll . 'tt_content.CType.additionalFieldsConfiguration',
-            $itemName,
-            'content-form'
-        ],
-        'header_layout',
-        'after'
-    );
     $GLOBALS['TCA']['tt_content']['columns']['bodytext']['config']['renderType'] = 'jsonForm';
     $GLOBALS['TCA']['tt_content']['columns']['bodytext']['label'] = $ll . 'label.additionalFieldsConfiguration';
 
