@@ -35,10 +35,6 @@
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes, rowDescription,
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended';
 
-    #$GLOBALS['TCA']['tt_content']['columns']['bodytext']['config']['renderType'] = 'jsonForm';
-    #$GLOBALS['TCA']['tt_content']['columns']['bodytext']['label'] = $ll . 'label.additionalFieldsConfiguration';
-
-
     $GLOBALS['TCA']['tt_content']['types'][$contentElementType]['columnsOverrides'] = [
         'bodytext' => [
             'label' => $ll . 'label.additionalFieldsConfiguration',
