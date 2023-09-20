@@ -2,7 +2,8 @@
 
 (function ($extKey = 'event_submission', $table = 'tt_content') {
     $ll = 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:';
-    $itemName = 'eventsubmission_app';
+    $contentElementType = 'eventsubmission_app';
+
     /*
      * tt_content event submission form element
      */
@@ -11,17 +12,13 @@
         'CType',
         [
             $ll . 'tt_content.CType.eventsubmission_app',
-            $itemName,
+            $contentElementType,
             'content-form'
         ],
         'bullets',
         'before'
     );
-    $GLOBALS['TCA']['tt_content']['columns']['bodytext']['config']['renderType'] = 'jsonForm';
-    $GLOBALS['TCA']['tt_content']['columns']['bodytext']['label'] = $ll . 'label.additionalFieldsConfiguration';
-
-
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$itemName] = 'content-form';
+    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentElementType] = 'content-form';
     $GLOBALS['TCA']['tt_content']['types']['eventsubmission_app']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
     --palette--;;general,
@@ -38,7 +35,17 @@
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes, rowDescription,
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended';
 
-    $GLOBALS['TCA']['tt_content']['types'][$itemName]['columnsOverrides'] = [
+    #$GLOBALS['TCA']['tt_content']['columns']['bodytext']['config']['renderType'] = 'jsonForm';
+    #$GLOBALS['TCA']['tt_content']['columns']['bodytext']['label'] = $ll . 'label.additionalFieldsConfiguration';
+
+
+    $GLOBALS['TCA']['tt_content']['types'][$contentElementType]['columnsOverrides'] = [
+        'bodytext' => [
+            'label' => $ll . 'label.additionalFieldsConfiguration',
+            'config' => [
+                'renderType' => 'jsonForm',
+            ],
+        ],
         'pages' => [
             'config' => [
                 'maxitems' => 1,
