@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" product-name="iki_project_import">
+        <header/>
+        <body>
+            <trans-unit id="tx_eventsubmission_domain_model_job.tab.request">
+                <source>Internal Request information</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.tab.internal">
+                <source>Internal job process information </source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job">
+                <source>Event submission job</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.uuid">
+                <source>Record universal uuid</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.request_date_time">
+                <source>Request datetime</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.payload">
+                <source>Payload</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.response_code">
+                <source>Response Code</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error">
+                <source>API Request Status</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.error">
+                <source>Error</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.is_api_error.success">
+                <source>Success</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.job_triggered_date_time">
+                <source>Job internally triggered at</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.is_done">
+                <source>Job internally done</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.internal_log_message">
+                <source>Job internal log message</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.is_internal_error">
+                <source>Internal job status</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved">
+                <source>Approved</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved.0">
+                <source>Not approved</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved.1">
+                <source>Approved</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approval_status">
+                <!-- intentionally left blank-->
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.approved_description">
+                <source>Click the button below to accept or decline the event.</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.event_description">
+                <source>related event (created from this submission)</source>
+            </trans-unit>
+            <trans-unit id="tt_content.CType.eventsubmission_app">
+                <source>Event Submission Form</source>
+            </trans-unit>
+            <trans-unit id="tt_content.CType.eventsubmission_app.configuration">
+                <source>Configuration</source>
+            </trans-unit>
+            <trans-unit id="payload.label.bodytext">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="payload.label.datetime">
+                <source>Date and Time</source>
+            </trans-unit>
+            <trans-unit id="payload.label.event_end">
+                <source>Event End Time</source>
+            </trans-unit>
+            <trans-unit id="payload.label.teaser">
+                <source>Teaser</source>
+            </trans-unit>
+            <trans-unit id="payload.label.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="payload.label.timezone">
+                <source>Time Zone</source>
+            </trans-unit>
+            <trans-unit id="payload.label.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="payload.label.language">
+                <source>Language</source>
+            </trans-unit>
+            <trans-unit id="payload.label.location_simple">
+                <source>Location</source>
+            </trans-unit>
+            <trans-unit id="payload.label.reference_id">
+                <source>External Reference ID</source>
+            </trans-unit>
+            <trans-unit id="payload.label.emailValidated">
+                <source>Email Validated</source>
+            </trans-unit>
+            <trans-unit id="payload.label.event_mode">
+                <source>Event Mode</source>
+            </trans-unit>
+            <trans-unit id="payload.label.organizer_simple">
+                <source>Organizer</source>
+            </trans-unit>
+            <trans-unit id="payload.label.validationHash">
+                <source>Validation Hash</source>
+            </trans-unit>
+            <trans-unit id="payload.label.error">
+                <source>Error</source>
+            </trans-unit>
+            <trans-unit id="payload.message.invalidJsonInPayload">
+                <source>Invalid content in submitted event proposal.</source>
+            </trans-unit>
+            <trans-unit id="approval_status.header">
+                <source>Approval Status</source>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovalPending">
+                <source>Event submission has not been approved yet.</source>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovedEventCreated">
+                <source>Event submission has been approved. The proposed event record has been created.</source>
+            </trans-unit>
+            <trans-unit id="approval_status.message.submissionApprovedEventCreationPending">
+                <source>Event submission has been approved and the proposed event record has not been created yet.</source>
+            </trans-unit>
+            <trans-unit id="tx_eventsubmission_domain_model_job.label.status">
+                <source>Status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="label.status.unknown">
+                <source>unknown</source>
+            </trans-unit>
+            <trans-unit id="label.status.new">
+                <source>new</source>
+            </trans-unit>
+            <trans-unit id="label.status.updated">
+                <source>updated</source>
+            </trans-unit>
+            <trans-unit id="label.status.approved">
+                <source>approved</source>
+            </trans-unit>
+            <trans-unit id="label.status.eventCreated">
+                <source>event created</source>
+            </trans-unit>
+            <trans-unit id="label.status.error">
+                <source>error</source>
+            </trans-unit>
+            <trans-unit id="label.additionalFieldsConfiguration">
+                <source>Additional Fields Configuration</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

@@ -7,9 +7,19 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-  - url: http://localhost:8080
+  - url: '{environment}/{apiPath}'
+    variables:
+      apiPath:
+        default: api
+      environment:
+        default: iki.ddev.site    # DDEV server
+        enum:
+          - https://international-climate-initiative.de         # Production server
+          - https://iki-v11.stg.typo3.zug.321.works             # Staging server
+          - http://localhost:8080
+
 paths:
-  /email/validate:
+  /user/sendValidationRequest:
     post:
       summary: Validate an email
       description: >
@@ -25,10 +35,22 @@ paths:
       responses:
         200:
           description: Validation request successful
-  /event:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailValidationSendSuccess'
+        503:
+          description: Email could not be send due to internal error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailValidationSendError'
+  /event/:
     post:
       summary: Create a new event proposal
       operationId: postEvent
+      security:
+        - bearerAuth: [ ]
       requestBody:
         description: Event proposal that should be submitted.
         content:
@@ -43,28 +65,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventCreatedResult'
-  /event/{id}:
+        '400':
+          description: Event proposal post unsuccessful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCreatedError'
+  /{language}/event/{id}:
     get:
       summary: Get a single event proposal
       operationId: getEvent
       parameters:
-        - name: id
+        - name: language
           in: path
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
+            enum: [ de,en ]
+            default: de
       security:
         - bearerAuth: [ ]
       responses:
-        "200":
+        '200':
           description: Successful request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
+                $ref: '#/components/schemas/EventGetResult'
         '404':
           description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventGetError'
     put:
       summary: Change an existing event proposal
       operationId: putEvent
@@ -75,8 +108,15 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
+            format: uuid
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [ de,en ]
+            default: de
       requestBody:
         content:
           application/json:
@@ -89,6 +129,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventUpdatedResult'
+        '403':
+          description: Response for failed update of event proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventUpdateError'
     delete:
       summary: Delete an event proposal
       operationId: deleteEvent
@@ -99,10 +145,10 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int32
+            type: string
+            format: uuid
       responses:
-        "200":
+        '200':
           description: Successfully deleted event proposal
           content:
             application/json:
@@ -110,6 +156,14 @@ paths:
                 $ref: '#/components/schemas/EventDeletedResult'
         '403':
           description: Access denied
+        '410':
+          description: |
+            Event proposal could not be deleted. It doesn't exist anymore or has been approved and is
+            about to be published.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeleteError'
 components:
   securitySchemes:
     bearerAuth:
@@ -120,22 +174,33 @@ components:
     Event:
       type: object
       required:
+        - email
         - title
         - teaser
         - datetime
         - event_end
         - timezone
         - bodytext
-        - reference_id
       description: Event proposal
       properties:
+        approved:
+          type: boolean
+          description: Approval status of event submission
+          example: true
+        email:
+          type: string
+          format: email
+          description: >
+            Email of the submitter. This mail must match the validated mail and
+            will be saved and used for later  contact.
+          example: nix@foo.org
         title:
           type: string
           example: A event proposal with title
         teaser:
           type: string
           example: >
-            Teaser text for event proposal. The teaser must not 
+            Teaser text for event proposal. The teaser must not
             contain any html tags
         datetime:
           type: string
@@ -148,9 +213,9 @@ components:
           description: End date and time of an event
           example: 2017-07-21T19:00:00
         timezone:
-          type: integer
-          description: Unique id of timezone provided by database
-          example: 1575
+          type: string
+          description: Unique timezone name provided by database
+          example: Europe/Berlin
         bodytext:
           type: string
           description: Description of event
@@ -163,106 +228,218 @@ components:
           default: on_site
         organizer_simple:
           type: string
-          maxLength: 30
+          maxLength: 255
           description: 'Organizer of an event. (Note: This property is not a reference)'
           example: International Climate Initiative
-        location_simple:
-          maxLength: 30
-          description: 'Location of an event. (Note: This property is not a reference)'
-          example: A cool venue
-        reference_id:
+        location:
+          type: object
+          required:
+            - location_title
+          description: Location for event proposal
+          properties:
+            location_title:
+              type: string
+              maxLength: 250
+              example: A cool location
+              description: Location title of an event.
+            location_short_title:
+              type: string
+              maxLength: 30
+              example: A cool little location
+              description: Short location title of an event.
+            location_description:
+              type: string
+              example: A cool little location description like an address
+              description: Location description like an address.
+        external_reference:
           type: string
-          format: int32
-          example: 994432
-          description: Unique reference for the event
+          example: Foo external reference for event
+          description: Optional reference for the event e.g.
+        registration_link:
+          type: string
+          example: https://link.to.registration
+          description: Optional registration link
+        streaming_link:
+          type: string
+          example: https://link.to.stream
+          description: Optional streaming link
         country:
           type: integer
           description: Unique id of country where the event should take place.
           example: 13
+        language:
+          type: string
+          enum: [ de,en ]
+          default: de
+          description: Language for the event.
     EventCreatedResult:
       type: object
       description: Response for successful creation of an Event
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
       properties:
-        editToken:
-          type: string
-          format: uuid
-          example: 513d03ce-6eeb-4134-9198-484176a5c314
-          description: Token for editing the newly created event proposal.
-        id:
-          type: integer
-          format: int32
-          example: 77543
-          description: Unique identifier of the event proposal.
+        message:
+          example: Event submission created successful
+        code:
+          example: 100
+        data:
+          type: object
+          properties:
+            editToken:
+              type: string
+              format: uuid
+              example: 513d03ce-6eeb-4134-9198-484176a5c314
+              description: Token for editing the newly created event proposal.
+            id:
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
+    EventCreatedError:
+      type: object
+      description: Response for unsuccessful creation of an Event
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        message:
+          example: Event submission unsuccessful
+        code:
+          example: 400
     EventUpdatedResult:
       type: object
       description: Response for successful change of an event
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
       properties:
-        title:
-          type: string
-          example: Updated event title
-        teaser:
-          type: string
-          example: new teaser text for event
-        datetime:
-          type: string
-          format: date-time
-          description: Start date and time of an event
-          example: 2023-08-08T17:00:00Z
-        event_end:
-          type: string
-          format: date-time
-          description: End date and time of an event
-          example: 2023-08-08T18:00:00Z
-        timezone:
+        code:
+          example: 200
+        message:
+          example: Event submission successfully replaced
+        data:
+          allOf:
+            - $ref: '#/components/schemas/Event'
+    EventGetResult:
+      type: object
+      description: Response for successful GET request of an event submission
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        code:
+          example: 700
+        message:
+          example: Event submission found
+        data:
+          allOf:
+            - $ref: '#/components/schemas/Event'
+    EventGetError:
+      type: object
+      description: Response for failed GET request of an event submission
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        code:
+          example: 800
+        message:
+          example: Requested event submission could not be found
+    EventUpdateError:
+      type: object
+      description: Response for failed update of an event proposal
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        code:
+          example: 600
+        message:
+          example: Update of event proposal failed
+    ApiResponse:
+      type: object
+      description: A response from API
+      properties:
+        code:
           type: integer
-          description: Unique id of timezone provided by database
-          example: 15
-        bodytext:
+          example: 123
+        message:
           type: string
-          description: Description of event
-          example: this bodytext will be changed.
-        event_mode:
-          type: string
-          description: Selected value for event mode.
-          example: hybrid
-        organizer_simple:
-          type: string
-          maxLength: 30
-          description: 'Organizer of an event. (Note: This property is not a reference)'
-          example: International Climate Initiative
-        location_simple:
-          maxLength: 30
-          description: 'Location of an event. (Note: This property is not a reference)'
-          example: A cool venue
-        reference_id:
-          type: string
-          format: int32
-          example: 5533
-          description: Unique reference for the event
-        country:
-          type: integer
-          description: Unique id of country where the event should take place.
-          example: 13
+          example: Successful request.
     EventDeletedResult:
       type: object
       description: Response for successful deletion of an Event
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
       properties:
-        id:
-          type: integer
-          format: int32
-          example: 77543
-          description: Unique identifier of the event proposal.
+        message:
+          example: Event proposal deleted
+          description: Message about successful deletion of event.
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
+    EventDeleteError:
+      type: object
+      description: Response for failing deletion of an event submission
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        message:
+          example: Event submission could not be deleted
+          description: Message about failed deletion of event.
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
     EmailValidationRequest:
       type: object
-      description: Request for email validation
+      description: >
+        Request for email validation. Contains an email to which a validation link
+        should be sent and a  hash value for the validation of this link in Frontend.
       required:
         - email
-        - validationLink
+        - validationHash
       properties:
         email:
           type: string
           format: email
-        validationLink:
+          example: foo@bar.do
+        validationHash:
           type: string
-          format: uri
-
+          format: uuid
+          example: dfde719e-9f19-40b5-af2e-6f96d4034cda
+    EmailValidationSendSuccess:
+      type: object
+      description: >
+        Result for email validation. Contains the previously given hash value
+        for the validation of this link in Frontend.
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        message:
+          example: Validation email successfully sent
+        code:
+          example: 300
+        data:
+          type: object
+          properties:
+            validationHash:
+              type: string
+              format: uuid
+              example: dfde719e-9f19-40b5-af2e-6f96d4034cda
+    EmailValidationSendError:
+      type: object
+      description: >
+        Result for email validation. Contains the previously given hash value
+        for the validation of this link in Frontend.
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        message:
+          example: Validation email could not be sent
+        code:
+          example: 500

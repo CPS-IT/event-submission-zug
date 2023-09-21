@@ -1,0 +1,52 @@
+plugin.tx_nnrestapi {
+  settings {
+    // Settings for Event Submission API
+    eventSubmission {
+      // Pid where the app integriert ist
+      view {
+        templateRootPaths {
+          0 = EXT:event_submission/Resources/Private/Templates
+        }
+
+        layoutRootPaths {
+          0 = EXT:event_submission/Resources/Private/Layouts
+        }
+
+        partialRootPaths {
+          0 = EXT:event_submission/Resources/Private/Partials
+        }
+      }
+      appPid = 0
+      mail {
+        logoImage =
+        fromEmail =
+        fromName =
+        returnPath =
+      }
+    }
+
+    insertDefaultValues {
+      // Job model insert default values
+      Cpsit\EventSubmission\Domain\Model\Job {
+        pid = 0
+      }
+    }
+  }
+}
+
+
+# Event Submission Form
+# Displays a form for event submission
+#
+# CType: eventsubmission_app
+
+tt_content.eventsubmission_app.20 =< lib.contentElement
+tt_content.eventsubmission_app.20 {
+  templateRootPaths.200 = EXT:event_submission/Resources/Private/Templates/App/
+  layoutRootPaths.200 = EXT:event_submission/Resources/Private/Layouts/
+  view =< plugin.tx_eventsubmission.view
+  templateName = App
+  settings {
+    appPid = 0
+  }
+}
