@@ -40,7 +40,10 @@ plugin.tx_nnrestapi {
 #
 # CType: eventsubmission_app
 
+tt_content.eventsubmission_app.20 =< lib.contentElement
 tt_content.eventsubmission_app.20 {
+  templateRootPaths.200 = EXT:event_submission/Resources/Private/Templates/App/
+  layoutRootPaths.200 = EXT:event_submission/Resources/Private/Layouts/
   view =< plugin.tx_eventsubmission.view
   templateName = App
   settings {

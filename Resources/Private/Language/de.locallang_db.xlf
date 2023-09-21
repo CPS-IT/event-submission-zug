@@ -206,6 +206,10 @@
                 <source>error</source>
                 <target>Fehler</target>
             </trans-unit>
+            <trans-unit id="label.additionalFieldsConfiguration">
+                <source>Additional Fields Configuration</source>
+                <target>Konfiguration für zusätzliche Felder</target>
+            </trans-unit>
 
         </body>
     </file>

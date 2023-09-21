@@ -32,7 +32,10 @@ Accept-Language: {{language}}
   "location_description": "near you",
   "reference_id": "994432",
   "country": 13,
-  "language": "de"
+  "language": "de",
+  "registration_link": "https://link.to.registration/",
+  "streaming_link": "https://link.to.stream/",
+  "is_cop_event": true
 }
 
 ### delete an existing event proposal

@@ -255,6 +255,14 @@ components:
           type: string
           example: Foo external reference for event
           description: Optional reference for the event e.g.
+        registration_link:
+          type: string
+          example: https://link.to.registration
+          description: Optional registration link
+        streaming_link:
+          type: string
+          example: https://link.to.stream
+          description: Optional streaming link
         country:
           type: integer
           description: Unique id of country where the event should take place.

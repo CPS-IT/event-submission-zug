@@ -157,6 +157,9 @@
             <trans-unit id="label.status.error">
                 <source>error</source>
             </trans-unit>
+            <trans-unit id="label.additionalFieldsConfiguration">
+                <source>Additional Fields Configuration</source>
+            </trans-unit>
 
         </body>
     </file>
