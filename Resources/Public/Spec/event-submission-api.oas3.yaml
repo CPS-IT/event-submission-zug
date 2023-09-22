@@ -187,6 +187,20 @@ components:
           type: boolean
           description: Approval status of event submission
           example: true
+        status:
+          type: string
+          enum:
+            - unknown
+            - new
+            - approved
+            - eventCreated
+            - updated
+            - withdrawn
+            - error
+          description: |
+            Reflects the status of the event submission during its live cycle. Some value may 
+            be irrelevant for frontend editing an not be valid for POST or PUT requests.
+          example: eventCreated
         email:
           type: string
           format: email
