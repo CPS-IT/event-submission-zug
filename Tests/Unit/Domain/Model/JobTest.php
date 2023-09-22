@@ -1,4 +1,12 @@
 <?php
+declare(strict_types=1);
+
+/*
+ * This file is part of the iki Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * README.md file that was distributed with this source code.
+ */
 
 namespace Cpsit\EventSubmission\Tests\Unit\Domain\Model;
 
@@ -10,22 +18,6 @@ use GeorgRinger\News\Domain\Model\News;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2023 Dirk Wenzel <wenzel@cps-it.de>
- *  All rights reserved
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- * A copy is found in the text file GPL.txt and important notices to the license
- * from the author is found in LICENSE.txt distributed with these scripts.
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 class JobTest extends TestCase
 {
     protected Job $subject;
@@ -91,8 +83,10 @@ class JobTest extends TestCase
 
     /**
      * @dataProvider jobWithValidStatusDataProvider
-     * @param Job $job
+     *
+     * @param array $jobTemplate
      * @param int $expectedStatus
+     *
      * @return void
      */
     public function testGetStatusReturnsValidStatus(array $jobTemplate, int $expectedStatus): void
