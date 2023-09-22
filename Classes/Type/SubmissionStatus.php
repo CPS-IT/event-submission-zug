@@ -36,5 +36,6 @@ enum SubmissionStatus: int
     public const APPROVED = self::approved->value;
     public const EVENT_CREATED = self::eventCreated->value;
     public const UPDATED = self::updated->value;
+    public const WITHDRAWN = self::withdrawn->value;
     public const ERROR = self::error->value;
 }

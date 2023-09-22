@@ -164,6 +164,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventDeleteError'
+  /{language}/event/{id}/withdraw:
+    put:
+      summary: Withdraw an existing event proposal
+      operationId: putWithdrawEvent
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: language
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [ de,en ]
+            default: de
+      responses:
+        '200':
+          description: Successfully withdrawn event proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventWithdrawResult'
+        '403':
+          description: Response for failed withdrawal of event proposal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventWithdrawError'
+
 components:
   securitySchemes:
     bearerAuth:
@@ -198,7 +232,7 @@ components:
             - withdrawn
             - error
           description: |
-            Reflects the status of the event submission during its live cycle. Some value may 
+            Reflects the status of the event submission during its live cycle. Some values may 
             be irrelevant for frontend editing an not be valid for POST or PUT requests.
           example: eventCreated
         email:
@@ -332,6 +366,41 @@ components:
         data:
           allOf:
             - $ref: '#/components/schemas/Event'
+    EventWithdrawResult:
+      type: object
+      description: Response for successful withdrawal of an event
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        code:
+          example: 200
+        message:
+          example: Event submission successfully withdrawn
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
+    EventWithdrawError:
+      type: object
+      description: Response for failing deletion of an event submission
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      properties:
+        message:
+          example: Event submission could not be withdrawn
+          description: Message about failed withdrawal of event.
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: 40ff4e68-1c64-4551-8b37-453b35ada721
+              description: Universal unique identifier of the event proposal.
     EventGetResult:
       type: object
       description: Response for successful GET request of an event submission

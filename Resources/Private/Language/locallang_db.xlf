@@ -148,6 +148,9 @@
             <trans-unit id="label.status.updated">
                 <source>updated</source>
             </trans-unit>
+            <trans-unit id="label.status.withdrawn">
+                <source>withdrawn</source>
+            </trans-unit>
             <trans-unit id="label.status.approved">
                 <source>approved</source>
             </trans-unit>

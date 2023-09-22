@@ -73,6 +73,12 @@ Accept-Language: {{language}}
     "language": "de"
 }
 
+### withdraw an existing event proposal
+PUT https://{{host}}/api/event/{{id}}/withdraw
+Accept: application/json
+Authorization: Bearer {{authToken}}
+Accept-Language: {{language}}
+
 ###
 
 ### Get a link to the application page
