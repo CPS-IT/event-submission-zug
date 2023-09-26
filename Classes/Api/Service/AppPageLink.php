@@ -7,6 +7,7 @@ use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Exception;
 use JsonException;
+use nn\t3;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 
@@ -110,7 +111,13 @@ final class AppPageLink extends AbstractApi
     {
         $arguments = $this->request->getArguments();
         $id = $arguments[self::PARAMETER_ID];
-        return \nn\t3::Page()->getLink($id, [], true);
+        return \nn\t3::Page()->getLink(
+            $id,
+            [
+                '_language' => t3::Environment()->getLanguage()
+            ],
+            true
+        );
     }
 
 }

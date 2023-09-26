@@ -72,6 +72,7 @@ final class Withdraw extends AbstractApi implements EventApiInterface
      * ```
      *
      * @Api\Route("PUT /event/{id}/withdraw")
+     * @Api\Localize()
      * @Api\Access("public")
      * @return array
      */

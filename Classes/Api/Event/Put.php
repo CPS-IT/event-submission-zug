@@ -103,6 +103,7 @@ final class Put extends AbstractApi implements EventApiInterface
      * ```
      *
      * @Api\Route("PUT /event/{id}")
+     * @Api\Localize()
      * @Api\Access("public")
      * @return array
      * @throws JsonException

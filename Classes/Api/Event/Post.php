@@ -106,6 +106,7 @@ final class Post extends AbstractApi
      * ```
      *
      * @Api\Route("POST /event")
+     * @Api\Localize()
      * @Api\Access("public")
      * @return array
      */

@@ -81,6 +81,7 @@ final class Get extends AbstractApi implements EventApiInterface
      *
      * @Api\Route("GET /event/{id}")
      * @Api\Access("public")
+     * @Api\Localize()
      * @return array
      * @throws JsonException
      */

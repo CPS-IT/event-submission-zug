@@ -10,6 +10,8 @@ use Cpsit\EventSubmission\Exceptions\InvalidResponseException;
 use Exception;
 use JsonException;
 use nn\t3;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -76,12 +78,19 @@ class LinkService implements ServiceInterface
         // in frontend - get uri from site router:
         if (t3::Environment()->isFrontend()) {
             $link = (string)$site->getRouter()
-                ->generateUri($appPageId, ['editToken' => $editToken]);
+                ->generateUri(
+                    $appPageId,
+                    [
+                        'editToken' => $editToken,
+                        '_language' => t3::Environment()->getLanguage()
+                    ]
+                );
         }
         // not in frontend - use api request:
         if (!t3::Environment()->isFrontend()) {
             $apiUri = $site->getBase() . '/api/service/appPageLink/' . $appPageId;
             // todo we should probably cache this result
+            // todo add language header
             $apiResponse = t3::Request()->GET($apiUri);
             $data = json_decode($apiResponse['content'], true, 512, JSON_THROW_ON_ERROR);
             $this->assertValidPageLinkData($data);
