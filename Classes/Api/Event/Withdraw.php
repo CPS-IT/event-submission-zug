@@ -95,13 +95,18 @@ final class Withdraw extends AbstractApi implements EventApiInterface
 
         // update job status
         if (!empty($job)) {
-            $job[Job::FIELD_APPROVED] = 0;
-            $job[Job::FIELD_STATUS] = SubmissionStatus::WITHDRAWN;
+            $data = [
+                Job::FIELD_APPROVED => 0,
+                Job::FIELD_STATUS => SubmissionStatus::WITHDRAWN
+            ];
 
-            $result = $this->db->update(Job::TABLE_NAME, $job, $job[Job::FIELD_UID]);
+            $where = [
+                Job::FIELD_UID => $job[Job::FIELD_UID]
+            ];
+            $result = $this->db->update(Job::TABLE_NAME, $data, $where);
 
             if ($result === 1) {
-                $responseCode = ApiResponseInterface::EVENT_UPDATE_SUCCESS;
+                $responseCode = ApiResponseInterface::EVENT_WITHDRAW_SUCCESS;
             }
         }
 
