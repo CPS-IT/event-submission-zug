@@ -194,6 +194,10 @@
                 <source>updated</source>
                 <target>geändert</target>
             </trans-unit>
+            <trans-unit id="label.status.withdrawn">
+                <source>withdrawn</source>
+                <target>zurückgezogen</target>
+            </trans-unit>
             <trans-unit id="label.status.approved">
                 <source>approved</source>
                 <target>freigegeben</target>

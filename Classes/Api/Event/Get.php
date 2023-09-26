@@ -15,6 +15,7 @@ use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
+use Cpsit\EventSubmission\Type\SubmissionStatus;
 use JsonException;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
@@ -100,7 +101,9 @@ final class Get extends AbstractApi implements EventApiInterface
 
         if (!empty($job)) {
             $responseData = json_decode($job[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
-            $responseData['approved'] = (bool)$job[Job::FIELD_APPROVED];
+            $responseData[Job::FIELD_APPROVED] = (bool)$job[Job::FIELD_APPROVED];
+            // we use the name of the enum case as string representation for the `status` field
+            $responseData[Job::FIELD_STATUS] = SubmissionStatus::from($job[Job::DEFAULT_STATUS])->name;
             $responseCode = ApiResponseInterface::EVENT_GET_SUCCESS;
         }
 
