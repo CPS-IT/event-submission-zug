@@ -112,7 +112,7 @@ final class Put extends AbstractApi implements EventApiInterface
     public function update(): array
     {
         $arguments = $this->request->getArguments();
-        $responseData = [];
+        $requestData = [];
         $responseCode = ApiResponseInterface::EVENT_UPDATE_ERROR;
         $id = $arguments[self::PARAMETER_ID];
 
@@ -126,18 +126,23 @@ final class Put extends AbstractApi implements EventApiInterface
 
         // update job
         if (!empty($job)) {
+            $requestData = $this->request->getBody();
 
             // replace payload
-            $job[Job::FIELD_PAYLOAD] = json_encode($this->request->getBody(), JSON_THROW_ON_ERROR);
+            $job[Job::FIELD_PAYLOAD] = json_encode($requestData, JSON_THROW_ON_ERROR);
             $job[Job::FIELD_REQUEST_DATE_TIME] = time();
+
             // any change requires new approval and re-generation of event
             $job[Job::FIELD_IS_DONE] = 0;
             $job[Job::FIELD_APPROVED] = 0;
             $job[Job::FIELD_STATUS] = SubmissionStatus::UPDATED;
 
+            $responseData = $requestData;
+            $responseData[Job::FIELD_APPROVED] = false;
+            $responseData[Job::FIELD_STATUS] = SubmissionStatus::from(SubmissionStatus::UPDATED)->name;
+
             $this->db->update(Job::TABLE_NAME, $job, $job[Job::FIELD_UID]);
 
-            $responseData = $this->request->getBody();
             $responseCode = ApiResponseInterface::EVENT_UPDATE_SUCCESS;
         }
 

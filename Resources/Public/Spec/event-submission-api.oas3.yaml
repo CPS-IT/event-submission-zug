@@ -507,13 +507,6 @@ components:
           example: Validation email successfully sent
         code:
           example: 300
-        data:
-          type: object
-          properties:
-            validationHash:
-              type: string
-              format: uuid
-              example: dfde719e-9f19-40b5-af2e-6f96d4034cda
     EmailValidationSendError:
       type: object
       description: >

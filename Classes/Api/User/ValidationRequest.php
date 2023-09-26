@@ -106,9 +106,8 @@ final class ValidationRequest extends AbstractApi
                 $this->request->getSettings()['eventSubmission']['mail']['fromName']
             );
 
-            $data = [
-                'validationHash' => $this->getRequest()->getBody()['validationHash']
-            ];
+            // note: we **must not** include the validation hash in the response
+            $data = [];
 
             return $this->responseFactory->successResponse($data)->toArray();
 
@@ -130,7 +129,10 @@ final class ValidationRequest extends AbstractApi
         $linkService = GeneralUtility::makeInstance(LinkService::class);
         $validationUrl = $linkService->build(
              $appPid,
-            ['validationHash' => $this->getRequest()->getBody()['validationHash']],
+            [
+                '_language' => t3::Environment()->getLanguage(),
+                'validationHash' => $this->getRequest()->getBody()['validationHash']
+            ],
         );
 
         $templateVariables = [
