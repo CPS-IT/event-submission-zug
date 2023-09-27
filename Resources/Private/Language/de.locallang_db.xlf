@@ -178,6 +178,10 @@
                 <source>Event submission has been approved and the proposed event record has not been created yet.</source>
                 <target>Der Vorschlag wurde freigegeben. Der Veranstaltungsdatensatz wurde noch nicht erstellt.</target>
             </trans-unit>
+            <trans-unit id="approval_status.message.submissionWithdrawn">
+                <source>Event submission has been withdrawn. Please consider to un-publish the related event.</source>
+                <target>Der Veranstaltungsvorschlag wurde zurückgezogen. Bitte überprüfen Sie den verknüpften Veranstaltungsdatensatz</target>
+            </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.label.status">
                 <source>Status</source>
                 <target>Status</target>

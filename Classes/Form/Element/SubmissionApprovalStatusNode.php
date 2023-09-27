@@ -6,6 +6,7 @@ use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Form\FormElementAttributesTrait;
 use Cpsit\EventSubmission\Form\RegistrableInterface;
 use Cpsit\EventSubmission\Form\RegistrableTrait;
+use Cpsit\EventSubmission\Type\SubmissionStatus;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
@@ -86,6 +87,10 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
 
         if ($row[Job::FIELD_IS_DONE] === 1 && $row[Job::FIELD_APPROVED] === 1) {
             $messageKey = 'submissionApprovedEventCreated';
+        }
+        // not sure why this field contains an array ¯\_(ツ)_/¯
+        if ($row[Job::FIELD_STATUS][0] === (string)SubmissionStatus::WITHDRAWN) {
+            $messageKey = 'submissionWithdrawn';
         }
         $message = $languageService->sL(
             static::DEFAULT_LANGUAGE_FILE . ':approval_status.message.' . $messageKey
