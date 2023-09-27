@@ -184,6 +184,7 @@ return [
             'displayCond' => [
                 'AND' => [
                     'FIELD:is_done:!=:1',
+                    'FIELD:status:!=:' . SubmissionStatus::WITHDRAWN
                 ],
             ],
             'config' => [
