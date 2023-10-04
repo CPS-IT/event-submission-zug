@@ -1,3 +1,17 @@
+2023-10-04         [RELEASE] Release of event_submission 1.0.0 (Dirk Wenzel)
+2023-09-29 36f3917 [TASK] JobRepository->deleteWithExpiredEvents implemented (Dirk Wenzel)
+2023-09-27 6fc6e9d prevent display of approval button for withdrawn records (Dirk Wenzel)
+2023-09-27 20bb41b [TASK] allow to configure notification mail language (Dirk Wenzel)
+2023-09-27 ae26f96 display approval description for withdrawn records (Dirk Wenzel)
+2023-09-26 af0d027 [BUGFIX] fixed error where wrong status for /event/withdraw was returned, missing data attribut added (Dirk Wenzel)
+2023-09-26 6c7f90a [TASK] omit generated hash from response to validation request (Dirk Wenzel)
+2023-09-26 a17f7b6 [BUGFIX] fixed error where edit link was not generated according to current language - all API endpoints are now localizable (Dirk Wenzel)
+2023-09-26 2d81b2c typo corrected (Dirk Wenzel)
+2023-09-26 fb41df6 [TASK] include job status in response for /event/get (Dirk Wenzel)
+2023-09-25 6ebad03 [TASK] documentation updated (Dirk Wenzel)
+2023-09-22 6449b80 [TASK] event submission can now be withdrawn - API endpoint /event/{id}/withdraw added - SubmissionStatus extended (Dirk Wenzel)
+2023-09-22 eda9b18 SubmissionStatus extended by status `withdrawn` API adapted (Dirk Wenzel)
+
 2023-09-21         [RELEASE] Release of event_submission 0.3.1 (Arend Maubach)
 2023-09-21 1359a05 updating unit tests (Arend Maubach)
 
