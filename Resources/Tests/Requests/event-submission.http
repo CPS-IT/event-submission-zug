@@ -20,8 +20,8 @@ Accept-Language: {{language}}
   "email": "nix@foo.org",
   "title": "New event proposal with title",
   "teaser": "Teaser text for event proposal. The teaser must not  contain any html tags",
-  "datetime": "2017-07-21T17:00:00",
-  "event_end": "2017-07-21T19:00:00",
+  "datetime": "2024-07-21T17:00:00",
+  "event_end": "2024-07-21T19:00:00",
   "timezone": "Europe/Berlin",
   "bodytext": "Do not miss this event! It will be awesome.",
   "event_mode": "hybrid",
@@ -72,6 +72,12 @@ Accept-Language: {{language}}
     "country": 13,
     "language": "de"
 }
+
+### withdraw an existing event proposal
+PUT https://{{host}}/api/event/{{id}}/withdraw
+Accept: application/json
+Authorization: Bearer {{authToken}}
+Accept-Language: {{language}}
 
 ###
 

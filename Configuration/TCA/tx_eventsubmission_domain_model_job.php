@@ -28,6 +28,7 @@ return [
             '2' => 'event-submission-job-approved',
             '3' => 'event-submission-job-event-created',
             '4' => 'event-submission-job-updated',
+            '5' => 'event-submission-job-withdrawn',
             '7' => 'event-submission-job-error',
         ],
     ],
@@ -183,6 +184,7 @@ return [
             'displayCond' => [
                 'AND' => [
                     'FIELD:is_done:!=:1',
+                    'FIELD:status:!=:' . SubmissionStatus::WITHDRAWN
                 ],
             ],
             'config' => [
@@ -274,6 +276,11 @@ return [
                         $ll . 'label.status.updated',
                         SubmissionStatus::UPDATED,
                         "EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg"
+                    ],
+                    [
+                        $ll . 'label.status.withdrawn',
+                        SubmissionStatus::WITHDRAWN,
+                        "EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg"
                     ],
                     [
                         $ll . 'label.status.error',

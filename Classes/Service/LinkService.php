@@ -10,6 +10,8 @@ use Cpsit\EventSubmission\Exceptions\InvalidResponseException;
 use Exception;
 use JsonException;
 use nn\t3;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -42,21 +44,23 @@ class LinkService implements ServiceInterface
 
     public const INVALID_PAGE_LINK_RESPONSE_CODE = 1693491095;
     public const INVALID_PAGE_LINK_RESPONSE_MESSAGE = 'Invalid response for request for page link: %s.';
+    public const KEY_LANGAUGE = 'language';
 
     /**
      * Provides a link for editing of an event submission in frontend.
      * Note: This link allows to change and delete the event submission any time!
      *
      * @param Job $job
+     * @param array $config
      * @return string Link for editing in Frontend
      *
-     * @throws InvalidConfigurationException
-     * @throws InvalidRecordException
-     * @throws InvalidResponseException
-     * @throws SiteNotFoundException
-     * @throws JsonException
+     * @throws \Cpsit\EventSubmission\Exceptions\InvalidConfigurationException
+     * @throws \Cpsit\EventSubmission\Exceptions\InvalidRecordException
+     * @throws \Cpsit\EventSubmission\Exceptions\InvalidResponseException
+     * @throws \JsonException
+     * @throws \TYPO3\CMS\Core\Exception\SiteNotFoundException
      */
-    public function createEventEditLink(Job $job): string
+    public function createEventEditLink(Job $job, array $config= []): string
     {
         $this->assertValidStoragePid($job);
         $storagePageID = $job->getPid();
@@ -76,13 +80,24 @@ class LinkService implements ServiceInterface
         // in frontend - get uri from site router:
         if (t3::Environment()->isFrontend()) {
             $link = (string)$site->getRouter()
-                ->generateUri($appPageId, ['editToken' => $editToken]);
+                ->generateUri(
+                    $appPageId,
+                    [
+                        'editToken' => $editToken,
+                        '_language' => t3::Environment()->getLanguage()
+                    ]
+                );
         }
         // not in frontend - use api request:
         if (!t3::Environment()->isFrontend()) {
+            $headers = [];
+            $queryParameters = [];
+            if (!empty($config[self::KEY_LANGAUGE])) {
+                $headers[] = sprintf('Accept-Language: %s', $config[self::KEY_LANGAUGE]);
+            }
             $apiUri = $site->getBase() . '/api/service/appPageLink/' . $appPageId;
             // todo we should probably cache this result
-            $apiResponse = t3::Request()->GET($apiUri);
+            $apiResponse = t3::Request()->GET($apiUri, $queryParameters, $headers);
             $data = json_decode($apiResponse['content'], true, 512, JSON_THROW_ON_ERROR);
             $this->assertValidPageLinkData($data);
 

@@ -135,6 +135,9 @@
             <trans-unit id="approval_status.message.submissionApprovedEventCreationPending">
                 <source>Event submission has been approved and the proposed event record has not been created yet.</source>
             </trans-unit>
+            <trans-unit id="approval_status.message.submissionWithdrawn">
+                <source>Event submission has been withdrawn. Please consider to un-publish the related event.</source>
+            </trans-unit>
             <trans-unit id="tx_eventsubmission_domain_model_job.label.status">
                 <source>Status</source>
                 <target>Status</target>
@@ -147,6 +150,9 @@
             </trans-unit>
             <trans-unit id="label.status.updated">
                 <source>updated</source>
+            </trans-unit>
+            <trans-unit id="label.status.withdrawn">
+                <source>withdrawn</source>
             </trans-unit>
             <trans-unit id="label.status.approved">
                 <source>approved</source>
