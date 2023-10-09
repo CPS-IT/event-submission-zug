@@ -7,10 +7,14 @@ the `nnrestapi` [documentation](https://labor.99grad.de/typo3-docs/typo3-nnresta
 
 ## Site configuration
 
-The following configuration options are available:  have to be set in the TYPO3
-site config, unter den configuration
-key `settings` `eventSubmission`
-storagePageUid: 463
+Configuration have to be set in the TYPO3 site config.  
+The following configuration options are available:  
+
+```yaml
+settings:
+  eventSubmission:
+    storagePageUid: <page uid>    
+```
 
 ### eventSubmission (array)
 
@@ -20,7 +24,7 @@ Contains all configuration options.
 
 ### storagePageUid (int)
 
-Pid where the job records are to be stored.
+Page id where the job records are to be stored.
 
 **Path:**  Site `settings.eventSubmission.storagePageUid`
-**Default:**  0
+**Default:**  `9`
