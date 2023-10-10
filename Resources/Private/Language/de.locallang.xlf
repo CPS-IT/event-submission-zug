@@ -101,7 +101,7 @@
                 <target>Bestätigungsemail</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.subject">
-                <source>Thanks! for your event submission</source>
+                <source>Thanks for your event submission! </source>
                 <target>Danke! für Ihre Veranstaltungseinreichung</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.greeting">

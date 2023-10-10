@@ -78,7 +78,7 @@
                 <source>Confirmation email</source>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.subject">
-                <source>Thanks! for your event submission</source>
+                <source>Thanks for your event submission! </source>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.greeting">
                 <source>Hello,</source>
