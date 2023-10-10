@@ -85,7 +85,7 @@
                 <target>Bestätigen Sie die Übermittlung der Veranstaltung</target>
             </trans-unit>
             <trans-unit id="user.sendValidationRequest.mail.signature">
-                <source>Best regards</source>
+                <source>Best regards, IKI Communication Team</source>
                 <target>Mit freundlichen Grüßen</target>
             </trans-unit>
             <trans-unit id="user.sendValidationRequest.mail.footer">
@@ -141,7 +141,7 @@
                 <target>Veranstaltung bearbeiten oder löschen</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.signature">
-                <source>Best regards</source>
+                <source>Best regards, IKI Communication Team</source>
                 <target>Mit freundlichen Grüßen</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.footer">
