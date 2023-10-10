@@ -145,8 +145,8 @@
                 <target>Mit freundlichen Grüßen</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.footer">
-                <source>Die Internationale Klimaschutzinitiative (IKI)</source>
-                <target>Die Internationale Klimaschutzinitiative (IKI)</target>
+                <source>International Climate Initiative (IKI)</source>
+                <target>International Climate Initiative (IKI)</target>
             </trans-unit>
         </body>
     </file>

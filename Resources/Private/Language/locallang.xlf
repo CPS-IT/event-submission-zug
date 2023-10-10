@@ -105,7 +105,7 @@
                 <source>Best regards</source>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.footer">
-                <source>Die Internationale Klimaschutzinitiative (IKI)</source>
+                <source>International Climate Initiative (IKI)</source>
             </trans-unit>
         </body>
     </file>
