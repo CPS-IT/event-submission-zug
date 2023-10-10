@@ -85,7 +85,7 @@
                 <target>Bestätigen Sie die Übermittlung der Veranstaltung</target>
             </trans-unit>
             <trans-unit id="user.sendValidationRequest.mail.signature">
-                <source>Best regards</source>
+                <source>Best regards, IKI Communication Team</source>
                 <target>Mit freundlichen Grüßen</target>
             </trans-unit>
             <trans-unit id="user.sendValidationRequest.mail.footer">
@@ -101,7 +101,7 @@
                 <target>Bestätigungsemail</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.subject">
-                <source>Thanks! for your event submission</source>
+                <source>Thanks for your event submission! </source>
                 <target>Danke! für Ihre Veranstaltungseinreichung</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.greeting">
@@ -141,12 +141,12 @@
                 <target>Veranstaltung bearbeiten oder löschen</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.signature">
-                <source>Best regards</source>
+                <source>Best regards, IKI Communication Team</source>
                 <target>Mit freundlichen Grüßen</target>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.footer">
-                <source>Die Internationale Klimaschutzinitiative (IKI)</source>
-                <target>Die Internationale Klimaschutzinitiative (IKI)</target>
+                <source>International Climate Initiative (IKI)</source>
+                <target>International Climate Initiative (IKI)</target>
             </trans-unit>
         </body>
     </file>

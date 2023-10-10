@@ -1,3 +1,10 @@
+2023-10-10         [RELEASE] Release of event_submission 1.1.0 (Dirk Wenzel)
+2023-10-10 f83e4b7 version 1.1.0 (Dirk Wenzel)
+2023-10-10 e527062 [TASK] localized string corrected (Dirk Wenzel)
+2023-10-10 776e147 [TASK] localized string corrected (Dirk Wenzel)
+2023-10-10 7605fcb [TASK] use `International Climate Initiative (IKI)` as sender in all mails (Dirk Wenzel)
+2023-10-09 80b6bdd [DOC] documentation edited (Dirk Wenzel)
+
 2023-10-04         [RELEASE] Release of event_submission 1.0.0 (Dirk Wenzel)
 2023-09-29 36f3917 [TASK] JobRepository->deleteWithExpiredEvents implemented (Dirk Wenzel)
 2023-09-27 6fc6e9d prevent display of approval button for withdrawn records (Dirk Wenzel)

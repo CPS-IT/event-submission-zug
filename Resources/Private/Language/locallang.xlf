@@ -66,7 +66,7 @@
                 <source>Confirm event submission</source>
             </trans-unit>
             <trans-unit id="user.sendValidationRequest.mail.signature">
-                <source>Best regards</source>
+                <source>Best regards, IKI Communication Team</source>
             </trans-unit>
             <trans-unit id="user.sendValidationRequest.mail.footer">
                 <source>If you did not submit this event or no longer wish to proceed, you can simply ignore this
@@ -78,7 +78,7 @@
                 <source>Confirmation email</source>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.subject">
-                <source>Thanks! for your event submission</source>
+                <source>Thanks for your event submission! </source>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.greeting">
                 <source>Hello,</source>
@@ -102,10 +102,10 @@
                 <source>Edit event</source>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.signature">
-                <source>Best regards</source>
+                <source>Best regards, IKI Communication Team</source>
             </trans-unit>
             <trans-unit id="user.eventPostConfirmation.mail.footer">
-                <source>Die Internationale Klimaschutzinitiative (IKI)</source>
+                <source>International Climate Initiative (IKI)</source>
             </trans-unit>
         </body>
     </file>
