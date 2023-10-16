@@ -1,153 +1,149 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages"
-          product-name="iki_project_import">
-        <header/>
-        <body>
-            <trans-unit id="api_response_message.100">
-                <source>Event submission success</source>
-                <target>Erfolgreiche Veranstaltungseinreichung</target>
-            </trans-unit>
-            <trans-unit id="api_response_message.200">
-                <source>Event successfully updated</source>
-                <target>Veranstaltung erfolgreich aktualisiert</target>
-            </trans-unit>
-            <trans-unit id="api_response_message.300">
-                <source>Validation email successfully sent</source>
-                <target>Bestätigungs-E-Mail erfolgreich gesendet</target>
-            </trans-unit>
-            <trans-unit id="api_response_message.400">
-                <source>Event submission error</source>
-                <target>Fehler bei der Übermittlung der Veranstaltung</target>
-            </trans-unit>
-            <trans-unit id="api_response_message.500">
-                <source>Validation email could not be sent</source>
-                <target>Die Bestätigungs-E-Mail konnte nicht gesendet werden</target>
-            </trans-unit>
-            <trans-unit id="api_response_message.600">
-                <source>Event update submission error</source>
-            </trans-unit>
-            <trans-unit id="api_response_message.700">
-                <source>Event submission found</source>
-            </trans-unit>
-            <trans-unit id="api_response_message.800">
-                <source>Requested event submission could not be found</source>
-            </trans-unit>
-            <trans-unit id="api_response_message.900">
-                <source>Event submission deleted</source>
-            </trans-unit>
-            <trans-unit id="api_response_message.1000">
-                <source>Event submission could not be deleted</source>
-            </trans-unit>
-            <trans-unit id="api_response_message.1300">
-                <source>Event submission withdrawn</source>
-            </trans-unit>
-            <trans-unit id="api_response_message.1400">
-                <source>Event submission could not be withdrawn</source>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.title">
-                <source>Validation email</source>
-                <target>Bestätigungs-E-Mail</target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.subject">
-                <source>Just one more step. Please confirm your event submission</source>
-                <target>Nur noch ein Schritt. Bestätigen Sie Ihre Veranstaltungseinreichung</target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.greeting">
-                <source>Hello,</source>
-                <target>Hallo,</target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.message.1">
-                <source>Thank you for submitting your event to be listed on our platform. We're excited to help you
-                    promote your event! To ensure the accuracy of the information and confirm your intention to list
-                    the event, please click the link below:
-                </source>
-                <target>Vielen Dank für das Einreichen Ihrer Veranstaltung, um sie auf unserer Plattform zu
-                    veröffentlichen. Um die Genauigkeit der Informationen sicherzustellen und Ihre Absicht zur Listung
-                    der Veranstaltung zu bestätigen, klicken Sie bitte auf den unten stehenden Link:
-                </target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.message.2">
-                <source>By clicking the confirmation link, you verify that you want to proceed with listing the event.
-                    If you did not submit this event or no longer wish to proceed, you can simply ignore this
-                    email.
-                </source>
-                <target>Durch Klicken auf den Bestätigungslink bestätigen Sie, dass Sie die Veranstaltung einreichen
-                    möchten.
-                </target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.message.3">
-                <source>We'll verify your confirmation and get back to you shortly.</source>
-                <target>Wir werden Ihre Bestätigung überprüfen und uns bald bei Ihnen melden.</target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.confirmation.button">
-                <source>Confirm event submission</source>
-                <target>Bestätigen Sie die Übermittlung der Veranstaltung</target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.signature">
-                <source>Best regards, IKI Communication Team</source>
-                <target>Mit freundlichen Grüßen</target>
-            </trans-unit>
-            <trans-unit id="user.sendValidationRequest.mail.footer">
-                <source>If you did not submit this event or no longer wish to proceed, you can simply ignore this
-                    email.
-                </source>
-                <target>Wenn Sie diese Veranstaltung nicht eingereicht haben oder nicht mehr fortfahren möchten,
-                    können Sie diese E-Mail einfach ignorieren.
-                </target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.title">
-                <source>Confirmation email</source>
-                <target>Bestätigungsemail</target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.subject">
-                <source>Thanks for your event submission! </source>
-                <target>Danke! für Ihre Veranstaltungseinreichung</target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.greeting">
-                <source>Hello,</source>
-                <target>Hallo,</target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.message.1">
-                <source>Thank you for submitting your event to be listed on our platform.</source>
-                <target>Vielen Dank, dass Sie Ihre Veranstaltung zur Aufnahme auf unserer Plattform
-                    eingereicht haben.
-                </target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.message.2">
-                <source>Please note that before your event can be listed, it will undergo a brief
-                    review and approval process. This is to ensure that all events meet our guidelines and provide
-                    a seamless experience for our users.
-                </source>
-                <target>Bitte beachten Sie, dass Ihr Event vor der Auflistung einem kurzen Überprüfungs- und
-                    Genehmigungsprozess unterzogen wird. Dies geschieht, um sicherzustellen, dass alle Veranstaltungen
-                    unseren Richtlinien entsprechen und unseren Benutzern ein reibungsloses Erlebnis bieten.
-                </target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.message.3">
-                <source>We will notify you promptly once your event is approved and listed on our platform.</source>
-                <target>Wir benachrichtigen Sie umgehend, sobald Ihre Veranstaltung genehmigt und auf unserer
-                    Plattform gelistet ist.
-                </target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.message.4">
-                <source>Please use the link below to update or delete the event.</source>
-                <target>Bitte verwenden Sie den untenstehenden Link, um die Veranstaltung zu
-                    bearbeiten oder zu löschen.
-                </target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.confirmation.button">
-                <source>Edit event</source>
-                <target>Veranstaltung bearbeiten oder löschen</target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.signature">
-                <source>Best regards, IKI Communication Team</source>
-                <target>Mit freundlichen Grüßen</target>
-            </trans-unit>
-            <trans-unit id="user.eventPostConfirmation.mail.footer">
-                <source>International Climate Initiative (IKI)</source>
-                <target>International Climate Initiative (IKI)</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages"
+		  product-name="iki_project_import">
+		<header/>
+		<body>
+			<trans-unit id="api_response_message.100">
+				<source>Event submission success</source>
+				<target>Erfolgreiche Veranstaltungseinreichung</target>
+			</trans-unit>
+			<trans-unit id="api_response_message.200">
+				<source>Event successfully updated</source>
+				<target>Veranstaltung erfolgreich aktualisiert</target>
+			</trans-unit>
+			<trans-unit id="api_response_message.300">
+				<source>Validation email successfully sent</source>
+				<target>Bestätigungs-E-Mail erfolgreich gesendet</target>
+			</trans-unit>
+			<trans-unit id="api_response_message.400">
+				<source>Event submission error</source>
+				<target>Fehler bei der Übermittlung der Veranstaltung</target>
+			</trans-unit>
+			<trans-unit id="api_response_message.500">
+				<source>Validation email could not be sent</source>
+				<target>Die Bestätigungs-E-Mail konnte nicht gesendet werden</target>
+			</trans-unit>
+			<trans-unit id="api_response_message.600">
+				<source>Event update submission error</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.700">
+				<source>Event submission found</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.800">
+				<source>Requested event submission could not be found</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.900">
+				<source>Event submission deleted</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.1000">
+				<source>Event submission could not be deleted</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.1300">
+				<source>Event submission withdrawn</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.1400">
+				<source>Event submission could not be withdrawn</source>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.title">
+				<source>Validation email</source>
+				<target>Bestätigungs-E-Mail</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.subject">
+				<source>Just one more step. Please confirm your event submission</source>
+				<target>Nur noch ein Schritt. Bestätigen Sie Ihre Veranstaltungseinreichung</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.greeting">
+				<source>Hello,</source>
+				<target>Hallo,</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.message.1">
+				<source>Thank you for submitting your event to be listed on our platform. We're excited to help you
+					promote your event! To ensure the accuracy of the information and confirm your intention to list
+					the event, please click the link below:
+				</source>
+				<target>Vielen Dank für das Einreichen Ihrer Veranstaltung, um sie auf unserer Plattform zu
+					veröffentlichen. Um die Genauigkeit der Informationen sicherzustellen und Ihre Absicht zur Listung
+					der Veranstaltung zu bestätigen, klicken Sie bitte auf den unten stehenden Link:
+				</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.message.2">
+				<source>By clicking the confirmation link, you verify that you want to proceed with listing the event.
+					If you did not submit this event or no longer wish to proceed, you can simply ignore this
+					email.
+				</source>
+				<target>Durch Klicken auf den Bestätigungslink bestätigen Sie, dass Sie die Veranstaltung einreichen
+					möchten.
+				</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.message.3">
+				<source>We'll verify your confirmation and get back to you shortly.</source>
+				<target>Wir werden Ihre Bestätigung überprüfen und uns bald bei Ihnen melden.</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.confirmation.button">
+				<source>Confirm event submission</source>
+				<target>Bestätigen Sie die Übermittlung der Veranstaltung</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.signature">
+				<source>Best regards, IKI Communication Team</source>
+				<target>Mit freundlichen Grüßen</target>
+			</trans-unit>
+			<trans-unit id="user.sendValidationRequest.mail.footer">
+				<source>(Footer)</source>
+				<target>(Fußzeile)</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.title">
+				<source>Confirmation email</source>
+				<target>Bestätigungsemail</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.subject">
+				<source>Thanks for your event submission!</source>
+				<target>Danke! für Ihre Veranstaltungseinreichung</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.greeting">
+				<source>Hello,</source>
+				<target>Hallo,</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.1">
+				<source>Thank you for submitting your event to be listed on our platform.</source>
+				<target>Vielen Dank, dass Sie Ihre Veranstaltung zur Aufnahme auf unserer Plattform
+					eingereicht haben.
+				</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.2">
+				<source>Please note that before your event can be listed, it will undergo a brief
+					review and approval process. This is to ensure that all events meet our guidelines and provide
+					a seamless experience for our users.
+				</source>
+				<target>Bitte beachten Sie, dass Ihr Event vor der Auflistung einem kurzen Überprüfungs- und
+					Genehmigungsprozess unterzogen wird. Dies geschieht, um sicherzustellen, dass alle Veranstaltungen
+					unseren Richtlinien entsprechen und unseren Benutzern ein reibungsloses Erlebnis bieten.
+				</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.3">
+				<source>We will notify you promptly once your event is approved and listed on our platform.</source>
+				<target>Wir benachrichtigen Sie umgehend, sobald Ihre Veranstaltung genehmigt und auf unserer
+					Plattform gelistet ist.
+				</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.message.4">
+				<source>Please use the link below to update or delete the event.</source>
+				<target>Bitte verwenden Sie den untenstehenden Link, um die Veranstaltung zu
+					bearbeiten oder zu löschen.
+				</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.confirmation.button">
+				<source>Edit event</source>
+				<target>Veranstaltung bearbeiten oder löschen</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.signature">
+				<source>Best regards, IKI Communication Team</source>
+				<target>Mit freundlichen Grüßen</target>
+			</trans-unit>
+			<trans-unit id="user.eventPostConfirmation.mail.footer">
+				<source>(Footer Message)</source>
+				<target>International Climate Initiative (IKI)</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
