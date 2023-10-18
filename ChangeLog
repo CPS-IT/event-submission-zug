@@ -1,3 +1,6 @@
+2023-10-18         [RELEASE] Release of event_submission 1.2.1 (Dirk Wenzel)
+2023-10-18 a959740 [BUGFIX] local language key corrected (Dirk Wenzel)
+
 2023-10-16         [RELEASE] Release of event_submission 1.2.0 (Dirk Wenzel)
 2023-10-16 e3d2d56 version 1.2.0 (Dirk Wenzel)
 2023-10-16 76cd50d [TASK] cleanup localized strings (Dirk Wenzel)
