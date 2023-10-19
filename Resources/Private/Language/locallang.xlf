@@ -43,7 +43,7 @@
 				<source>Validation email</source>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.subject">
-				<source>Just one more step. Please confirm your event submission</source>
+				<source>Just one more step. Please confirm your event submission.</source>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.greeting">
 				<source>Hello,</source>
