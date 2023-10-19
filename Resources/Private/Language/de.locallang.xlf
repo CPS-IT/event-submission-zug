@@ -50,7 +50,7 @@
 				<target>Bestätigungs-E-Mail</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.subject">
-				<source>Just one more step. Please confirm your event submission</source>
+				<source>Just one more step. Please confirm your event submission.</source>
 				<target>Nur noch ein Schritt. Bestätigen Sie Ihre Veranstaltungseinreichung</target>
 			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.greeting">
