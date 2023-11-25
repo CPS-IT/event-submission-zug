@@ -11,7 +11,10 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Domain\Repository;
 
+use Cpsit\EventSubmission\Domain\Model\Dto\DemandInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
+use Nng\Nnrestapi\Annotations\Example;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use Fr\IkiSitepackage\Domain\Model\News;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -103,4 +106,89 @@ class JobRepository extends Repository
             );
         return $queryBuilder->execute();
     }
+
+    public function findDemanded(DemandInterface $demand): QueryResultInterface
+    {
+        $query = $this->createQuery();
+
+        $this->applyConstraints($query, $demand);
+        $this->applyOrderings($query, $demand);
+        $this->applyOffsetLimit($query, $demand);
+
+        return $query->execute();
+    }
+
+    protected function applyConstraints(QueryInterface $query, DemandInterface $demand): void
+    {
+        $constraints = [];
+
+        if (!empty($pages = $demand->getPageIds())) {
+            $querySettings = $query->getQuerySettings();
+            $querySettings->setRespectStoragePage(true)
+                ->setStoragePageIds($pages);
+            $query->setQuerySettings($querySettings);
+        }
+
+        if (!empty($demand->getStatus())) {
+            $constraints[] = $query->in(
+                Job::FIELD_STATUS, $demand->getStatus()
+            );
+        }
+
+        if (!empty($constraints)) {
+            $query->matching(
+                $query->logicalAnd($constraints)
+            );
+        }
+    }
+
+    protected function applyOffsetLimit(QueryInterface $query, DemandInterface $demand): void
+    {
+        if (!empty($demand->getLimit())) {
+            $query->setLimit($demand->getLimit());
+        }
+
+        if (!empty($demand->getOffset())) {
+            if (empty($query->getLimit())) {
+                $query->setLimit(PHP_INT_MAX);
+            }
+            $query->setOffset((int)$demand->getOffset());
+        }
+    }
+
+    /**
+     * Orderings strings
+     *
+     * @Example(property desc, property asc)
+     *
+     * @param QueryInterface $query
+     * @param DemandInterface $demand
+     * @return array
+     */
+    protected function applyOrderings(QueryInterface $query, DemandInterface $demand): array
+    {
+        $orderings = [];
+        $sorting = GeneralUtility::trimExplode(',', $demand->getSorting(), true);
+
+        if (!empty($sorting)) {
+            foreach ($sorting as $orderItem) {
+                [$orderField, $ascDesc] = GeneralUtility::trimExplode(' ', $orderItem, true);
+                // count == 1 means that no direction is given
+                if ($ascDesc) {
+                    $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
+                        QueryInterface::ORDER_DESCENDING :
+                        QueryInterface::ORDER_ASCENDING);
+                } else {
+                    $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
+                }
+            }
+        }
+
+        if (!empty($orderings)) {
+            $query->setOrderings($orderings);
+        }
+
+        return $orderings;
+    }
+
 }
