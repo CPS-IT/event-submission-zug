@@ -271,4 +271,9 @@ class Job extends AbstractEntity
 
         return $status;
     }
+
+    public function getPayloadDecoded(): array
+    {
+        return json_decode($this->payload, true) ;
+    }
 }
