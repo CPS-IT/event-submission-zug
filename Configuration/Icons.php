@@ -16,9 +16,13 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-approved.svg',
     ],
-    'event-submission-job-event-created' => [
+    'event-submission-job-eventCreated' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-event-created.svg',
+        'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-eventCreated.svg',
+    ],
+    'event-submission-job-published' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-published.svg',
     ],
     'event-submission-job-updated' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,

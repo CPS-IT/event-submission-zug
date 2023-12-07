@@ -26,9 +26,10 @@ return [
             'default' => 'event-submission-job-unknown',
             '1' => 'event-submission-job-new',
             '2' => 'event-submission-job-approved',
-            '3' => 'event-submission-job-event-created',
+            '3' => 'event-submission-job-eventCreated',
             '4' => 'event-submission-job-updated',
             '5' => 'event-submission-job-withdrawn',
+            '6' => 'event-submission-job-published',
             '7' => 'event-submission-job-error',
         ],
     ],
@@ -270,7 +271,12 @@ return [
                     [
                         $ll . 'label.status.eventCreated',
                         SubmissionStatus::EVENT_CREATED,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-event-created.svg'
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-eventCreated.svg'
+                    ],
+                    [
+                        $ll . 'label.status.published',
+                        SubmissionStatus::EVENT_PUBLISHED,
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-published.svg'
                     ],
                     [
                         $ll . 'label.status.updated',

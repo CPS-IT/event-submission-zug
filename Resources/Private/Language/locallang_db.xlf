@@ -161,6 +161,9 @@
 			<trans-unit id="label.status.eventCreated">
 				<source>event created</source>
 			</trans-unit>
+			<trans-unit id="label.status.published">
+				<source>published</source>
+			</trans-unit>
 			<trans-unit id="label.status.error">
 				<source>error</source>
 			</trans-unit>
