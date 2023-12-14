@@ -224,8 +224,8 @@ class Job extends AbstractEntity
      * Set the status
      * Note: any other value than SubmissionStatus::UPDATED might be
      * overridden internally depending on approval status, error etc.
-     * @see Job::determineStatus()
      * @return int<SubmissionStatus>
+     * @see Job::determineStatus()
      */
     public function getStatus(): int
     {
@@ -238,6 +238,7 @@ class Job extends AbstractEntity
     protected function determineStatus(): int
     {
         $status = SubmissionStatus::UNKNOWN;
+        $event = $this->getEvent();
 
         // early return for any error
         if ($this->isApiError() || $this->isInternalError()) {
@@ -255,7 +256,7 @@ class Job extends AbstractEntity
 
         // approved, event not yet created
         if (
-            $this->getEvent() === null
+            $event === null
             && ($this->isApproved())
         ) {
             $status = SubmissionStatus::APPROVED;
@@ -264,9 +265,18 @@ class Job extends AbstractEntity
         // approved, event created
         if (
             $this->isApproved()
-            && $this->getEvent() instanceof News
+            && $event instanceof News
         ) {
+            // default is EVENT_CREATED
             $status = SubmissionStatus::EVENT_CREATED;
+            // Note: we do not check for other enable fields here
+            if (
+                $event->getHidden() === false
+                && $event->getDeleted() === false
+            ) {
+                $status = SubmissionStatus::EVENT_PUBLISHED;
+            }
+
         }
 
         return $status;
@@ -274,6 +284,6 @@ class Job extends AbstractEntity
 
     public function getPayloadDecoded(): array
     {
-        return json_decode($this->payload, true) ;
+        return json_decode($this->payload, true);
     }
 }

@@ -213,6 +213,10 @@
 				<source>event created</source>
 				<target>Veranstaltung angelegt</target>
 			</trans-unit>
+			<trans-unit id="label.status.published">
+				<source>published</source>
+				<target>veröffentlicht</target>
+			</trans-unit>
 			<trans-unit id="label.status.error">
 				<source>error</source>
 				<target>Fehler</target>
