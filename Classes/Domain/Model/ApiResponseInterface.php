@@ -26,11 +26,12 @@ interface ApiResponseInterface extends Stringable
     public const EVENT_GET_ERROR = 800;
     public const EVENT_DELETE_SUCCESS = 900;
     public const EVENT_DELETE_ERROR = 1000;
-    public const EVENT_WITHDRAW_SUCCESS = 1300;
-    public const EVENT_WITHDRAW_ERROR = 1400;
-
     public const APP_PAGE_LINK_REQUEST_SUCCESS = 1100;
     public const APP_PAGE_LINK_REQUEST_ERROR = 1200;
+    public const EVENT_WITHDRAW_SUCCESS = 1300;
+    public const EVENT_WITHDRAW_ERROR = 1400;
+    public const APP_SETTINGS_SUCCESS = 1500;
+    public const APP_SETTINGS_ERROR = 1600;
     public function __toString(): string;
 
     public function toArray(): array;

@@ -39,6 +39,12 @@
 			<trans-unit id="api_response_message.1400">
 				<source>Event submission could not be withdrawn</source>
 			</trans-unit>
+			<trans-unit id="api_response_message.1500">
+				<source>Application settings generated.</source>
+			</trans-unit>
+			<trans-unit id="api_response_message.1600">
+				<source>Could not generate application settings.</source>
+			</trans-unit>
 			<trans-unit id="user.sendValidationRequest.mail.title">
 				<source>Validation email</source>
 			</trans-unit>
@@ -102,7 +108,7 @@
 				<source>Best regards</source>
 			</trans-unit>
 			<trans-unit id="user.eventPostConfirmation.mail.footer">
-				<source>(Footer)</source>
+				<source>International Climate Initiative (IKI)</source>
 			</trans-unit>
 		</body>
 	</file>

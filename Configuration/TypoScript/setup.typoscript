@@ -16,6 +16,10 @@ plugin.tx_nnrestapi {
           0 = EXT:event_submission/Resources/Private/Partials
         }
       }
+      tcaFormFields {
+
+      }
+
       appPid = 0
       mail {
         logoImage =
@@ -46,6 +50,12 @@ tt_content.eventsubmission_app.20 {
   layoutRootPaths.200 = EXT:event_submission/Resources/Private/Layouts/
   view =< plugin.tx_eventsubmission.view
   templateName = App
+  variables {
+    rootPid = TEXT
+    rootPid {
+      data = site:rootPageId
+    }
+  }
   settings {
     appPid = 0
   }
