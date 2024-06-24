@@ -20,9 +20,7 @@ namespace Cpsit\EventSubmission\Service;
 
 use Cpsit\EventSubmission\Domain\Model\FormField;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class FormFieldFromTcaService
@@ -32,7 +30,7 @@ class FormFieldFromTcaService
     public function get(string $tableName, string $columnName, array $confOverrides = []): ?FormField
     {
         $column = $this->getColumConfig($tableName, $columnName);
-        if ($column === null) {
+        if ($column === null && empty($column['config']['type'])) {
             return null;
         }
 
@@ -44,8 +42,10 @@ class FormFieldFromTcaService
         $formField->setLabel($this->translate($column['label'] ?? ''));
         $formField->setHelp($this->translate($column['description'] ?? ''));
         $formField->setOptions($this->getColumItems($column));
-        $formField->setLengthMax((string)$column['config']['max'] ?? '');
-        $formField->setLengthMin((string)$column['config']['min'] ?? '');
+        $max = $column['config']['max'] ?? '';
+        $formField->setLengthMax((string)$max);
+        $min = $column['config']['min'] ?? '';
+        $formField->setLengthMin((string)$min);
 
         return $formField;
     }
@@ -87,7 +87,7 @@ class FormFieldFromTcaService
     protected function getColumItems(array $column): array
     {
         $options = [];
-        if ($column['config']['type'] == 'select' && count($column['config']['items']) && !$column['config']['foreign_table']) {
+        if ($column['config']['type'] == 'select' && count($column['config']['items']) && empty($column['config']['foreign_table'])) {
             foreach ($column['config']['items'] as $option) {
                 $label = $option['0'] ?? $option['label'] ?? '';
                 $options[] = [
