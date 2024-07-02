@@ -95,7 +95,7 @@ class LinkService implements ServiceInterface
             if (!empty($config[self::KEY_LANGAUGE])) {
                 $headers[] = sprintf('Accept-Language: %s', $config[self::KEY_LANGAUGE]);
             }
-            $apiUri = $site->getBase() . '/api/service/appPageLink/' . $appPageId;
+            $apiUri = rtrim($site->getBase(), '/') . '/api/service/appPageLink/' . $appPageId;
             // todo we should probably cache this result
             $apiResponse = t3::Request()->GET($apiUri, $queryParameters, $headers);
             $data = json_decode($apiResponse['content'], true, 512, JSON_THROW_ON_ERROR);
