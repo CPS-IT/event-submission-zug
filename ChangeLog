@@ -1,3 +1,7 @@
+2024-07-10         [RELEASE] Release of event_submission 1.4.3 (Vladimir Falcón Piva)
+2024-07-10 899ceab Removed dependency to iki site package (Vladimir Falcón Piva)
+2024-07-02 068df25 Fixed Url for $apiUri (Vladimir Falcón Piva)
+
 2024-06-24         [RELEASE] Release of event_submission 1.4.2 (Vladimir Falcón Piva)
 2024-06-24 70474b9 Submission Payload Display node lang labels. (Vladimir Falcón Piva)
 
