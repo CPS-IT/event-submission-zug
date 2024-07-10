@@ -15,7 +15,6 @@ use Cpsit\EventSubmission\Domain\Model\Dto\DemandInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
 use Nng\Nnrestapi\Annotations\Example;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use Fr\IkiSitepackage\Domain\Model\News;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -75,7 +74,7 @@ class JobRepository extends Repository
             ->from(Job::TABLE_NAME, 'job')
             ->leftJoin(
                 'job',
-                News::TABLE_NAME,
+                'tx_news_domain_model_news',
                 'event',
                 $queryBuilder->expr()->eq(
                     'event.uid', $queryBuilder->quoteIdentifier('job.event')
