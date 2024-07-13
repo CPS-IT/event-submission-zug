@@ -117,6 +117,20 @@ class JobRepository extends Repository
         return $query->execute();
     }
 
+    public function findByEventUid(int $uid): null|object
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
+
+        return $query
+            ->matching(
+                $query->logicalAnd(
+                    $query->equals('event.uid', $uid),
+                ),
+            )
+            ->execute()->getFirst();
+    }
+
     protected function applyConstraints(QueryInterface $query, DemandInterface $demand): void
     {
         $constraints = [];
