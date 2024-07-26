@@ -42,6 +42,7 @@ class FormFieldFromTcaService
         $formField->setLabel($this->translate($column['label'] ?? ''));
         $formField->setHelp($this->translate($column['description'] ?? ''));
         $formField->setOptions($this->getColumItems($column));
+        $formField->setMultiple($this->isMultiple($column));
         $max = $column['config']['max'] ?? '';
         $formField->setLengthMax((string)$max);
         $min = $column['config']['min'] ?? '';
@@ -98,6 +99,36 @@ class FormFieldFromTcaService
         }
 
         return $options;
+    }
+
+    protected function isMultiple(array $column): bool
+    {
+        $allowedTypes = ['select', 'checkbox', 'group', 'inline'];
+        $allowedTypesWithoutRenderType = ['checkbox', 'group', 'inline'];
+        $allowedRenderTypes = ['selectCheckBox', 'selectMultipleSideBySide', 'selectTree'];
+
+        if (!in_array($column['config']['type'], $allowedTypes)) {
+            return false;
+        }
+
+        if (!in_array($column['config']['type'], $allowedTypesWithoutRenderType)) {
+            if (isset($column['config']['renderType']) && !in_array($column['config']['renderType'],
+                    $allowedRenderTypes)) {
+                return false;
+            }
+        }
+
+        $maxItems = $column['config']['maxitems'] ?? null;
+
+        if ($maxItems == null) {
+            return true;
+        }
+
+        if ($maxItems > 1) {
+            return true;
+        }
+
+        return false;
     }
 
     protected function getColumConfig(string $tableName, string $columnName): ?array
