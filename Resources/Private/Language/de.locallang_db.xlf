@@ -69,7 +69,7 @@
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.approved.0">
 				<source>Not approved</source>
-				<target>nicht freigegeben</target>
+				<target>Jetzt freigeben</target>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.approved.1">
 				<source>Approved</source>
