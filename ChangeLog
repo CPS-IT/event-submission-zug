@@ -1,3 +1,7 @@
+2024-07-30         [RELEASE] Release of event_submission 1.4.6 (Vladimir Falcón Piva)
+2024-07-30 a34348a 58842 update approve now label in BE (Vladimir Falcón Piva)
+2024-07-30 e643927 58842 fixed event creation and update (Vladimir Falcón Piva)
+
 2024-07-26         [RELEASE] Release of event_submission 1.4.5 (Vladimir Falcón Piva)
 2024-07-26 8753b94 Feature forms fields with multiple options (Vladimir Falcón Piva)
 
