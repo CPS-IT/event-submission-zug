@@ -36,4 +36,19 @@ enum SubmissionStatus: int
     {
         return array_column(self::cases(), 'name', 'value');
     }
+
+    public static function isValidName(string $name): bool
+    {
+        return in_array($name, self::status());
+    }
+
+    public static function getStatusByName(string $name): ?SubmissionStatus
+    {
+        if(!self::isValidName($name)) {
+            return null;
+        }
+
+        $value = array_search($name, self::status());
+        return self::from($value);
+    }
 }
