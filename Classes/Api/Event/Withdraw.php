@@ -31,15 +31,14 @@ use Nng\Nnrestapi\Api\AbstractApi;
 final class Withdraw extends AbstractApi implements EventApiInterface
 {
     public const RESPONSE_NAME = 'EventWithdrawApiResponse';
-    protected ApiResponseFactoryFactory $apiResponseFactoryFactory;
     protected ApiResponseFactoryInterface $responseFactory;
-    protected Db $db;
 
-    public function __construct(ApiResponseFactoryFactory $apiResponseFactory, Db $db)
+    public function __construct(
+        ApiResponseFactoryFactory $apiResponseFactoryFactory,
+        private readonly Db $db
+    )
     {
-        $this->apiResponseFactoryFactory = $apiResponseFactory;
-        $this->responseFactory = $this->apiResponseFactoryFactory->get(self::RESPONSE_NAME);
-        $this->db = $db;
+        $this->responseFactory = $apiResponseFactoryFactory->get(self::RESPONSE_NAME);
     }
 
     /**
