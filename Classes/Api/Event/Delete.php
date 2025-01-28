@@ -25,10 +25,9 @@ use Nng\Nnrestapi\Api\AbstractApi;
 /**
  * Event API end point for DELETE method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Delete extends AbstractApi implements EventApiInterface
-
 {
     public const RESPONSE_NAME = 'EventDeleteApiResponse';
     protected ApiResponseFactoryInterface $responseFactory;
@@ -85,16 +84,17 @@ final class Delete extends AbstractApi implements EventApiInterface
         $responseCode = ApiResponseInterface::EVENT_DELETE_ERROR;
         $id = $arguments[self::PARAMETER_ID];
         $responseData = [
-            'id' => $id
+            'id' => $id,
         ];
 
         // delete job by identifier, job must not be approved, deleted or imported yet
-        $result = $this->db->delete(Job::TABLE_NAME,
+        $result = $this->db->delete(
+            Job::TABLE_NAME,
             [
                 Job::FIELD_UUID => $id,
                 Job::FIELD_APPROVED => 0,
                 Job::FIELD_IS_DONE => 0,
-                Job::FIELD_DELETED => 0
+                Job::FIELD_DELETED => 0,
             ]
         );
 

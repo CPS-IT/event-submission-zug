@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,6 +12,4 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Domain\Model\Dto;
 
-interface DemandInterface
-{
-}
+interface DemandInterface {}

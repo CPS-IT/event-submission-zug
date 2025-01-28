@@ -31,7 +31,7 @@ use Nng\Nnrestapi\Api\AbstractApi;
 /**
  * Service API end point for GET appPageLink method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class AppPageLink extends AbstractApi
 {
@@ -42,8 +42,7 @@ final class AppPageLink extends AbstractApi
 
     public function __construct(
         protected ApiResponseFactoryFactory $apiResponseFactoryFactory
-    )
-    {
+    ) {
         $this->responseFactory = $this->apiResponseFactoryFactory->get(self::RESPONSE_NAME);
     }
 
@@ -82,7 +81,7 @@ final class AppPageLink extends AbstractApi
      *
      * @Api\Route("GET /service/appPageLink/{id}")
      * @Api\Access("public")
-     * @Api\Localize()
+     * @Api\Localize
      * @return array
      * @throws Exception
      * @throws JsonException
@@ -93,7 +92,7 @@ final class AppPageLink extends AbstractApi
 
         try {
             $responseData = [
-                'appPageLink' => $this->getApplicationPageLink()
+                'appPageLink' => $this->getApplicationPageLink(),
             ];
             $responseCode = ApiResponseInterface::APP_PAGE_LINK_REQUEST_SUCCESS;
         } catch (Exception $exception) {
@@ -114,10 +113,9 @@ final class AppPageLink extends AbstractApi
         return \nn\t3::Page()->getLink(
             $id,
             [
-                '_language' => t3::Environment()->getLanguage()
+                '_language' => t3::Environment()->getLanguage(),
             ],
             true
         );
     }
-
 }

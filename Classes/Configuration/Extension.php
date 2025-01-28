@@ -24,20 +24,20 @@ class Extension
 
     public const ADDITIONAL_RENDER_TYPES = [
         SubmissionPayloadDisplayNode::class,
-        SubmissionApprovalStatusNode::class
+        SubmissionApprovalStatusNode::class,
     ];
-    public static function registerAdditionalRenderTypes():void
+    public static function registerAdditionalRenderTypes(): void
     {
         foreach (self::ADDITIONAL_RENDER_TYPES as $class) {
-            if(!in_array(RegistrableInterface::class, class_implements($class,), true)) {
+            if (!in_array(RegistrableInterface::class, class_implements($class), true)) {
                 continue;
             }
 
             $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][$class::getNodeId()] = [
-                    'nodeName' => $class::getNodeName(),
-                    'priority' => $class::getPriority(),
-                    'class' => $class,
-                ];
+                'nodeName' => $class::getNodeName(),
+                'priority' => $class::getPriority(),
+                'class' => $class,
+            ];
         }
     }
 }

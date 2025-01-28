@@ -25,7 +25,6 @@ final class MailService implements ServiceInterface
         string $returnPathEmail = '',
         bool $absPrefix = true,
     ): void {
-
         // Sender data from $GLOBALS
         if (empty($fromEmail)) {
             $fromEmail = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'];
@@ -45,8 +44,5 @@ final class MailService implements ServiceInterface
             'returnPath_email' => $returnPathEmail,
             'absPrefix' => $absPrefix ? \nn\t3::Environment()->getBaseURL() : '',
         ]);
-
     }
-
-
 }

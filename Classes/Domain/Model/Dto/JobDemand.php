@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -39,7 +40,6 @@ class JobDemand implements DemandInterface
      * @var int[]
      */
     protected array $status = [];
-
 
     public function getSorting(): string
     {

@@ -21,8 +21,7 @@ class ApiResponse implements ApiResponseInterface
     public function __construct(
         protected int $code,
         protected array $data,
-    ) {
-    }
+    ) {}
 
     public function getCode(): int
     {

@@ -1,4 +1,5 @@
 <?php
+
 return [
     'event-submission-job' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,

@@ -12,11 +12,10 @@ use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 /**
  * Service API end point for GET appPageLink method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Settings extends AbstractApi
 {
@@ -74,7 +73,7 @@ final class Settings extends AbstractApi
      *
      * @Api\Route("GET /service/settings")
      * @Api\Access("public")
-     * @Api\Localize()
+     * @Api\Localize
      * @return array
      * @throws Exception
      * @throws JsonException
@@ -83,7 +82,7 @@ final class Settings extends AbstractApi
     {
         try {
             $settings = [
-                'formFields' => $this->getTcaFormFieldsFromSettings()
+                'formFields' => $this->getTcaFormFieldsFromSettings(),
             ];
             $responseCode = ApiResponseInterface::APP_SETTINGS_SUCCESS;
         } catch (Exception $exception) {
@@ -113,5 +112,4 @@ final class Settings extends AbstractApi
         }
         return $tcaFormFields;
     }
-
 }

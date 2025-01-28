@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpMultipleClassDeclarationsInspection */
+<?php
+
+/** @noinspection PhpMultipleClassDeclarationsInspection */
 
 declare(strict_types=1);
 
@@ -24,10 +26,9 @@ use Nng\Nnrestapi\Api\AbstractApi;
 /**
  * Event API end point for PUT method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Withdraw extends AbstractApi implements EventApiInterface
-
 {
     public const RESPONSE_NAME = 'EventWithdrawApiResponse';
     protected ApiResponseFactoryFactory $apiResponseFactoryFactory;
@@ -72,7 +73,7 @@ final class Withdraw extends AbstractApi implements EventApiInterface
      * ```
      *
      * @Api\Route("PUT /event/{id}/withdraw")
-     * @Api\Localize()
+     * @Api\Localize
      * @Api\Access("public")
      * @return array
      */
@@ -82,12 +83,13 @@ final class Withdraw extends AbstractApi implements EventApiInterface
         $responseCode = ApiResponseInterface::EVENT_WITHDRAW_ERROR;
         $id = $arguments[self::PARAMETER_ID];
         $responseData = [
-            'id' => $id
+            'id' => $id,
         ];
 
         // find job by identifier
         // Note: job could be approved and imported already
-        $job = $this->db->findOneByValues(Job::TABLE_NAME,
+        $job = $this->db->findOneByValues(
+            Job::TABLE_NAME,
             [
                 Job::FIELD_UUID => $id,
             ]
@@ -97,11 +99,11 @@ final class Withdraw extends AbstractApi implements EventApiInterface
         if (!empty($job)) {
             $data = [
                 Job::FIELD_APPROVED => 0,
-                Job::FIELD_STATUS => SubmissionStatus::WITHDRAWN
+                Job::FIELD_STATUS => SubmissionStatus::WITHDRAWN,
             ];
 
             $where = [
-                Job::FIELD_UID => $job[Job::FIELD_UID]
+                Job::FIELD_UID => $job[Job::FIELD_UID],
             ];
             $result = $this->db->update(Job::TABLE_NAME, $data, $where);
 

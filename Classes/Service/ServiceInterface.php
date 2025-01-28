@@ -12,7 +12,4 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Service;
 
-interface ServiceInterface
-{
-
-}
+interface ServiceInterface {}

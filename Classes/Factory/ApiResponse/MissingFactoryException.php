@@ -12,7 +12,4 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Factory\ApiResponse;
 
-class MissingFactoryException extends \Exception
-{
-
-}
+class MissingFactoryException extends \Exception {}

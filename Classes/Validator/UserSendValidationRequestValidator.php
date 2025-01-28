@@ -30,7 +30,6 @@ class UserSendValidationRequestValidator implements \Cpsit\EventSubmission\Valid
 {
     public function isValid(array $requestBody): bool
     {
-
         if (empty($requestBody['email']) || !GeneralUtility::validEmail($requestBody['email'])) {
             return false;
         }

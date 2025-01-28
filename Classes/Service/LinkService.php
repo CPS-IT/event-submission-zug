@@ -8,16 +8,11 @@ use Cpsit\EventSubmission\Exceptions\InvalidConfigurationException;
 use Cpsit\EventSubmission\Exceptions\InvalidRecordException;
 use Cpsit\EventSubmission\Exceptions\InvalidResponseException;
 use Exception;
-use JsonException;
 use nn\t3;
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Context\LanguageAspect;
-use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
-
 
 /***************************************************************
  *  Copyright notice
@@ -60,7 +55,7 @@ class LinkService implements ServiceInterface
      * @throws \JsonException
      * @throws \TYPO3\CMS\Core\Exception\SiteNotFoundException
      */
-    public function createEventEditLink(Job $job, array $config= []): string
+    public function createEventEditLink(Job $job, array $config = []): string
     {
         $this->assertValidStoragePid($job);
         $storagePageID = $job->getPid();
@@ -84,7 +79,7 @@ class LinkService implements ServiceInterface
                     $appPageId,
                     [
                         'editToken' => $editToken,
-                        '_language' => t3::Environment()->getLanguage()
+                        '_language' => t3::Environment()->getLanguage(),
                     ]
                 );
         }
@@ -104,7 +99,6 @@ class LinkService implements ServiceInterface
             $link = $data['data']['appPageLink'] . '?editToken=' . $editToken;
         }
 
-
         return $link;
     }
 
@@ -123,17 +117,16 @@ class LinkService implements ServiceInterface
     }
     /**
      * @param Job $job
-     * @return void
      * @throws InvalidRecordException
      */
     protected function assertValidStoragePid(Job $job): void
     {
-        if (null === $job->getPid()) {
+        if ($job->getPid() === null) {
             $message = sprintf(
                 self::INVALID_JOB_RECORD_MESSAGE,
                 ' Field $appId must not be null.'
             );
-            throw new  InvalidRecordException(
+            throw new InvalidRecordException(
                 $message,
                 self::INVALID_JOB_RECORD_CODE
             );
@@ -163,7 +156,6 @@ class LinkService implements ServiceInterface
 
     /**
      * @param mixed $data
-     * @return void
      * @throws InvalidResponseException
      */
     protected function assertValidPageLinkData(mixed $data): void

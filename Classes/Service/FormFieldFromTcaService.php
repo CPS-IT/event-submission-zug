@@ -84,7 +84,6 @@ class FormFieldFromTcaService
         return implode('|', $eval);
     }
 
-
     protected function getColumItems(array $column): array
     {
         $options = [];
@@ -93,7 +92,7 @@ class FormFieldFromTcaService
                 $label = $option['0'] ?? $option['label'] ?? '';
                 $options[] = [
                     'label' => $this->translate($label),
-                    'value' => $option['1'] ?? $option['value'] ?? ''
+                    'value' => $option['1'] ?? $option['value'] ?? '',
                 ];
             }
         }
@@ -112,8 +111,10 @@ class FormFieldFromTcaService
         }
 
         if (!in_array($column['config']['type'], $allowedTypesWithoutRenderType)) {
-            if (isset($column['config']['renderType']) && !in_array($column['config']['renderType'],
-                    $allowedRenderTypes)) {
+            if (isset($column['config']['renderType']) && !in_array(
+                $column['config']['renderType'],
+                $allowedRenderTypes
+            )) {
                 return false;
             }
         }
