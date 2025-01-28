@@ -16,12 +16,15 @@ namespace Cpsit\EventSubmission\Api\Event;
 
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
+use Cpsit\EventSubmission\Event\SubmissionWithdrawnEvent;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
+use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Event API end point for PUT method
@@ -35,7 +38,8 @@ final class Withdraw extends AbstractApi implements EventApiInterface
 
     public function __construct(
         ApiResponseFactoryFactory $apiResponseFactoryFactory,
-        private readonly Db $db
+        private readonly Db $db,
+        private readonly EventDispatcherInterface $eventDispatcher,
     )
     {
         $this->responseFactory = $apiResponseFactoryFactory->get(self::RESPONSE_NAME);
@@ -106,8 +110,15 @@ final class Withdraw extends AbstractApi implements EventApiInterface
             ];
             $result = $this->db->update(Job::TABLE_NAME, $data, $where);
 
+
             if ($result === 1) {
                 $responseCode = ApiResponseInterface::EVENT_WITHDRAW_SUCCESS;
+                $this->eventDispatcher->dispatch(
+                    new SubmissionWithdrawnEvent(
+                        $job,
+                        $this->getRequest()->getSettings()
+                    )
+                );
             }
         }
 
