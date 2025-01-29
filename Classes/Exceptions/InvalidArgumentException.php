@@ -10,7 +10,4 @@ namespace Cpsit\EventSubmission\Exceptions;
  * of the License, or any later version.
  */
 
-class InvalidArgumentException extends \Exception
-{
-
-}
+class InvalidArgumentException extends \Exception {}

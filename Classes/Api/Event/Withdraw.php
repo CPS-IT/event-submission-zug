@@ -39,12 +39,11 @@ final class Withdraw extends AbstractApi implements EventApiInterface
     public const MESSAGE_INVALID_ARGUMENT = 'Invalid or missing argument %s.';
 
     public function __construct(
-        ApiResponseFactoryFactory                 $apiResponseFactoryFactory,
-        private readonly JobRepository            $jobRepository,
-        private readonly PersistenceManager       $persistenceManager,
+        ApiResponseFactoryFactory $apiResponseFactoryFactory,
+        private readonly JobRepository $jobRepository,
+        private readonly PersistenceManager $persistenceManager,
         private readonly EventDispatcherInterface $eventDispatcher,
-    )
-    {
+    ) {
         $this->responseFactory = $apiResponseFactoryFactory->get(self::RESPONSE_NAME);
     }
 
@@ -86,10 +85,10 @@ final class Withdraw extends AbstractApi implements EventApiInterface
     public function withdraw(): array
     {
         $arguments = $this->request->getArguments();
-            $responseCode = ApiResponseInterface::EVENT_WITHDRAW_ERROR;
+        $responseCode = ApiResponseInterface::EVENT_WITHDRAW_ERROR;
 
         try {
-            if(!is_array($arguments) || empty($arguments[self::PARAMETER_ID])) {
+            if (!is_array($arguments) || empty($arguments[self::PARAMETER_ID])) {
                 $message = sprintf(self::MESSAGE_INVALID_ARGUMENT, self::PARAMETER_ID);
                 throw new InvalidArgumentException($message, $responseCode);
             }
@@ -115,7 +114,6 @@ final class Withdraw extends AbstractApi implements EventApiInterface
                     )
                 );
             }
-
         } catch (\Exception $exception) {
             return $this->responseFactory
                 ->errorResponse()
