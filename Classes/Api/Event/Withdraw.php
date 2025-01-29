@@ -16,15 +16,16 @@ namespace Cpsit\EventSubmission\Api\Event;
 
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
+use Cpsit\EventSubmission\Domain\Repository\JobRepository;
 use Cpsit\EventSubmission\Event\SubmissionWithdrawnEvent;
+use Cpsit\EventSubmission\Exceptions\InvalidArgumentException;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
-use Cpsit\EventSubmission\Factory\Job\JobFactory;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
-use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  * Event API end point for PUT method
@@ -35,10 +36,12 @@ final class Withdraw extends AbstractApi implements EventApiInterface
 {
     public const RESPONSE_NAME = 'EventWithdrawApiResponse';
     protected ApiResponseFactoryInterface $responseFactory;
+    public const MESSAGE_INVALID_ARGUMENT = 'Invalid or missing argument %s.';
 
     public function __construct(
-        ApiResponseFactoryFactory $apiResponseFactoryFactory,
-        private readonly Db $db,
+        ApiResponseFactoryFactory                 $apiResponseFactoryFactory,
+        private readonly JobRepository            $jobRepository,
+        private readonly PersistenceManager       $persistenceManager,
         private readonly EventDispatcherInterface $eventDispatcher,
     )
     {
@@ -83,35 +86,27 @@ final class Withdraw extends AbstractApi implements EventApiInterface
     public function withdraw(): array
     {
         $arguments = $this->request->getArguments();
-        $responseCode = ApiResponseInterface::EVENT_WITHDRAW_ERROR;
-        $id = $arguments[self::PARAMETER_ID];
-        $responseData = [
-            'id' => $id,
-        ];
+            $responseCode = ApiResponseInterface::EVENT_WITHDRAW_ERROR;
 
-        // find job by identifier
-        // Note: job could be approved and imported already
-        $job = $this->db->findOneByValues(
-            Job::TABLE_NAME,
-            [
-                Job::FIELD_UUID => $id,
-            ]
-        );
-
-        // update job status
-        if (!empty($job)) {
-            $data = [
-                Job::FIELD_APPROVED => 0,
-                Job::FIELD_STATUS => SubmissionStatus::WITHDRAWN,
+        try {
+            if(!is_array($arguments) || empty($arguments[self::PARAMETER_ID])) {
+                $message = sprintf(self::MESSAGE_INVALID_ARGUMENT, self::PARAMETER_ID);
+                throw new InvalidArgumentException($message, $responseCode);
+            }
+            $id = $arguments[self::PARAMETER_ID];
+            $responseData = [
+                'id' => $id,
             ];
 
-            $where = [
-                Job::FIELD_UID => $job[Job::FIELD_UID],
-            ];
-            $result = $this->db->update(Job::TABLE_NAME, $data, $where);
+            $job = $this->jobRepository->findOneByUuid($id);
 
-
-            if ($result === 1) {
+            // update job status
+            // Note: job could be approved and imported already
+            if ($job instanceof Job) {
+                $job->setStatus(SubmissionStatus::WITHDRAWN)
+                    ->setApproved(false);
+                $this->jobRepository->update($job);
+                $this->persistenceManager->persistAll();
                 $responseCode = ApiResponseInterface::EVENT_WITHDRAW_SUCCESS;
                 $this->eventDispatcher->dispatch(
                     new SubmissionWithdrawnEvent(
@@ -120,6 +115,13 @@ final class Withdraw extends AbstractApi implements EventApiInterface
                     )
                 );
             }
+
+        } catch (\Exception $exception) {
+            return $this->responseFactory
+                ->errorResponse()
+                ->setMessage($exception->getMessage())
+                ->setCode($exception->getCode())
+                ->toArray();
         }
 
         return $this->responseFactory

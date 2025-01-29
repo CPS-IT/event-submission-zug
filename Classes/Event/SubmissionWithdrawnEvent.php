@@ -3,7 +3,7 @@
 namespace Cpsit\EventSubmission\Event;
 
 /*
- * This file is part of the iki_event_approval project.
+ * This file is part of the event_submission project.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -15,11 +15,11 @@ use Cpsit\EventSubmission\Domain\Model\Job;
 final readonly class SubmissionWithdrawnEvent
 {
     public function __construct(
-        private array $job,
+        private Job $job,
         private array $settings
     ) {}
 
-    public function getJob(): array
+    public function getJob(): Job
     {
         return $this->job;
     }

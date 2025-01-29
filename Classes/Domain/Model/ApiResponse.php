@@ -28,9 +28,10 @@ class ApiResponse implements ApiResponseInterface
         return $this->code;
     }
 
-    public function setCode(int $code): void
+    public function setCode(int $code): self
     {
         $this->code = $code;
+        return $this;
     }
 
     public function getData(): array
@@ -38,17 +39,19 @@ class ApiResponse implements ApiResponseInterface
         return $this->data;
     }
 
-    public function setData(array $data): void
+    public function setData(array $data): self
     {
         $this->data = $data;
+        return $this;
     }
 
     /**
      * @param string $message
      */
-    public function setMessage(string $message): void
+    public function setMessage(string $message): self
     {
         $this->message = $message;
+        return $this;
     }
 
     public function getMessage(): string
