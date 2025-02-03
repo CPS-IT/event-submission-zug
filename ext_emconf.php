@@ -1,4 +1,5 @@
 <?php
+
 $EM_CONF['event_submission'] = [
     'title' => 'Event Submission',
     'description' => 'Submit event proposals through a web form',
@@ -14,5 +15,5 @@ $EM_CONF['event_submission'] = [
         ],
         'conflicts' => [],
         'suggests' => [],
-    ]
+    ],
 ];

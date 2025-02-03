@@ -23,5 +23,4 @@ interface RegistrableInterface
     public static function getNodeId(): int;
     public static function getNodeName(): string;
     public static function getPriority(): int;
-
 }

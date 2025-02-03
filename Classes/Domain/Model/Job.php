@@ -195,7 +195,6 @@ class Job extends AbstractEntity
     /**
      * Note: keep fully qualified namespace for extbase reflection
      * @param \GeorgRinger\News\Domain\Model\News $event
-     * @return void
      */
     public function setEvent(\GeorgRinger\News\Domain\Model\News $event): void
     {
@@ -277,7 +276,6 @@ class Job extends AbstractEntity
             ) {
                 $status = SubmissionStatus::EVENT_PUBLISHED;
             }
-
         }
 
         return $status;

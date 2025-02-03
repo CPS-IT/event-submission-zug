@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpMultipleClassDeclarationsInspection */
+<?php
+
+/** @noinspection PhpMultipleClassDeclarationsInspection */
 
 declare(strict_types=1);
 
@@ -25,10 +27,9 @@ use Nng\Nnrestapi\Api\AbstractApi;
 /**
  * Event API end point for PUT method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Put extends AbstractApi implements EventApiInterface
-
 {
     public const RESPONSE_NAME = 'EventPutApiResponse';
     protected ApiResponseFactoryFactory $apiResponseFactoryFactory;
@@ -103,7 +104,7 @@ final class Put extends AbstractApi implements EventApiInterface
      * ```
      *
      * @Api\Route("PUT /event/{id}")
-     * @Api\Localize()
+     * @Api\Localize
      * @Api\Access("public")
      * @return array
      * @throws JsonException
@@ -118,7 +119,8 @@ final class Put extends AbstractApi implements EventApiInterface
 
         // find job by identifier
         // Note: job could be approved and imported yet
-        $job = $this->db->findOneByValues(Job::TABLE_NAME,
+        $job = $this->db->findOneByValues(
+            Job::TABLE_NAME,
             [
                 Job::FIELD_UUID => $id,
             ]

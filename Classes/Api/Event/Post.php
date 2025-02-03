@@ -20,7 +20,6 @@ use Cpsit\EventSubmission\Exceptions\InvalidResponseException;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\Job\JobFactory;
-use Cpsit\EventSubmission\Helper\EmailUrlBuilder;
 use Cpsit\EventSubmission\Helper\HydrateJobFromEventPostRequest;
 use Cpsit\EventSubmission\Service\LinkService;
 use Cpsit\EventSubmission\Service\MailService;
@@ -37,7 +36,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Event post api end point
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Post extends AbstractApi
 {
@@ -106,7 +105,7 @@ final class Post extends AbstractApi
      * ```
      *
      * @Api\Route("POST /event")
-     * @Api\Localize()
+     * @Api\Localize
      * @Api\Access("public")
      * @return array
      */
@@ -130,7 +129,7 @@ final class Post extends AbstractApi
 
             $data = [
                 'editToken' => $job->getUuid(),
-                'id' => $job->getUid()
+                'id' => $job->getUid(),
             ];
             return $this->responseFactory->successResponse($data)->toArray();
         } catch (Exception $e) {

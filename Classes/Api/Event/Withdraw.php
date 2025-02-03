@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpMultipleClassDeclarationsInspection */
+<?php
+
+/** @noinspection PhpMultipleClassDeclarationsInspection */
 
 declare(strict_types=1);
 
@@ -14,31 +16,35 @@ namespace Cpsit\EventSubmission\Api\Event;
 
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Domain\Model\Job;
+use Cpsit\EventSubmission\Domain\Repository\JobRepository;
+use Cpsit\EventSubmission\Event\SubmissionWithdrawnEvent;
+use Cpsit\EventSubmission\Exceptions\InvalidArgumentException;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
-use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  * Event API end point for PUT method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Withdraw extends AbstractApi implements EventApiInterface
-
 {
     public const RESPONSE_NAME = 'EventWithdrawApiResponse';
-    protected ApiResponseFactoryFactory $apiResponseFactoryFactory;
     protected ApiResponseFactoryInterface $responseFactory;
-    protected Db $db;
+    public const MESSAGE_INVALID_ARGUMENT = 'Invalid or missing argument %s.';
 
-    public function __construct(ApiResponseFactoryFactory $apiResponseFactory, Db $db)
-    {
-        $this->apiResponseFactoryFactory = $apiResponseFactory;
-        $this->responseFactory = $this->apiResponseFactoryFactory->get(self::RESPONSE_NAME);
-        $this->db = $db;
+    public function __construct(
+        ApiResponseFactoryFactory $apiResponseFactoryFactory,
+        private readonly JobRepository $jobRepository,
+        private readonly PersistenceManager $persistenceManager,
+        private readonly EventDispatcherInterface $eventDispatcher,
+    ) {
+        $this->responseFactory = $apiResponseFactoryFactory->get(self::RESPONSE_NAME);
     }
 
     /**
@@ -72,7 +78,7 @@ final class Withdraw extends AbstractApi implements EventApiInterface
      * ```
      *
      * @Api\Route("PUT /event/{id}/withdraw")
-     * @Api\Localize()
+     * @Api\Localize
      * @Api\Access("public")
      * @return array
      */
@@ -80,34 +86,40 @@ final class Withdraw extends AbstractApi implements EventApiInterface
     {
         $arguments = $this->request->getArguments();
         $responseCode = ApiResponseInterface::EVENT_WITHDRAW_ERROR;
-        $id = $arguments[self::PARAMETER_ID];
-        $responseData = [
-            'id' => $id
-        ];
 
-        // find job by identifier
-        // Note: job could be approved and imported already
-        $job = $this->db->findOneByValues(Job::TABLE_NAME,
-            [
-                Job::FIELD_UUID => $id,
-            ]
-        );
-
-        // update job status
-        if (!empty($job)) {
-            $data = [
-                Job::FIELD_APPROVED => 0,
-                Job::FIELD_STATUS => SubmissionStatus::WITHDRAWN
-            ];
-
-            $where = [
-                Job::FIELD_UID => $job[Job::FIELD_UID]
-            ];
-            $result = $this->db->update(Job::TABLE_NAME, $data, $where);
-
-            if ($result === 1) {
-                $responseCode = ApiResponseInterface::EVENT_WITHDRAW_SUCCESS;
+        try {
+            if (!is_array($arguments) || empty($arguments[self::PARAMETER_ID])) {
+                $message = sprintf(self::MESSAGE_INVALID_ARGUMENT, self::PARAMETER_ID);
+                throw new InvalidArgumentException($message, $responseCode);
             }
+            $id = $arguments[self::PARAMETER_ID];
+            $responseData = [
+                'id' => $id,
+            ];
+
+            $job = $this->jobRepository->findOneByUuid($id);
+
+            // update job status
+            // Note: job could be approved and imported already
+            if ($job instanceof Job) {
+                $job->setStatus(SubmissionStatus::WITHDRAWN)
+                    ->setApproved(false);
+                $this->jobRepository->update($job);
+                $this->persistenceManager->persistAll();
+                $responseCode = ApiResponseInterface::EVENT_WITHDRAW_SUCCESS;
+                $this->eventDispatcher->dispatch(
+                    new SubmissionWithdrawnEvent(
+                        $job,
+                        $this->getRequest()->getSettings()
+                    )
+                );
+            }
+        } catch (\Exception $exception) {
+            return $this->responseFactory
+                ->errorResponse()
+                ->setMessage($exception->getMessage())
+                ->setCode($exception->getCode())
+                ->toArray();
         }
 
         return $this->responseFactory

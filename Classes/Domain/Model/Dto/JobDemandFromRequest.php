@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -41,7 +42,7 @@ class JobDemandFromRequest
         if (isset($this->demandArguments['status'])) {
             $status = [];
             if (MathUtility::canBeInterpretedAsInteger($this->demandArguments['status'])) {
-                $status[] = intval($this->demandArguments['status']);
+                $status[] = (int)($this->demandArguments['status']);
             }
 
             if (is_array($this->demandArguments['status'])) {
@@ -52,5 +53,4 @@ class JobDemandFromRequest
         }
         return $this->demand;
     }
-
 }

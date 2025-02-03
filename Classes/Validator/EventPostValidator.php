@@ -31,7 +31,6 @@ class EventPostValidator implements \Cpsit\EventSubmission\Validator\ValidatorIn
 {
     public function isValid(array $requestBody): bool
     {
-
         if (empty($requestBody['email']) || !GeneralUtility::validEmail($requestBody['email'])) {
             return false;
         }

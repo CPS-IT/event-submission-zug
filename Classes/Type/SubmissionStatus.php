@@ -11,7 +11,6 @@ namespace Cpsit\EventSubmission\Type;
  */
 enum SubmissionStatus: int
 {
-
     case unknown        = 0;  // unknown
     case new            = 1;  // submitted by frontend user
     case approved       = 2;  // approved by editor, ready for processing, event not yet created
@@ -44,7 +43,7 @@ enum SubmissionStatus: int
 
     public static function getStatusByName(string $name): ?SubmissionStatus
     {
-        if(!self::isValidName($name)) {
+        if (!self::isValidName($name)) {
             return null;
         }
 

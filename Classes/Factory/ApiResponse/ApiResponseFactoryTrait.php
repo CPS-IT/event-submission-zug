@@ -15,10 +15,8 @@ namespace Cpsit\EventSubmission\Factory\ApiResponse;
 use Cpsit\EventSubmission\Domain\Model\ApiResponse;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 trait ApiResponseFactoryTrait
 {
-
     public function successResponse(array $data = []): ApiResponse
     {
         return $this->create(self::SUCCESS_CODE, $data);

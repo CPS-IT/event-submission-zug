@@ -2,7 +2,6 @@
 
 namespace Cpsit\EventSubmission\Form;
 
-use Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 /***************************************************************
@@ -23,7 +22,6 @@ use TYPO3\CMS\Core\Utility\StringUtility;
  ***************************************************************/
 trait FormElementAttributesTrait
 {
-
     /**
      * Main data array to work on, given from parent to child elements
      *
@@ -42,7 +40,7 @@ trait FormElementAttributesTrait
         $attributes = [
             'id' => $fieldId,
             'name' => htmlspecialchars($parameterArray['itemFormElName']),
-            'data-formengine-input-name' => htmlspecialchars($parameterArray['itemFormElName'])
+            'data-formengine-input-name' => htmlspecialchars($parameterArray['itemFormElName']),
         ];
 
         $classes = [

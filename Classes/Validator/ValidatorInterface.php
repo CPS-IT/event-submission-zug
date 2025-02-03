@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Validator;
 
-
 interface ValidatorInterface
 {
     public function isValid(array $requestBody): bool;

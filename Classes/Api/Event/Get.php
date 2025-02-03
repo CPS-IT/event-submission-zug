@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -24,7 +25,7 @@ use Nng\Nnrestapi\Api\AbstractApi;
 /**
  * Event API end point for PUT method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Get extends AbstractApi implements EventApiInterface
 {
@@ -81,7 +82,7 @@ final class Get extends AbstractApi implements EventApiInterface
      *
      * @Api\Route("GET /event/{id}")
      * @Api\Access("public")
-     * @Api\Localize()
+     * @Api\Localize
      * @return array
      * @throws JsonException
      */
@@ -94,7 +95,8 @@ final class Get extends AbstractApi implements EventApiInterface
 
         // find job by identifier
         // Note: job could be approved and imported yet
-        $job = $this->db->findOneByValues(Job::TABLE_NAME,
+        $job = $this->db->findOneByValues(
+            Job::TABLE_NAME,
             [
                 Job::FIELD_UUID => $id,
             ]

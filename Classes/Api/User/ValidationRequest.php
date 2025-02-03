@@ -13,13 +13,13 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Api\User;
 
 use Cpsit\EventSubmission\Configuration\Extension;
+use Cpsit\EventSubmission\Exceptions\InvalidConfigurationException;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Service\LinkService;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
-use Cpsit\EventSubmission\Exceptions\InvalidConfigurationException;
 use Exception;
 use nn\t3;
 use Nng\Nnrestapi\Annotations as Api;
@@ -29,7 +29,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Event post api end point
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class ValidationRequest extends AbstractApi
 {
@@ -88,7 +88,7 @@ final class ValidationRequest extends AbstractApi
      *
      * @Api\Route("POST /user/sendValidationRequest")
      * @Api\Access("public")
-     * @Api\Localize()
+     * @Api\Localize
      * @return array
      * @throws Exception
      */
@@ -110,7 +110,6 @@ final class ValidationRequest extends AbstractApi
             $data = [];
 
             return $this->responseFactory->successResponse($data)->toArray();
-
         } catch (Exception $e) {
             return $this->responseFactory->errorResponse()->toArray();
         }
@@ -128,10 +127,10 @@ final class ValidationRequest extends AbstractApi
         $appPid = (int)$settings['eventSubmission']['appPid'];
         $linkService = GeneralUtility::makeInstance(LinkService::class);
         $validationUrl = $linkService->build(
-             $appPid,
+            $appPid,
             [
                 '_language' => t3::Environment()->getLanguage(),
-                'validationHash' => $this->getRequest()->getBody()['validationHash']
+                'validationHash' => $this->getRequest()->getBody()['validationHash'],
             ],
         );
 
@@ -168,7 +167,6 @@ final class ValidationRequest extends AbstractApi
 
     /**
      * @param array $settings
-     * @return void
      * @throws InvalidConfigurationException
      */
     protected function assertValidSettings(array $settings): void
