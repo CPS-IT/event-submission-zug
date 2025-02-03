@@ -32,6 +32,10 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg',
     ],
+    'event-submission-job-rejected' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg',
+    ],
     'event-submission-job-error' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg',
