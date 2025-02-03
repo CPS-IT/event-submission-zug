@@ -20,7 +20,6 @@ namespace Cpsit\EventSubmission\Form;
  ***************************************************************/
 trait RegistrableTrait
 {
-
     public static function getPriority(): int
     {
         return static::NODE_PRIORITY;

@@ -17,7 +17,7 @@ final class TemplateService implements ServiceInterface
     public const TEMPLATE_PATHS = [
         'templateRootPaths' => ['EXT:event_submission/Resources/Private/Templates'],
         'layoutRootPaths' => ['EXT:event_submission/Resources/Private/Layouts'],
-        'partialRootPaths' => ['EXT:event_submission/Resources/Private/Partials']
+        'partialRootPaths' => ['EXT:event_submission/Resources/Private/Partials'],
     ];
 
     public function render(
@@ -25,7 +25,6 @@ final class TemplateService implements ServiceInterface
         array $templatesPaths = self::TEMPLATE_PATHS,
         array $templateVariables = []
     ): string {
-
         // Render Html mail
         return @\nn\t3::Template()->render(
             $templateName,

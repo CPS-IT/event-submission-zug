@@ -36,6 +36,7 @@ class Job extends AbstractEntity
         FIELD_APPROVED = 'approved',
         FIELD_EVENT = 'event',
         FIELD_STATUS = 'status',
+        FIELD_TSTAMP = 'tstamp',
         DEFAULT_STATUS = SubmissionStatus::unknown->value;
 
     protected string $uuid = '';
@@ -194,7 +195,6 @@ class Job extends AbstractEntity
     /**
      * Note: keep fully qualified namespace for extbase reflection
      * @param \GeorgRinger\News\Domain\Model\News $event
-     * @return void
      */
     public function setEvent(\GeorgRinger\News\Domain\Model\News $event): void
     {
@@ -276,7 +276,6 @@ class Job extends AbstractEntity
             ) {
                 $status = SubmissionStatus::EVENT_PUBLISHED;
             }
-
         }
 
         return $status;

@@ -20,7 +20,7 @@ use Ramsey\Uuid\Uuid;
 
 final class HydrateJobFromEventPostRequest
 {
-    static public function hydrate(Request $request, Response $response): array
+    public static function hydrate(Request $request, Response $response): array
     {
         return [
             'uuid' => Uuid::uuid4()->toString(),
@@ -30,7 +30,7 @@ final class HydrateJobFromEventPostRequest
             'payload' => $request->getRawBody(),
             'responseCode' => ApiResponseInterface::EVENT_SUBMISSION_SUCCESS,
             'isApiError' => false,
-            'pid' => (int)$request->getSettings()['insertDefaultValues']['Cpsit\EventSubmission\Domain\Model\Job']['pid'] ?? 0
+            'pid' => (int)$request->getSettings()['insertDefaultValues']['Cpsit\EventSubmission\Domain\Model\Job']['pid'] ?? 0,
         ];
     }
 }

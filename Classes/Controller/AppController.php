@@ -22,7 +22,7 @@ class AppController extends ActionController
         $this->view->assignMultiple(
             [
                 'baseUrl' => \nn\t3::Environment()->getBaseUrl(),
-                'siteConfig' => \nn\t3::Settings()->getSiteConfig()
+                'siteConfig' => \nn\t3::Settings()->getSiteConfig(),
             ]
         );
         return $this->htmlResponse();

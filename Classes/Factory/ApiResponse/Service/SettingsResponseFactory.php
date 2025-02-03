@@ -22,5 +22,4 @@ class SettingsResponseFactory implements ApiResponseFactoryInterface
     public const SUCCESS_CODE = ApiResponseInterface::APP_SETTINGS_SUCCESS;
     public const ERROR_CODE = ApiResponseInterface::APP_SETTINGS_ERROR;
     public const DEFAULT_FACTORY_NAME = 'ServiceSettingsApiResponse';
-
 }

@@ -30,11 +30,10 @@ class JobFactory
     ): ?Job {
         if (array_key_exists($factoryIndex, $this->factories)) {
             return $this->factories[$factoryIndex]->create($arguments);
-        } else {
-            throw new Exception(
-                sprintf('Error: job factory "%s" could not be found', $factoryIndex),
-                1689292298
-            );
         }
+        throw new Exception(
+            sprintf('Error: job factory "%s" could not be found', $factoryIndex),
+            1689292298
+        );
     }
 }

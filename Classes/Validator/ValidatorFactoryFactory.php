@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Validator;
 
-use Cpsit\EventSubmission\Domain\Model\Job;
 use TYPO3\CMS\Impexp\Exception;
 
 class ValidatorFactoryFactory
@@ -29,11 +28,10 @@ class ValidatorFactoryFactory
     ): ?ValidatorInterface {
         if (array_key_exists($factoryIndex, $this->factories)) {
             return $this->factories[$factoryIndex];
-        } else {
-            throw new Exception(
-                sprintf('Error validator factory: validator "%s" could not be found', $factoryIndex),
-                1689292298
-            );
         }
+        throw new Exception(
+            sprintf('Error validator factory: validator "%s" could not be found', $factoryIndex),
+            1689292298
+        );
     }
 }

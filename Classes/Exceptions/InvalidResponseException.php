@@ -18,7 +18,4 @@ namespace Cpsit\EventSubmission\Exceptions;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-class InvalidResponseException extends \Exception
-{
-
-}
+class InvalidResponseException extends \Exception {}

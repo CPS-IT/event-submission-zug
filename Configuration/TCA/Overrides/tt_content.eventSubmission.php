@@ -13,7 +13,7 @@
         [
             $ll . 'tt_content.CType.eventsubmission_app',
             $contentElementType,
-            'content-form'
+            'content-form',
         ],
         'bullets',
         'before'
@@ -50,5 +50,4 @@
             ],
         ],
     ];
-
 })();

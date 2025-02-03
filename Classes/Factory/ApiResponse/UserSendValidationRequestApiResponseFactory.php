@@ -21,5 +21,4 @@ class UserSendValidationRequestApiResponseFactory implements ApiResponseFactoryI
     public const DEFAULT_FACTORY_NAME = 'UserSendValidationRequestApiResponse';
     public const SUCCESS_CODE = ApiResponseInterface::USER_SEND_VALIDATION_REQUEST_SUCCESS;
     public const ERROR_CODE = ApiResponseInterface::USER_SEND_VALIDATION_REQUEST_ERROR;
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -32,7 +33,7 @@ class JobTest extends TestCase
 
     public function testInitialStatusIsNew(): void
     {
-        $this->assertSame(
+        self::assertSame(
             $this->subject->getStatus(),
             SubmissionStatus::NEW
         );
@@ -43,7 +44,7 @@ class JobTest extends TestCase
         $newStatus = SubmissionStatus::approved->value;
 
         $this->subject->setStatus($newStatus);
-        $this->assertSame(
+        self::assertSame(
             $this->subject->getStatus(),
             $newStatus
         );
@@ -54,30 +55,30 @@ class JobTest extends TestCase
         return [
             'new and unapproved' => [
                 [Job::FIELD_APPROVED => false], // jobTemplate
-                SubmissionStatus::NEW       // expectedStatus
+                SubmissionStatus::NEW,       // expectedStatus
             ],
             'approved, event not created' => [
                 [
                     Job::FIELD_APPROVED => true,
-                    Job::FIELD_IS_DONE => false
+                    Job::FIELD_IS_DONE => false,
                 ],
-                SubmissionStatus::APPROVED
+                SubmissionStatus::APPROVED,
             ],
             'new with api error' => [
                 [Job::FIELD_IS_API_ERROR => true],
-                SubmissionStatus::ERROR
+                SubmissionStatus::ERROR,
             ],
             'new with internal error' => [
                 [Job::FIELD_IS_INTERNAL_ERROR => true],
-                SubmissionStatus::ERROR
+                SubmissionStatus::ERROR,
             ],
             'approved, event created' => [
                 [
                     Job::FIELD_APPROVED => true,
-                    Job::FIELD_EVENT => new News()
+                    Job::FIELD_EVENT => new News(),
                 ],
-                SubmissionStatus::EVENT_CREATED
-            ]
+                SubmissionStatus::EVENT_CREATED,
+            ],
         ];
     }
 
@@ -86,14 +87,12 @@ class JobTest extends TestCase
      *
      * @param array $jobTemplate
      * @param int $expectedStatus
-     *
-     * @return void
      */
     public function testGetStatusReturnsValidStatus(array $jobTemplate, int $expectedStatus): void
     {
         $job = $this->jobFactory->create($jobTemplate);
-        $this->assertNotNull($job);
-        $this->assertSame(
+        self::assertNotNull($job);
+        self::assertSame(
             $job->getStatus(),
             $expectedStatus
         );

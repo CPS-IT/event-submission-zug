@@ -31,22 +31,19 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  ***************************************************************/
 class SubmissionApprovalStatusNode extends AbstractFormElement implements RegistrableInterface
 {
-    use FormElementAttributesTrait,
-        RegistrableTrait;
+    use FormElementAttributesTrait;
+    use RegistrableTrait;
 
     public const NODE_ID = 1690799109;
     public const NODE_NAME = 'eventSubmissionApprovalStatus';
     public const NODE_PRIORITY = 30;
     public const DEFAULT_LANGUAGE_FILE = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf';
 
-
-
     /**
      * @inheritDoc
      */
     public function render()
     {
-
         $fieldInformationResult = $this->renderFieldInformation();
         $fieldInformationHtml = $fieldInformationResult['html'];
         $resultArray = $this->mergeChildReturnIntoExistingResult(
@@ -95,7 +92,8 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
         $message = $languageService->sL(
             static::DEFAULT_LANGUAGE_FILE . ':approval_status.message.' . $messageKey
         );
-        $flashMessage = GeneralUtility::makeInstance(FlashMessage::class,
+        $flashMessage = GeneralUtility::makeInstance(
+            FlashMessage::class,
             $message,
             $header,
             AbstractMessage::INFO,
@@ -110,7 +108,7 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
     {
         $row = $this->data['databaseRow'];
 
-        if($row[Job::FIELD_IS_DONE] !== 1) {
+        if ($row[Job::FIELD_IS_DONE] !== 1) {
             return '';
         }
     }

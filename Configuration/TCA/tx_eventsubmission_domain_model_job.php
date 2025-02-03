@@ -1,9 +1,11 @@
 <?php
+
 defined('TYPO3') or die();
 
 use Cpsit\EventSubmission\Form\Element\SubmissionApprovalStatusNode;
 use Cpsit\EventSubmission\Form\Element\SubmissionPayloadDisplayNode;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
+
 $ll = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf:';
 
 return [
@@ -52,7 +54,7 @@ return [
                 is_done,
                 uuid,
                 internal_log_message,
-                is_internal_error'
+                is_internal_error',
         ],
     ],
     'columns' => [
@@ -90,7 +92,7 @@ return [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.payload',
             'config' => [
                 'type' => 'user',
-                'renderType' => SubmissionPayloadDisplayNode::getNodeName()
+                'renderType' => SubmissionPayloadDisplayNode::getNodeName(),
             ],
         ],
         'response_code' => [
@@ -185,7 +187,7 @@ return [
             'displayCond' => [
                 'AND' => [
                     'FIELD:is_done:!=:1',
-                    'FIELD:status:!=:' . SubmissionStatus::WITHDRAWN
+                    'FIELD:status:!=:' . SubmissionStatus::WITHDRAWN,
                 ],
             ],
             'config' => [
@@ -206,8 +208,8 @@ return [
             'description' => $ll . 'tx_eventsubmission_domain_model_job.approval_status_description',
             'config' => [
                 'type' => 'user',
-                'renderType' => SubmissionApprovalStatusNode::getNodeName()
-            ]
+                'renderType' => SubmissionApprovalStatusNode::getNodeName(),
+            ],
         ],
         'event' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.event',
@@ -224,7 +226,7 @@ return [
                 'hideSuggest' => true,
                 'fieldWizard' => [
                     'tableList' => [
-                        'disabled' => true
+                        'disabled' => true,
                     ],
                 ],
                 'fieldControl' => [
@@ -246,7 +248,7 @@ return [
         ],
         'status' => [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.label.status',
-            'description' => $ll .'tx_eventsubmission_domain_model_job.description.status',
+            'description' => $ll . 'tx_eventsubmission_domain_model_job.description.status',
             'config' => [
                 'type' => 'select',
                 'readOnly' => true,
@@ -256,45 +258,45 @@ return [
                     [
                         $ll . 'label.status.unknown',
                         SubmissionStatus::UNKNOWN,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-unknown.svg'
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-unknown.svg',
                     ],
                     [
                         $ll . 'label.status.new',
                         SubmissionStatus::NEW,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-new.svg'
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-new.svg',
                     ],
                     [
                         $ll . 'label.status.approved',
                         SubmissionStatus::APPROVED,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-approved.svg'
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-approved.svg',
                     ],
                     [
                         $ll . 'label.status.eventCreated',
                         SubmissionStatus::EVENT_CREATED,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-eventCreated.svg'
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-eventCreated.svg',
                     ],
                     [
                         $ll . 'label.status.published',
                         SubmissionStatus::EVENT_PUBLISHED,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-published.svg'
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-published.svg',
                     ],
                     [
                         $ll . 'label.status.updated',
                         SubmissionStatus::UPDATED,
-                        "EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg"
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg',
                     ],
                     [
                         $ll . 'label.status.withdrawn',
                         SubmissionStatus::WITHDRAWN,
-                        "EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg"
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg',
                     ],
                     [
                         $ll . 'label.status.error',
                         SubmissionStatus::ERROR,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg'
+                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg',
                     ],
-                ]
-            ]
+                ],
+            ],
         ],
     ],
 ];

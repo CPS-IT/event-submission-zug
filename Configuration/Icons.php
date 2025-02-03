@@ -1,4 +1,5 @@
 <?php
+
 return [
     'event-submission-job' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
@@ -29,6 +30,10 @@ return [
         'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg',
     ],
     'event-submission-job-withdrawn' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg',
+    ],
+    'event-submission-job-rejected' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg',
     ],

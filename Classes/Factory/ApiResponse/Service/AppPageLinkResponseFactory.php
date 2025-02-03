@@ -22,5 +22,4 @@ class AppPageLinkResponseFactory implements ApiResponseFactoryInterface
     public const SUCCESS_CODE = ApiResponseInterface::APP_PAGE_LINK_REQUEST_SUCCESS;
     public const ERROR_CODE = ApiResponseInterface::APP_PAGE_LINK_REQUEST_ERROR;
     public const DEFAULT_FACTORY_NAME = 'ServicePageLinkApiResponse';
-
 }

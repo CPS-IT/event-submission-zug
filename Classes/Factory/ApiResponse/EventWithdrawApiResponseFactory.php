@@ -21,5 +21,4 @@ class EventWithdrawApiResponseFactory implements ApiResponseFactoryInterface
     public const DEFAULT_FACTORY_NAME = 'EventWithdrawApiResponse';
     public const SUCCESS_CODE = ApiResponseInterface::EVENT_WITHDRAW_SUCCESS;
     public const ERROR_CODE = ApiResponseInterface::EVENT_WITHDRAW_ERROR;
-
 }

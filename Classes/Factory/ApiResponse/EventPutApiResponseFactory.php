@@ -21,5 +21,4 @@ class EventPutApiResponseFactory implements ApiResponseFactoryInterface
     public const DEFAULT_FACTORY_NAME = 'EventPutApiResponse';
     public const SUCCESS_CODE = ApiResponseInterface::EVENT_UPDATE_SUCCESS;
     public const ERROR_CODE = ApiResponseInterface::EVENT_UPDATE_ERROR;
-
 }

@@ -29,11 +29,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-class SubmissionPayloadDisplayNode extends AbstractFormElement
-    implements RegistrableInterface
+class SubmissionPayloadDisplayNode extends AbstractFormElement implements RegistrableInterface
 {
-    use FormElementAttributesTrait,
-        RegistrableTrait;
+    use FormElementAttributesTrait;
+    use RegistrableTrait;
 
     public const NODE_ID = 1690545326;
     public const NODE_NAME = 'eventSubmissionPayloadDisplay';
@@ -85,7 +84,7 @@ class SubmissionPayloadDisplayNode extends AbstractFormElement
         } catch (JsonException $e) {
             // render error message
             $payload = [
-                'error' => $languageService->sL(static::DEFAULT_LANGUAGE_FILE . ':message.invalidJsonInPayload')
+                'error' => $languageService->sL(static::DEFAULT_LANGUAGE_FILE . ':message.invalidJsonInPayload'),
             ];
         }
 
@@ -130,7 +129,7 @@ class SubmissionPayloadDisplayNode extends AbstractFormElement
 
             // todo specification requires sub classes, find output independent from structure.
             if (is_array($value)) {
-                $value = implode(", ", $value);
+                $value = implode(', ', $value);
             }
             $html[] = '<dd>' . htmlspecialchars($value) . '</dd>';
         }
@@ -144,7 +143,6 @@ class SubmissionPayloadDisplayNode extends AbstractFormElement
 
         return $resultArray;
     }
-
 
     protected function getLabelFromTypoScriptConf($column): ?array
     {
@@ -184,5 +182,4 @@ class SubmissionPayloadDisplayNode extends AbstractFormElement
         }
         return null;
     }
-
 }

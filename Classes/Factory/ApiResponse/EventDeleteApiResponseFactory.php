@@ -21,5 +21,4 @@ class EventDeleteApiResponseFactory implements ApiResponseFactoryInterface
     public const SUCCESS_CODE = ApiResponseInterface::EVENT_DELETE_SUCCESS;
     public const ERROR_CODE = ApiResponseInterface::EVENT_DELETE_ERROR;
     public const DEFAULT_FACTORY_NAME = 'EventDeleteApiResponse';
-
 }
