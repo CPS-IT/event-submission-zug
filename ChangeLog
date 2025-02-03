@@ -1,3 +1,13 @@
+2025-02-03         [RELEASE] Release of event_submission 2.0.0 (Vladimir Falcón Piva)
+2025-01-29 e4eed14 code cleanup (Dirk Wenzel)
+2025-01-29 de31952 [WIP] endpoint Event/Withdraw , ApiResponse, Event/SubmissionWithdrawnEvent refactored (Dirk Wenzel)
+2025-01-28 4f7fe3a [WIP] API endpoint Withdraw now emits a SubmissionWithdrawnEvent (Dirk Wenzel)
+2025-01-28 c8dbab7 [WIP] dependency injection of  Api/Event/Withdraw edited (Dirk Wenzel)
+2025-01-28 3d2c46c code cleanup (Dirk Wenzel)
+2025-01-27 1ca6a06 [WIP] Job and Type/SubmissionStatus extended (Dirk Wenzel)
+2025-01-24 ab88c0e [WIP] additional status icon registered (Dirk Wenzel)
+2025-01-23 62b9d76 [WIP] submission status "rejected" added (Dirk Wenzel)
+
 2024-07-30         [RELEASE] Release of event_submission 1.4.6 (Vladimir Falcón Piva)
 2024-07-30 a34348a 58842 update approve now label in BE (Vladimir Falcón Piva)
 2024-07-30 e643927 58842 fixed event creation and update (Vladimir Falcón Piva)
