@@ -37,6 +37,7 @@ class Job extends AbstractEntity
         FIELD_EVENT = 'event',
         FIELD_STATUS = 'status',
         FIELD_TSTAMP = 'tstamp',
+        FIELD_HIDDEN = 'hidden',
         DEFAULT_STATUS = SubmissionStatus::unknown->value;
 
     protected string $uuid = '';
@@ -47,6 +48,7 @@ class Job extends AbstractEntity
     protected bool $isApiError = false;
     protected bool $isDone = false;
     protected bool $approved = false;
+    protected bool $hidden = false;
     protected ?\DateTime $jobTriggeredDateTime = null;
     protected ?\DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
@@ -284,5 +286,20 @@ class Job extends AbstractEntity
     public function getPayloadDecoded(): array
     {
         return json_decode($this->payload, true);
+    }
+
+    public function getHidden(): bool
+    {
+        return $this->hidden;
+    }
+
+    public function isHidden(): bool
+    {
+        return $this->hidden;
+    }
+
+    public function setHidden(bool $hidden): void
+    {
+        $this->hidden = $hidden;
     }
 }
