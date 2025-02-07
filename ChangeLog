@@ -1,3 +1,7 @@
+2025-02-07         [RELEASE] Release of event_submission 2.0.1 (Vladimir Falcón Piva)
+2025-02-07 387d79e Fixed data type error for event hidden field (Vladimir Falcón Piva)
+2025-02-07 c2c1622 ZUG Events withdrawn action hide data do not delete it (Vladimir Falcón Piva)
+
 2025-02-03         [RELEASE] Release of event_submission 2.0.0 (Vladimir Falcón Piva)
 2025-01-29 e4eed14 code cleanup (Dirk Wenzel)
 2025-01-29 de31952 [WIP] endpoint Event/Withdraw , ApiResponse, Event/SubmissionWithdrawnEvent refactored (Dirk Wenzel)
