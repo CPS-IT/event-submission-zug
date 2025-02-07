@@ -56,7 +56,10 @@ return [
                 is_done,
                 uuid,
                 internal_log_message,
-                is_internal_error',
+                is_internal_error,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                --palette--;;hidden,
+                --palette--;;access,',
         ],
     ],
     'palettes' => [

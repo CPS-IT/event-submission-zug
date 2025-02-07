@@ -37,6 +37,7 @@ class Job extends AbstractEntity
         FIELD_EVENT = 'event',
         FIELD_STATUS = 'status',
         FIELD_TSTAMP = 'tstamp',
+        FIELD_HIDDEN = 'hidden',
         DEFAULT_STATUS = SubmissionStatus::unknown->value;
 
     protected string $uuid = '';
