@@ -97,7 +97,7 @@ final class Withdraw extends AbstractApi implements EventApiInterface
                 'id' => $id,
             ];
 
-            $job = $this->jobRepository->findOneByUuid($id);
+            $job = $this->jobRepository->findOneBy(['uuid' => $id]);
 
             // update job status
             // Note: job could be approved and imported already
