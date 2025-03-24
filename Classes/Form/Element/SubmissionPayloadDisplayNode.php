@@ -9,7 +9,6 @@ use Cpsit\EventSubmission\Form\FormElementAttributesTrait;
 use Cpsit\EventSubmission\Form\RegistrableInterface;
 use Cpsit\EventSubmission\Form\RegistrableTrait;
 use Cpsit\EventSubmission\Service\FormFieldFromTcaService;
-use JsonException;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -81,7 +80,7 @@ class SubmissionPayloadDisplayNode extends AbstractFormElement implements Regist
                 }
             }
             $payload = array_merge(array_flip($order), $payload);
-        } catch (JsonException $e) {
+        } catch (\JsonException $e) {
             // render error message
             $payload = [
                 'error' => $languageService->sL(static::DEFAULT_LANGUAGE_FILE . ':message.invalidJsonInPayload'),

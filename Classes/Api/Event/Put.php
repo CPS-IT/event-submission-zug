@@ -19,7 +19,6 @@ use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
-use JsonException;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -107,7 +106,7 @@ final class Put extends AbstractApi implements EventApiInterface
      * @Api\Localize
      * @Api\Access("public")
      * @return array
-     * @throws JsonException
+     * @throws \JsonException
      * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function update(): array

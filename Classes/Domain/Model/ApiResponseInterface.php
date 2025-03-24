@@ -12,9 +12,7 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Domain\Model;
 
-use Stringable;
-
-interface ApiResponseInterface extends Stringable
+interface ApiResponseInterface extends \Stringable
 {
     public const EVENT_SUBMISSION_SUCCESS = 100;
     public const EVENT_SUBMISSION_ERROR = 400;

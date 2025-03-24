@@ -17,7 +17,6 @@ use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
-use JsonException;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -84,7 +83,7 @@ final class Get extends AbstractApi implements EventApiInterface
      * @Api\Access("public")
      * @Api\Localize
      * @return array
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function index(): array
     {
