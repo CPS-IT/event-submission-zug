@@ -26,11 +26,12 @@ use Nng\Nnrestapi\Api\AbstractApi;
 /**
  * Event API end point for PUT method
  *
- * @Api\Endpoint
+ * @Api\Endpoint()
  */
 final class Put extends AbstractApi implements EventApiInterface
 {
     public const RESPONSE_NAME = 'EventPutApiResponse';
+
     protected ApiResponseFactoryFactory $apiResponseFactoryFactory;
     protected ApiResponseFactoryInterface $responseFactory;
     protected Db $db;

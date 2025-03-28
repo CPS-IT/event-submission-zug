@@ -17,6 +17,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class Settings extends AbstractApi
 {
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
+
     public const RESPONSE_NAME = 'ServiceSettingsApiResponse';
 
     protected ApiResponseFactoryInterface $responseFactory;

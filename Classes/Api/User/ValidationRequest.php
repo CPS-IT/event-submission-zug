@@ -35,6 +35,16 @@ final class ValidationRequest extends AbstractApi
     public const MAIL_TEMPLATE_NAME = 'SendValidationRequest';
     public const RESPONSE_NAME = 'UserSendValidationRequestApiResponse';
 
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
+
     protected ApiResponseFactoryInterface $responseFactory;
 
     public function __construct(

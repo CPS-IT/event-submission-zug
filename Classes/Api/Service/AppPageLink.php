@@ -38,6 +38,16 @@ final class AppPageLink extends AbstractApi
 
     protected ApiResponseFactoryInterface $responseFactory;
 
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
+
     public function __construct(
         protected ApiResponseFactoryFactory $apiResponseFactoryFactory
     ) {

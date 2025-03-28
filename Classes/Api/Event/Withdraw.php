@@ -30,13 +30,14 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 /**
  * Event API end point for PUT method
  *
- * @Api\Endpoint
+ * @Api\Endpoint()
  */
 final class Withdraw extends AbstractApi implements EventApiInterface
 {
     public const RESPONSE_NAME = 'EventWithdrawApiResponse';
-    protected ApiResponseFactoryInterface $responseFactory;
     public const MESSAGE_INVALID_ARGUMENT = 'Invalid or missing argument %s.';
+
+    protected ApiResponseFactoryInterface $responseFactory;
 
     public function __construct(
         ApiResponseFactoryFactory $apiResponseFactoryFactory,

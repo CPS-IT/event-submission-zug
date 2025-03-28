@@ -34,12 +34,22 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Event post api end point
  *
- * @Api\Endpoint
+ * @Api\Endpoint()
  */
 final class Post extends AbstractApi
 {
     public const MAIL_TEMPLATE_NAME = 'EventPostConfirmationEmail';
     public const RESPONSE_NAME = 'EventPostApiResponse';
+
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
 
     protected ApiResponseFactoryInterface $responseFactory;
 
