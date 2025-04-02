@@ -232,7 +232,7 @@ components:
             - withdrawn
             - error
           description: |
-            Reflects the status of the event submission during its live cycle. Some values may 
+            Reflects the status of the event submission during its live cycle. Some values may
             be irrelevant for frontend editing an not be valid for POST or PUT requests.
           example: eventCreated
         email:

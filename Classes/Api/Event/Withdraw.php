@@ -30,7 +30,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 /**
  * Event API end point for PUT method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Withdraw extends AbstractApi implements EventApiInterface
 {

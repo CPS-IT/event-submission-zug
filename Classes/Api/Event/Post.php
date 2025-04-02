@@ -34,7 +34,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Event post api end point
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Post extends AbstractApi
 {

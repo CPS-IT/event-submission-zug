@@ -24,7 +24,7 @@ use Nng\Nnrestapi\Api\AbstractApi;
 /**
  * Event API end point for DELETE method
  *
- * @Api\Endpoint()
+ * @Api\Endpoint
  */
 final class Delete extends AbstractApi implements EventApiInterface
 {

@@ -153,7 +153,7 @@ class JobRepository extends Repository
 
         if (!empty($constraints)) {
             $query->matching(
-                $query->logicalAnd($constraints)
+                $query->logicalAnd(...$constraints)
             );
         }
     }

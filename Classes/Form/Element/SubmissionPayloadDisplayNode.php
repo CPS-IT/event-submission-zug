@@ -130,7 +130,7 @@ class SubmissionPayloadDisplayNode extends AbstractFormElement implements Regist
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }
-            $html[] = '<dd>' . htmlspecialchars($value) . '</dd>';
+            $html[] = '<dd>' . htmlspecialchars($value ?? '') . '</dd>';
         }
         $html[] = '</dl>';
 

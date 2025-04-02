@@ -16,8 +16,8 @@ return [
         'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'sortby' => 'crdate',
         'delete' => 'deleted',
+        'default_sortby' => 'crdate DESC',
         'enablecolumns' => [
             'disabled' => 'hidden',
             'starttime' => 'starttime',

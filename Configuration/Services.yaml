@@ -9,6 +9,10 @@ services:
 
   Cpsit\EventSubmission\Api\Service\Settings:
     public: true
+
+  Cpsit\EventSubmission\Api\Service\AppPageLink:
+    public: true
+
   Cpsit\EventSubmission\Api\User\ValidationRequest:
     public: true
 

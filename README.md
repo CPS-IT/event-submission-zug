@@ -6,7 +6,7 @@ Those are meant to be used by a browser side app.
 
 This frontend app is (currently) not included.
 
-## Overview 
+## Overview
 * [Configuration](Documentation/ForAdministrators/Configuration.md)
 * [API Specification](Documentation/ForDevelopers/APIspecification.md)
 * [Workflow](Documentation/ForDevelopers/Workflow.md)
@@ -41,5 +41,3 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 This copyright notice MUST APPEAR in all copies of the script!
-
-
