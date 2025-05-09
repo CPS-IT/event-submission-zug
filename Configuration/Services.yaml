@@ -7,6 +7,30 @@ services:
   Cpsit\EventSubmission\:
     resource: '../Classes/*'
 
+  Cpsit\EventSubmission\Api\Service\Settings:
+    public: true
+
+  Cpsit\EventSubmission\Api\Service\AppPageLink:
+    public: true
+
+  Cpsit\EventSubmission\Api\User\ValidationRequest:
+    public: true
+
+  Cpsit\EventSubmission\Api\Event\Withdraw:
+    public: true
+
+  Cpsit\EventSubmission\Api\Event\Put:
+    public: true
+
+  Cpsit\EventSubmission\Api\Event\Post:
+    public: true
+
+  Cpsit\EventSubmission\Api\Event\Get:
+    public: true
+
+  Cpsit\EventSubmission\Api\Event\Delete:
+    public: true
+
   _instanceof:
     Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface:
       tags: [ 'EventSubmission.ApiResponseFactory' ]

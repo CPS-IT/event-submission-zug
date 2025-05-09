@@ -13,20 +13,15 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Domain\Model\Dto;
 
 use TYPO3\CMS\Core\Utility\MathUtility;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 
-class JobDemandFromRequest
+class JobDemandFromArray
 {
-    protected array $demandArguments = [];
     protected ?DemandInterface $demand = null;
 
     public function __construct(
-        protected RequestInterface $request
+        protected array $demandArguments = []
     ) {
         $this->demand = new JobDemand();
-        if ($this->request->hasArgument('demand')) {
-            $this->demandArguments = $this->request->getArgument('demand');
-        }
     }
 
     public function build(): DemandInterface

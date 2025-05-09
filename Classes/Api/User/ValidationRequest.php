@@ -20,7 +20,6 @@ use Cpsit\EventSubmission\Service\LinkService;
 use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
-use Exception;
 use nn\t3;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -35,6 +34,16 @@ final class ValidationRequest extends AbstractApi
 {
     public const MAIL_TEMPLATE_NAME = 'SendValidationRequest';
     public const RESPONSE_NAME = 'UserSendValidationRequestApiResponse';
+
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
 
     protected ApiResponseFactoryInterface $responseFactory;
 
@@ -90,7 +99,7 @@ final class ValidationRequest extends AbstractApi
      * @Api\Access("public")
      * @Api\Localize
      * @return array
-     * @throws Exception
+     * @throws \Exception
      */
     public function send(): array
     {
@@ -110,13 +119,13 @@ final class ValidationRequest extends AbstractApi
             $data = [];
 
             return $this->responseFactory->successResponse($data)->toArray();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseFactory->errorResponse()->toArray();
         }
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      * @throws InvalidConfigurationException
      */
     protected function renderEmailBody(): string
@@ -150,7 +159,7 @@ final class ValidationRequest extends AbstractApi
     }
 
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     protected function assertValidRequest(): void
     {
@@ -158,7 +167,7 @@ final class ValidationRequest extends AbstractApi
 
         // Early return request body validation failed
         if (!$validator->isValid($this->getRequest()->getBody() ?? [])) {
-            throw new Exception(
+            throw new \Exception(
                 'Invalid request body for UserSendValidationRequest',
                 1689928124
             );

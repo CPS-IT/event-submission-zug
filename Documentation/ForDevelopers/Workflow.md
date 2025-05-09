@@ -4,7 +4,7 @@ Workflow
 
 ## Overview
 
-### 1. validate email address 
+### 1. validate email address
 
 **Endpoint**: `POST /user/sendValidationRequest`
 
@@ -16,7 +16,7 @@ Your app should then recognize the user and proceed to posting the event. (see: 
 
 **Endpoint**: `POST /event/`
 
-Creates a new event proposal. 
+Creates a new event proposal.
 
 It will be persisted as a record in the table `tx_eventsubmission_domain_model_job`. with the status "new". The payload of the request will be contained in the field `payload` of this record.
 
@@ -28,7 +28,7 @@ The proposal will not be processed before approved by an editor.
 ### 3. get event proposal
 **Endpoint**:  `GET /event/{id}`
 
-Get a single event proposal. 
+Get a single event proposal.
 
 Returns the event proposal or an error if it doesn't exist.
 
@@ -37,7 +37,7 @@ Returns the event proposal or an error if it doesn't exist.
 
 **Endpoint**:  `PUT /event/{id}`
 
-Change an existing event proposal. 
+Change an existing event proposal.
 
 In case of success, the content of the payload replaces the payload of the existing.
 The status of the proposal will be set to "updated". This status requires a new approval by an editor.
@@ -51,4 +51,3 @@ If the proposal doesn't exist or can not be edited, an error message is returned
 Withdraw an existing event proposal.
 
 The proposal status will be set to "withdrawn". It can not be edited anymore.
-

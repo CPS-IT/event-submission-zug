@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 ExtensionUtility::configurePlugin(
-    Extension::VENDOR_NAME . '.' . Extension::NAME,
+    Extension::NAME,
     'App',
     [
         AppController::class => implode(',', [

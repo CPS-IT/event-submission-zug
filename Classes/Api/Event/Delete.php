@@ -17,7 +17,6 @@ use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Factory\ApiResponse\MissingFactoryException;
-use JsonException;
 use Nng\Nnhelpers\Utilities\Db;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -30,6 +29,7 @@ use Nng\Nnrestapi\Api\AbstractApi;
 final class Delete extends AbstractApi implements EventApiInterface
 {
     public const RESPONSE_NAME = 'EventDeleteApiResponse';
+
     protected ApiResponseFactoryInterface $responseFactory;
     protected Db $db;
 
@@ -76,7 +76,7 @@ final class Delete extends AbstractApi implements EventApiInterface
      * @Api\Route("DELETE /event/{id}")
      * @Api\Access("public")
      * @return array
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function delete(): array
     {

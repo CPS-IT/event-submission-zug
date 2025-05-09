@@ -26,8 +26,6 @@ use Cpsit\EventSubmission\Service\MailService;
 use Cpsit\EventSubmission\Service\TemplateService;
 use Cpsit\EventSubmission\Service\TranslationService;
 use Cpsit\EventSubmission\Validator\ValidatorFactoryFactory;
-use Exception;
-use JsonException;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
@@ -42,6 +40,16 @@ final class Post extends AbstractApi
 {
     public const MAIL_TEMPLATE_NAME = 'EventPostConfirmationEmail';
     public const RESPONSE_NAME = 'EventPostApiResponse';
+
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
 
     protected ApiResponseFactoryInterface $responseFactory;
 
@@ -132,7 +140,7 @@ final class Post extends AbstractApi
                 'id' => $job->getUid(),
             ];
             return $this->responseFactory->successResponse($data)->toArray();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseFactory->errorResponse()->toArray();
         }
     }
@@ -142,7 +150,7 @@ final class Post extends AbstractApi
      * @throws InvalidResponseException
      * @throws InvalidRecordException
      * @throws InvalidConfigurationException
-     * @throws JsonException
+     * @throws \JsonException
      */
     protected function renderEmailBody(Job $job): string
     {
@@ -171,7 +179,7 @@ final class Post extends AbstractApi
         $job = $this->jobFactory->get('FromArray', $hydrateJob);
 
         if (!$job instanceof Job) {
-            throw new Exception(
+            throw new \Exception(
                 'Job object could not be created',
                 1690362873
             );
@@ -185,7 +193,7 @@ final class Post extends AbstractApi
 
         // Early return request body validation failed
         if (!$validator->isValid($this->getRequest()->getBody() ?? [])) {
-            throw new Exception(
+            throw new \Exception(
                 'Invalid request body for event post',
                 1690361811
             );
