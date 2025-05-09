@@ -7,13 +7,13 @@ the `nnrestapi` [documentation](https://labor.99grad.de/typo3-docs/typo3-nnresta
 
 ## Site configuration
 
-Configuration have to be set in the TYPO3 site config.  
-The following configuration options are available:  
+Configuration have to be set in the TYPO3 site config.
+The following configuration options are available:
 
 ```yaml
 settings:
   eventSubmission:
-    storagePageUid: <page uid>    
+    storagePageUid: <page uid>
 ```
 
 ### eventSubmission (array)

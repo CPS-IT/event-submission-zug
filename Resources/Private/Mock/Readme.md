@@ -29,7 +29,7 @@ mock-prism-1  | [4:20:29 PM] › [CLI] ✔  success   Prism is listening on http
 
 ### Make API Requests
 
-Open another terminal. 
+Open another terminal.
 
 #### HTTPie
 ```shell

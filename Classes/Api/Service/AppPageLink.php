@@ -5,8 +5,6 @@ namespace Cpsit\EventSubmission\Api\Service;
 use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
-use Exception;
-use JsonException;
 use nn\t3;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
@@ -39,6 +37,16 @@ final class AppPageLink extends AbstractApi
     public const PARAMETER_ID = 'id';
 
     protected ApiResponseFactoryInterface $responseFactory;
+
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
 
     public function __construct(
         protected ApiResponseFactoryFactory $apiResponseFactoryFactory
@@ -83,8 +91,8 @@ final class AppPageLink extends AbstractApi
      * @Api\Access("public")
      * @Api\Localize
      * @return array
-     * @throws Exception
-     * @throws JsonException
+     * @throws \Exception
+     * @throws \JsonException
      */
     public function get(): array
     {
@@ -95,7 +103,7 @@ final class AppPageLink extends AbstractApi
                 'appPageLink' => $this->getApplicationPageLink(),
             ];
             $responseCode = ApiResponseInterface::APP_PAGE_LINK_REQUEST_SUCCESS;
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             $responseCode = ApiResponseInterface::APP_PAGE_LINK_REQUEST_ERROR;
         }
 

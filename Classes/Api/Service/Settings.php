@@ -6,8 +6,6 @@ use Cpsit\EventSubmission\Domain\Model\ApiResponseInterface;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory;
 use Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface;
 use Cpsit\EventSubmission\Service\FormFieldFromTcaService;
-use Exception;
-use JsonException;
 use Nng\Nnrestapi\Annotations as Api;
 use Nng\Nnrestapi\Api\AbstractApi;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,6 +17,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class Settings extends AbstractApi
 {
+    /**
+     * Fixed PHP Runtime Deprecation Notice:
+     * Creation of dynamic property Cpsit\EventSubmission\Api\Service\Settings::$feUser is deprecated
+     * in /var/www/html/app/vendor/nng/nnrestapi/Classes/Controller/ApiController.php line 77
+     *
+     * Todo: fix this in nnrestapi extension
+     * @var array
+     */
+    public array $feUser = [];
+
     public const RESPONSE_NAME = 'ServiceSettingsApiResponse';
 
     protected ApiResponseFactoryInterface $responseFactory;
@@ -75,8 +83,8 @@ final class Settings extends AbstractApi
      * @Api\Access("public")
      * @Api\Localize
      * @return array
-     * @throws Exception
-     * @throws JsonException
+     * @throws \Exception
+     * @throws \JsonException
      */
     public function get(): array
     {
@@ -85,7 +93,7 @@ final class Settings extends AbstractApi
                 'formFields' => $this->getTcaFormFieldsFromSettings(),
             ];
             $responseCode = ApiResponseInterface::APP_SETTINGS_SUCCESS;
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             $responseCode = ApiResponseInterface::APP_SETTINGS_ERROR;
         }
 

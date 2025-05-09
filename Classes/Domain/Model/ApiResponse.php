@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Domain\Model;
 
 use Cpsit\EventSubmission\Service\TranslationService;
-use JsonException;
 
 class ApiResponse implements ApiResponseInterface
 {
@@ -63,7 +62,7 @@ class ApiResponse implements ApiResponseInterface
     }
 
     /**
-     * @throws JsonException
+     * @throws \JsonException
      */
     public function __toString(): string
     {

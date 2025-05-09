@@ -8,7 +8,6 @@ use Cpsit\EventSubmission\Form\RegistrableInterface;
 use Cpsit\EventSubmission\Form\RegistrableTrait;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageRendererResolver;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -96,7 +95,7 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
             FlashMessage::class,
             $message,
             $header,
-            AbstractMessage::INFO,
+            \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::INFO,
             false
         );
         return GeneralUtility::makeInstance(FlashMessageRendererResolver::class)

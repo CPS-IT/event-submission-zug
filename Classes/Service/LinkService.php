@@ -7,7 +7,6 @@ use Cpsit\EventSubmission\Domain\Model\Job;
 use Cpsit\EventSubmission\Exceptions\InvalidConfigurationException;
 use Cpsit\EventSubmission\Exceptions\InvalidRecordException;
 use Cpsit\EventSubmission\Exceptions\InvalidResponseException;
-use Exception;
 use nn\t3;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -106,7 +105,7 @@ class LinkService implements ServiceInterface
     {
         // Pid should not be 0 or less.
         if ($pid <= 0) {
-            throw new Exception(
+            throw new \Exception(
                 'Invalid page id. URL could not be generated.',
                 1689946420
             );

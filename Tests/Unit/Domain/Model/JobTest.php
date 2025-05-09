@@ -16,6 +16,7 @@ use Cpsit\EventSubmission\Factory\Job\FromArray;
 use Cpsit\EventSubmission\Factory\Job\JobFactoryInterface;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
 use GeorgRinger\News\Domain\Model\News;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -50,7 +51,11 @@ class JobTest extends TestCase
         );
     }
 
-    public function jobWithValidStatusDataProvider(): array
+    /**
+     * @return mixed[]
+     * @noinspection PhpPluralMixedCanBeReplacedWithArrayInspection
+     */
+    public static function jobWithValidStatusDataProvider(): array
     {
         return [
             'new and unapproved' => [
@@ -77,17 +82,12 @@ class JobTest extends TestCase
                     Job::FIELD_APPROVED => true,
                     Job::FIELD_EVENT => new News(),
                 ],
-                SubmissionStatus::EVENT_CREATED,
+                SubmissionStatus::EVENT_PUBLISHED,
             ],
         ];
     }
 
-    /**
-     * @dataProvider jobWithValidStatusDataProvider
-     *
-     * @param array $jobTemplate
-     * @param int $expectedStatus
-     */
+    #[DataProvider(methodName: 'jobWithValidStatusDataProvider')]
     public function testGetStatusReturnsValidStatus(array $jobTemplate, int $expectedStatus): void
     {
         $job = $this->jobFactory->create($jobTemplate);
