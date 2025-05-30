@@ -1,3 +1,6 @@
+2025-05-30         [RELEASE] Release of event-submission 3.0.1 (Vladimir Falcón Piva)
+2025-05-30 f267635 Refactor language labels to use core language resources in various domain models (Vladimir Falcón Piva)
+
 2025-02-07         [RELEASE] Release of event_submission 2.0.1 (Vladimir Falcón Piva)
 2025-02-07 387d79e Fixed data type error for event hidden field (Vladimir Falcón Piva)
 2025-02-07 c2c1622 ZUG Events withdrawn action hide data do not delete it (Vladimir Falcón Piva)
