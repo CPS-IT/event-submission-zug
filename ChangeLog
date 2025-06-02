@@ -1,3 +1,6 @@
+2025-06-02         [RELEASE] Release of event-submission 3.0.2 (Vladimir Falcón Piva)
+2025-06-02 5fc5304 Fixes TCA deprecation error (Vladimir Falcón Piva)
+
 2025-05-30         [RELEASE] Release of event-submission 3.0.1 (Vladimir Falcón Piva)
 2025-05-30 f267635 Refactor language labels to use core language resources in various domain models (Vladimir Falcón Piva)
 
