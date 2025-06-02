@@ -181,7 +181,6 @@ return [
                 'items' => [
                     [
                         'label' => '',
-                        1 => '',
                         'labelChecked' => 'Success',
                         'labelUnchecked' => 'Error',
                         'invertStateDisplay' => true,
@@ -209,7 +208,6 @@ return [
                 'items' => [
                     [
                         'label' => '',
-                        1 => '',
                         'labelChecked' => 'Done',
                         'labelUnchecked' => 'not done',
                     ],
@@ -236,7 +234,6 @@ return [
                 'items' => [
                     [
                         'label' => '',
-                        1 => '',
                         'labelChecked' => 'Successful',
                         'labelUnchecked' => 'Error',
                         'invertStateDisplay' => true,
@@ -260,7 +257,6 @@ return [
                 'items' => [
                     [
                         'label' => '',
-                        0 => '',
                         'labelChecked' => $ll . 'tx_eventsubmission_domain_model_job.approved.1',
                         'labelUnchecked' => $ll . 'tx_eventsubmission_domain_model_job.approved.0',
                     ],
