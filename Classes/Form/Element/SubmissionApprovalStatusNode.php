@@ -85,7 +85,7 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
             $messageKey = 'submissionApprovedEventCreated';
         }
         // not sure why this field contains an array ¯\_(ツ)_/¯
-        if ($row[Job::FIELD_STATUS][0] === (string)SubmissionStatus::WITHDRAWN) {
+        if (($row[Job::FIELD_STATUS][0] ?? '') === (string)SubmissionStatus::WITHDRAWN) {
             $messageKey = 'submissionWithdrawn';
         }
         $message = $languageService->sL(
@@ -101,14 +101,5 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
         return GeneralUtility::makeInstance(FlashMessageRendererResolver::class)
             ->resolve()
             ->render([$flashMessage]);
-    }
-
-    protected function renderEventEditLink(): string
-    {
-        $row = $this->data['databaseRow'];
-
-        if ($row[Job::FIELD_IS_DONE] !== 1) {
-            return '';
-        }
     }
 }

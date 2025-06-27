@@ -25,7 +25,7 @@
 				<source>Payload</source>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.response_code">
-				<source>Response Code</source>
+				<source>Response code</source>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.is_api_error">
 				<source>API Request Status</source>
@@ -67,7 +67,7 @@
 				<source>Click the button below to accept or decline the event.</source>
 			</trans-unit>
 			<trans-unit id="tx_eventsubmission_domain_model_job.event_description">
-				<source>related event (created from this submission)</source>
+				<source>Event created from this submission.</source>
 			</trans-unit>
 			<trans-unit id="tt_content.CType.eventsubmission_app">
 				<source>Event Submission Form</source>
@@ -166,6 +166,9 @@
 			</trans-unit>
 			<trans-unit id="label.status.error">
 				<source>error</source>
+			</trans-unit>
+			<trans-unit id="label.status.rejected">
+				<source>rejected</source>
 			</trans-unit>
 			<trans-unit id="label.additionalFieldsConfiguration">
 				<source>Additional Fields Configuration</source>
