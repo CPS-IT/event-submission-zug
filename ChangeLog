@@ -1,3 +1,6 @@
+2025-06-27         [RELEASE] Release of event-submission 3.0.3 (Vladimir Falcón Piva)
+2025-06-27 894e200 Add rejected status to submission and improve localization strings (Vladimir Falcón Piva)
+
 2025-06-02         [RELEASE] Release of event-submission 3.0.2 (Vladimir Falcón Piva)
 2025-06-02 5fc5304 Fixes TCA deprecation error (Vladimir Falcón Piva)
 
