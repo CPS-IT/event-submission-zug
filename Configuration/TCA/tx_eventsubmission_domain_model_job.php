@@ -355,6 +355,11 @@ return [
                         'value' => SubmissionStatus::ERROR,
                         'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg',
                     ],
+                    [
+                        'label' => $ll . 'label.status.rejected',
+                        'value' => SubmissionStatus::REJECTED,
+                        'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-rejected.svg',
+                    ],
                 ],
             ],
         ],
