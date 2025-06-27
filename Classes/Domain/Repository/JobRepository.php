@@ -28,6 +28,13 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class JobRepository extends Repository
 {
+    private ?ConnectionPool $connectionPool = null;
+
+    public function injectConnectionPool(ConnectionPool $connectionPool): void
+    {
+        $this->connectionPool = $connectionPool;
+    }
+
     public function initializeObject(): void
     {
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
@@ -55,8 +62,7 @@ class JobRepository extends Repository
      */
     public function deleteWithExpiredEvents(): int
     {
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable(Job::TABLE_NAME);
+        $connection = $this->connectionPool->getConnectionForTable(Job::TABLE_NAME);
         $queryBuilder = $connection->createQueryBuilder();
 
         // we want to remove jobs with hidden or un-published event too
