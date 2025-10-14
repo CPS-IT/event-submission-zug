@@ -94,7 +94,7 @@ class JobRepository extends Repository
                     time()
                 )
             );
-        $expiredRows = $expiredQuery->execute()->fetchAllAssociative();
+        $expiredRows = $expiredQuery->fetchAllAssociative();
 
         // gather uid for deletion
         foreach ($expiredRows as $item) {
@@ -111,7 +111,7 @@ class JobRepository extends Repository
             ->where(
                 $queryBuilder->expr()->in(Job::FIELD_UID, $toDelete)
             );
-        return $queryBuilder->execute();
+        return $queryBuilder->executeStatement();
     }
 
     public function findDemanded(DemandInterface $demand): QueryResultInterface

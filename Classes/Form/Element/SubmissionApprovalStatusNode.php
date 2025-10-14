@@ -41,7 +41,7 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
     /**
      * @inheritDoc
      */
-    public function render()
+    public function render(): array
     {
         $fieldInformationResult = $this->renderFieldInformation();
         $fieldInformationHtml = $fieldInformationResult['html'];
