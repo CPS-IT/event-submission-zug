@@ -33,7 +33,7 @@ final class MailService implements ServiceInterface
             $fromName = $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'];
         }
 
-        \nn\t3::Mail()->send([
+        \nn\t3::Mail()->send(array_filter([
             'toEmail' => $toEmail,
             'subject' => $subject,
             'html' => $html,
@@ -43,6 +43,6 @@ final class MailService implements ServiceInterface
             'attachments' => $attachments,
             'returnPath_email' => $returnPathEmail,
             'absPrefix' => $absPrefix ? \nn\t3::Environment()->getBaseURL() : '',
-        ]);
+        ]));
     }
 }
