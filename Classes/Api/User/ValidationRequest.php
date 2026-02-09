@@ -146,7 +146,7 @@ final class ValidationRequest extends AbstractApi
         $templateVariables = [
             'mailTitle' => t3::LL()->get('user.sendValidationRequest.mail.title', Extension::NAME),
             'validationUrl' => $validationUrl,
-            'htmlLang' => t3::Environment()->getLanguageKey(),
+            'htmlLang' => ($GLOBALS['TYPO3_REQUEST']?->getAttribute('language', null)?->getLocale()->getLanguageCode() ?? 'en'),
             'extensionName' => Extension::NAME,
             'logoImage' => $this->request->getSettings()['eventSubmission']['mail']['logoImage'] ?? '',
         ];
