@@ -159,7 +159,7 @@ final class Post extends AbstractApi
 
         $templateVariables = [
             'mailTitle' => TranslationService::translate('user.eventPostConfirmation.mail.title'),
-            'htmlLang' => \nn\t3::Environment()->getLanguageKey(),
+            'htmlLang' =>  ($GLOBALS['TYPO3_REQUEST']?->getAttribute('language', null)?->getLocale()->getLanguageCode() ?? 'en'),
             'extensionName' => Extension::NAME,
             'settings' => $this->request->getSettings(),
             'editUrl' => $editUrl,

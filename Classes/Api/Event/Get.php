@@ -105,7 +105,8 @@ final class Get extends AbstractApi implements EventApiInterface
         if (!empty($job)) {
             $responseData = json_decode($job[Job::FIELD_PAYLOAD], true, 512, JSON_THROW_ON_ERROR);
             $responseData[Job::FIELD_APPROVED] = (bool)$job[Job::FIELD_APPROVED];
-            // we use the name of the enum case as string representation for the `status` field
+            // there is a fatal regex bug in nnrest that failed at certain words in comments, removed these words
+            // SubmissionStatus name as string representation for the `status` field
             $responseData[Job::FIELD_STATUS] = SubmissionStatus::from($job[Job::FIELD_STATUS])->name;
             $responseCode = ApiResponseInterface::EVENT_GET_SUCCESS;
         }
