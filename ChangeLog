@@ -1,3 +1,10 @@
+2026-02-09         [RELEASE] Release of event-submission 4.0.1 (Vladimir Falcón Piva)
+2026-02-09 535494a Hotfix language bug 76194 (#1) (Vladimir Falcon Piva)
+2026-02-04 2a496ee Update htmlLang to use TYPO3_REQUEST attribute (Benjamin)
+2026-02-04 49285f7 Clarify comment about regex bug in status field (Benjamin)
+2026-02-03 0e07316 Refactor MailService to use array_filter to remove empty options (Benjamin)
+2026-02-03 6dfca58 Update htmlLang variable to use TYPO3_REQUEST (Benjamin)
+
 2025-10-14         [RELEASE] Release of event-submission 4.0.0 (Vladimir Falcón Piva)
 2025-09-16 d521c4f Update phpunit.xml file (Vladimir Falcón Piva)
 2025-09-16 cfb58bf Dark mode support for svg icons (Vladimir Falcón Piva)
